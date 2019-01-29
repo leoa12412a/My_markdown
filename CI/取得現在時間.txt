@@ -1,0 +1,38 @@
+	//標準時間
+	public function nowtime()
+	{
+		
+		/*
+		中華電信NTP
+		tock.stdtime.gov.tw
+		watch.stdtime.gov.tw
+		time.stdtime.gov.tw
+		clock.stdtime.gov.tw	
+		tick.stdtime.gov.tw
+
+		微軟NTP
+		time.windows.com
+
+		google NTP
+		time.google.com
+		*/
+		ini_set('time.google.com', 'Asia/Taipen');
+        $startTime = microtime(true);
+        $resource = @fsockopen('time.nist.gov', 13, $code, $error, 30);
+        if($resource)
+		{
+			stream_set_timeout($resource, 30);
+			$response = stream_get_contents($resource);
+			// 服務器返回的字符串形如 57637 16-09-06 16:26:17 50 0 0 147.2 UTC(NIST) *              
+			$endTime = microtime(true);
+			$timeDifference = (int)round($endTime - $startTime);
+			
+			if(preg_match('%\d{2}\-\d{2}\-\d{2}\s+\d{2}\:\d{2}\:\d{2}%', $response, $match))// 得到當前時間戳
+			{
+				
+				$timestamp = strToTime('20'.$match[0]) + 3600*8 + $timeDifference;
+				return date('Y-m-d H:i:s', $timestamp);
+			}
+        }
+		return date('Y-m-d H:i:s', time());
+	}

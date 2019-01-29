@@ -1,0 +1,2631 @@
+﻿linux拷貝檔案到另一台linux的指令  用在windows無法接受:檔名的檔案
+scp /etc/sysconfig/network-scripts/ifcfg-eth0* root@124.219.73.129:~
+top  free
+
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+BOOTPROTO=static
+BROADCAST=219.87.153.223
+HWADDR=00:11:D8:B3:21:3C
+IPADDR=219.87.153.221
+NETMASK=255.255.255.224
+#NETWORK=219.87.153.0
+ONBOOT=yes
+GATEWAY=219.87.153.193
+#TYPE=Ethernet
+-----------------------------------------
+DEVICE=eth0
+BOOTPROTO=static
+BROADCAST=192.168.1.255
+HWADDR=00:E0:18:35:AE:6F
+IPADDR=192.168.1.10
+GATEWAY=192.168.1.1
+NETMASK=255.255.255.0
+ONBOOT=yes
+TYPE=Ethernet
+-----------------------------------------
+# Please read /usr/share/doc/initscripts-*/sysconfig.txt
+# for the documentation of these parameters.
+TYPE=Ethernet
+DEVICE=eth0:1
+HWADDR=00:23:54:d4:60:e4
+BOOTPROTO=static
+NETMASK=255.255.255.192
+IPADDR=124.219.73.133
+ONBOOT=yes
+TYPE=Ethernet
++++++++++++++++++++++++++++++++++++++++++++
+
+vi /etc/resolv.conf
+search 9skin.com
+nameserver 168.95.1.1
+nameserver 168.95.192.1
+
+/etc/rc.d/init.d/network restart
+ifconfig
+vi /etc/sysconfig/network              //設定 hostname
+vi /etc/sysconfig/i18n                   //LANG="zh_TW.UTF-8"   改為    LANG="zh_TW.Big5"
+LANG="zh_TW.Big5"                                                                                          
+SUPPORTED="zh_CN.GB2312:zh_CN:zh:zh_TW.Big5:zh_TW:zh:en_US:en"
+SYSFONT="lat0-sun16"
+SYSFONTACM="iso01"
+
+Linux下支援語系設定檔i18n(解決中文亂碼問題)
+裝機後必設定此語系檔
+/etc/sysconfig/i18n
+================================================
+LANG="zh_TW.Big5"
+SUPPORTED="zh_TW.Big5:zh_TW:zh:en_US.UTF-8:en_US:en"
+SYSFONT="latarcyrheb-sun16"
+================================================
+保存退出後，執行如下立即生效 (不需重開機)
+source /etc/sysconfig/i18n
+
+================================================
+
+tail -f /var/log/messages              <<<查看日誌
+
+yum -y update
+yum clean packages
+cat /etc/*-release
+uname -a
+php -v
+rpm -qa | grep mysql    查版本
+
+yum -y install ntp
+ntpdate time.stdtime.gov.tw   (ntpdate -s watch.stdtime.gov.tw)
+hwclock -w
+
+
+vi /etc/crontab               ( all )  (finish must restart)
+crontab -e                     (user)   --->(/var/spool/cron)   (finish did not restart)
+crontab -u apache -e     (apache)use root to change it
+
+cd /aproot/http/vhosts/leedogo_demo/V2
+cd /aproot/http/vhosts/leedogo/V2
+cat /var/log/cron
+
+
+
+service crond start                      開啟排程
+/etc/rc.d/init.d/crond restart           開啟排程
+chkconfig --level 35 crond on   加入开机自动启动:
+
+*******執行檔案必須要轉成   -rwx------  1 apache apache    7364 Dec 30  2009 investment_reward.php   這種權限才行    執行檔********
+可以直接執行   
+測試看看問題出在哪裡   debeg
+
+
+10 5 * * * root /usr/sbin/ntpdate time.stdtime.gov.tw ; /sbin/hwclock -w
+#分   時  日  月  週 |<==============指令串=================>
+0 3 * * * yum -y update
+30 3 * * * tar -zcvf  /backup/vhosts.tgz /aproot/http/vhosts
+0 4 * * * tar -zcvf  /backup/mysql.tgz /dataroot/data
+30 4 * * * tar --exclude /proc --exclude /mnt --exclude /tmp --exclude /backup --exclude /dev --exclude /sys --exclude /lost+found  --exclude /media --exclude /aproot --exclude /dataroot -zcvf /backup/sysrestore.tgz /
+0 5 * * * tar -zcvf  /backup/aproot.tgz /aproot
+30 5 * * * tar -zcvf  /backup/dataroot.tgz /dataroot
+# backup 9skin all DB
+
+0 0 * * * /usr/bin/mysqldump -uroot -p9skin9skin --all-databases > /aproot/alldb_$(date +%Y%m%d).sql
+
+# change DB backup file mode
+
+5 0 * * * chmod 770 /aproot/alldb_$(date +%Y%m%d).sql
+
+# compress case folder all
+
+6 0 * * * tar czf /aproot/lbt_$(date +%Y%m%d).tgz /aproot/http/vhosts/lbt
+
+# change case backup file mode
+
+10 0 * * * chmod 770 /aproot/lbt_$(date +%Y%m%d).tgz
+------------------------------------------------------------------------------------------------
+0 0 * * * /var/www/html/leedogo/V2/annual_fees_payment.php >/dev/null 2>&1
+0 0 1 * * /var/www/html/leedogo/V2/investment_reward.php >/dev/null 2>&1
+#*/1 * * * * /var/www/html/leedogo/V2/annual_fees_payment.php >/dev/null 2>&1
+#*/1 * * * * /var/www/html/leedogo/V2/investment_reward.php >/dev/null 2>&1
+-------------------------------------178------------------------------------------------------
+#0 0 1 1 * /aproot/http/vhosts/twinwin2/form_an.php >/dev/null 2>&1
+#0 0 1 4 * /aproot/http/vhosts/twinwin2/form_an.php >/dev/null 2>&1
+#0 0 1 7 * /aproot/http/vhosts/twinwin2/form_an.php >/dev/null 2>&1
+#0 0 1 10 * /aproot/http/vhosts/twinwin2/form_an.php >/dev/null 2>&1
+#0 0 1 * * /aproot/http/vhosts/twinwin2/form_cp.php >/dev/null 2>&1
+#0 0 25 * * /aproot/http/vhosts/twinwin2/form_ec.php >/dev/null 2>&1
+#0 0 10 * * /aproot/http/vhosts/twinwin2/form_mb.php >/dev/null 2>&1
+#0 0 1 * * /aproot/http/vhosts/twinwin2/form_rm.php >/dev/null 2>&1
+0 0 * * * /aproot/http/vhosts/leedogo_demo/V2/annual_fees_payment.php >/dev/null 2>&1
+0 0 * * * /aproot/http/vhosts/leedogo/V2/annual_fees_payment.php >/dev/null 2>&1
+0 0 1 * * /aproot/http/vhosts/leedogo_demo/V2/investment_reward.php >/dev/null 2>&1
+0 0 1 * * /aproot/http/vhosts/leedogo/V2/investment_reward.php >/dev/null 2>&1
+0 0 1 * * /aproot/http/vhosts/twsuper_demo/national_deal.php >/dev/null 2>&1
+#*/1 * * * * /aproot/http/vhosts/twsuper/national_deal.php >/dev/null 2>&1
+0 0 1 * * /aproot/http/vhosts/twsuper/national_deal.php >/dev/null 2>&1
+#*/1 * * * * /aproot/http/vhosts/leedogo_demo/V2/annual_fees_payment.php >/dev/null 2>&1
+#*/1 * * * * /aproot/http/vhosts/leedogo_demo/V2/investment_reward.php >/dev/null 2>&1
+#0 0 * * * /usr/bin/mysqldump -uroot -p3edc1qaz2wsx --all-databases > /aproot/alldb_$(date +%Y%m%d).sql
+-----------------------------------------------------------------------------------------------------------------------------------
+
+crontab -l > mycron.txt  (backup)
+
+mkdir /home/user
+
+root  3edc1qaz2wsx\]'/   (host303.....967178)
+adduser -d /home/user/adminjerry -g 10  adminjerry
+adduser -d /home/user/adminandy -g 10  adminandy  
+adduser -d /home/user/gwadmin -g 48  gwadmin
+adduser -d /home/user/andadmin -g 48 andadmin
+adduser -d /home/user/yanadmin -g 48 yanadmin
+adduser -d /home/user/wawaadmin -g 48 wawaadmin
+adduser -d /home/user/wawa wawa
+adduser -d /home/user/adminjoy adminjoy
+adduser -d /aproot/http/vhosts/hotel seantw
+
+usermod -g  0 adminjerry
+groupmod -g 10 (-n chang adminjerry) 
+groupdel adminjerry
+passwd gwadmin    (3e..1.....2...\.....)
+passwd adminjerry(host303-----967)  root(host303j-----967)
+passwd adminandy(123ezzs..5)
+passwd andadmin     (12se3zz..5)
+passwd yanadmin     (12se3zz..5)
+passwd wawaadmin  (12se3zz..5)
+passwd apache        (3e..1.....2...\.....)
+
+
+# gpasswd -a adminjerry wheel                                將使用者“adminjerry”加入到“wheel”群組中
+
+---------------------------------------------------------CHROOT------------------------------------------------------------------------------
+/usr/local/bin/chroot.sh
+vi /etc/security/chroot.conf
+將使用者加入chroot的設定內，以我的例子來說chroot的環境在/home/chroot，新增如下：
+wawaadmin            /home/chroot
+
+# vi /etc/pam.d/sshd
+新增資料(session optional pam_chroot.so)
+#%PAM-1.0
+auth       include      system-auth
+account    required     pam_nologin.so
+account    include      system-auth
+password   include      system-auth
+session    optional     pam_keyinit.so force revoke
+session    include      system-auth
+session    optional     pam_chroot.so                      <<<<增加這一個
+session    required     pam_loginuid.so
+
+# grep wawaadmin /etc/passwd
+wawaadmin:x:1382:1382::/home/wawaadmin:/bin/bash
+wawa:x:1382:1382::/home/wawa:/bin/bash
+使用者的passwd檔要變更成chroot的路徑，也要移動使用者的目錄
+# mv /home/user/wawaadmin /home/chroot/home
+
+加入三個指令  不然無法登入
+mkdir -p /home/chroot/{proc,dev/pts}
+mount proc /home/chroot/proc -t proc
+mount devpts /home/chroot/dev/pts -t devpts
+
+加入這個   不然sftp不能用
+vi /etc/ssh/sshd_config
+Subsystem       sftp    internal-sftp
+
+
+
+
+--------------search user--------------------------------------------------------------------------------------------------------------------------
+vipw
+adminjerry:x:500:500::/home/user/adminjerry:/bin/bash
+apache:x:48:48:Apache:/var/www:/sbin/nologin              >>換成 apache:x:48:48:Apache:/var/www:/bin/bash  才能登入
+
+vi /etc/ssh/sshd_config
+PermitRootLogin no
+/etc/rc.d/init.d/sshd restart
+
+限制 ssh 使用者名單
+# echo adminjerry >> /etc/ssh_users
+   echo gwadmin >> /etc/ssh_users
+   echo apache >> /etc/ssh_users
+
+# vi /etc/pam.d/sshd
+	auth       required     pam_listfile.so item=user sense=allow file=/etc/ssh_users onerr=fail   //這是要做什麼?
+
+
+
+(only allow IP can ssh)
+sudo vi /etc/hosts.deny
+sshd:all
+sudo vi /etc/hosts.allow
+sshd:192.168.10.10                                          (192.168.10.10)
+sshd: 192.168.10.0/255.255.255.0 : Allow       (192.168.10.1-192.168.10.255)
+sshd:localhost
+sshd:219.87.153.222
+sshd:219.87.153.220
+sshd:60.251.65.159
+sshd:60.251.65.160
+sshd:60.251.65.161
+
+
+--------------------------------------------------------------------vi------------------------------------------------------------------
+:set nu
+:wq
+:q!
+:/
+esc ...i
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+限制 su / sudo 名單
+# vi /etc/pam.d/su
+
+# visudo
+	%wheel         ALL=(ALL)       ALL        (key adminjerry's passwd)
+                adminjerry    ALL=(ALL)       ALL        (唯一好處-外界無法得知此帳號)
+                adminandy    ALL=(ALL)       ALL
+# gpasswd -a adminjerry wheel                                將使用者“adminjerry”加入到“wheel”群組中
+
+
+
+
+
+
+----------------------------------------------------------------iptables------------------------------------------------------------------------
+service iptables stop(restart)                             重新啟動會讀到舊的iptables匯入舊防火牆，造成網頁無法開啟....
+chmod 744 /usr/local/bin/firewall
+/usr/local/bin/firewall start                                自設的防火牆script  測試啟動firewall      OK直接啟動firewall start   
+/usr/local/bin/firewall 				     7秒後自動清除設定(關閉)                          
+vi /usr/local/bin/firewall
+iptables-save > /etc/iptables.save2010.1
+iptables-restore < /etc/iptables.save2010.1    開機自動寫入防火牆    將此行寫入vi /etc/rc.d/rc.local  檔裡面
+
+查看 iptables 狀況
+iptables -L -nv                    (filter)     INPUT+FORWARD+OUTPUT
+iptables -t nat -L -n             (nat)        PREROUTING+POSTROUTING+OUTPUT
+iptables -t mangle -L -n      (mangle)  PREROUTING+ INPUT+FORWARD+OUTPUT+POSTROUTING
+清除本機iptables (filter) 的所有規則
+iptables -F                            (filter)全部清除
+iptables -t nat -F                   (nat)全部清除
+iptables -t mangle -F            (mangle)全部清除
+iptables -X
+iptables -Z
+
+iptables [-t nat] -P [INPUT,OUTPUT,FORWARD] [ACCEPT,DROP]
+iptables -P   INPUT DROP
+iptables -P  OUTPUT ACCEPT
+iptables -P  FORWARD ACCEPT
+iptables -L -n
+
+chmod +x /usr/local/bin/firewall
+vi /usr/local/bin/firewall
+firewall 
+firewall start
+
+
+vi iptables.rule                               設定最基本的規則，包括清除防火牆規則、載入模組、設定服務可接受等；
+vi iptables.allow                             設定抵擋某些惡意主機的進入
+vi iptables.deny                              設定允許某些自訂的後門來源主機
+
+iptables -A INPUT -s 61.220.69.42 -j ACCEPT
+備份與恢復
+iptables-save > /etc/iptables.save
+iptables-restore < /etc/iptables.save
+
+
+--------------------------------iptable-----------限制流量--------------------------------------------------------
+linux下通过iptables限制流量，简单，实用。通过以下脚本即可实现，首先需要将这台机器配置成网关。
+1.配置iptables转发（略）
+ 
+2.限速脚本
+vi /root/xiansu.sh
+  #!/bin/bash
+/sbin/iptables -F FORWARD
+#限制网段
+for ((i = 1; i < 253; i++))  do
+/sbin/iptables -A FORWARD -s 192.168.2.$i -m limit \
+   --limit 60/s -j ACCEPT
+/sbin/iptables -A FORWARD -s 192.168.2.$i -j DROP
+
+done
+#限制单个ip
+  /sbin/iptables -A FORWARD -s 192.168.1.135/32 -m limit \
+     --limit 60/s -j ACCEPT
+/sbin/iptables -A FORWARD -s 192.168.1.135/32 -j DROP
+ 
+ 
+2.增加执行权限：
+chmod+x /root/xiansu.sh
+ 
+当流量小于60/s的时候，iptables 接受并转发。当流量大于60/s 的时候，iptables丢弃数据包。
+
+
+
+---------------------------------------------------------------selinux MAC---------------------------------------------------------------
+vi /etc/selinux/config
+
+----------------------------------------------------------------ACL-----------------------------------------------------------------------
+讓你的 /home 支援 ACL 的話
+mount -o remount,acl /home
+mount | grep /home
+
+一開機就讓你的檔案系統支援 ACL
+vi /etc/fstab
+
+取得某個檔案/目錄的 ACL 設定項目
+setfacl [-mxdb] 設定值
+參數：
+-m  ：設定一個 ACL 規範；
+-x  ：取消一個 ACL 規範；
+-b  ：全部的 ACL 規範都移除；
+-d  ：設定預設的 ACL 規範，僅能針對目錄使用。
+
+1. 針對使用者
+設定值的規範為： u:[使用者帳號列表]:[rwx]
+例如針對adminjerry 這個使用者來規範其權限為 rx ，則：
+[root@linux ~]# setfacl -m u:adminjerry:rx somefilename
+
+2. 針對群組來設定
+設定值的規範為： g:[群組名]:[rwx]
+例如針對 users 這個群組來規範其權限為 rw ，則：
+[root@linux ~]# setfacl -m g:users:rw somefilename
+
+3. 針對預設權限來規範，類似 umask 的功能
+設定值的規範為： m:[rwx]
+例如假設預設權限為 rwx，則：
+[root@linux ~]# setfacl -m m:rwx somefilename
+
+getfacl somefilename
+
+------------------------------------------------------------------log------------------------------------------------------------------------
+iptables紀錄檔   MRTG + SNMP + Apache server
+ps -l (-x)
+ps -aux | grep adminjerry
+kill
+nice
+renice
+date
+cal 2009
+free
+fdisk -l
+df -m
+du
+pwd
+/var/spool/mail/root
+/var/spool/mail/adminjerry
+whoami
+w
+who
+finger -l adminjerry
+write
+more              (page by page)
+less                 (up dn   H   Q)
+head
+tail
+file /etc/*
+locate
+whereis
+which
+grep
+grep -v
+tar
+unzip
+-----------------------------------------------------------system state &  ports---------------------------------------------------------------------
+netstate -tl
+netstat -tnl
+chkconfig --list
+chkconfig --list | grep "3:開啟" |awk '{print $1}' | sort        <<port & name
+chkconfig --list | grep "3:on" |awk '{print $1}' | sort        <<已經開啟的服務[mysql3306][http80][https443][ftp21][ssh 22]
+cat /etc/inittab
+
+
+Xservice apmd stop ; chkconfig apmd off                      <<off
+X service atd stop ; chkconfig atd off
+Xservice auditd stop ; chkconfig auditd off
+X service autofs stop ; chkconfig autofs off                    
+Xservice avahi-daemon stop ; chkconfig avahi-daemon off
+X service bluetooth stop ; chkconfig bluetooth off
+X service cups stop ; chkconfig cups off                              <<cups  port631印表機
+X service firstboot stop ; chkconfig firstboot off
+Xservice haldaemon stop ; chkconfig haldaemon off
+X service hidd stop ; chkconfig hidd off
+Xservice hplip stop ; chkconfig hplip off
+X service ip6tables stop ; chkconfig ip6tables off
+Xservice isdn stop ; chkconfig isdn off
+X service lm_sensors stop ; chkconfig lm_sensors off
+X service mcstrans stop ; chkconfig mcstrans off
+Xservice messagebus stop ; chkconfig messagebus off
+X service netfs stop ; chkconfig netfs off
+X service nfslock stop ; chkconfig nfslock off
+X service pcscd stop ; chkconfig pcscd off
+X service restorecond stop ; chkconfig restorecond off
+Xservice rpcgssd stop ; chkconfig rpcgssd off
+X service rpcidmapd stop ; chkconfig rpcidmapd off
+Oservice smartd stop ; chkconfig smartd off
+Oservice sendmail stop ；chkconfig sendmail off            <<smpt  port25  
+O service portmap stop; chkconfig portmap off                << portmap port111連接的服務都屬於sunrpc(NFS)
+O service acpid stop ; chkconfig acpid off                        <
+O service gpm stop ; chkconfig gpm off
+Oservice cpuspeed stop ; chkconfig cpuspeed off
+
+
+service apmd stop ; chkconfig apmd off ; service atd stop ; chkconfig atd off ; service auditd stop ; chkconfig auditd off ; service autofs stop ; chkconfig autofs off  ; service avahi-daemon stop ; chkconfig avahi-daemon off ; service bluetooth stop ; chkconfig bluetooth off ; service cups stop ; chkconfig cups off ; service firstboot stop ; chkconfig firstboot off ; service haldaemon stop ; chkconfig haldaemon off ; service hidd stop ; chkconfig hidd off ; service hplip stop ; chkconfig hplip off ; service ip6tables stop ; chkconfig ip6tables off ; service isdn stop ; chkconfig isdn off ; service lm_sensors stop ; chkconfig lm_sensors off ; service mcstrans stop ; chkconfig mcstrans off ; service messagebus stop ; chkconfig messagebus off ; service netfs stop ; chkconfig netfs off ; service nfslock stop ; chkconfig nfslock off ; service pcscd stop ; chkconfig pcscd off ; service restorecond stop ; chkconfig restorecond off ; service rpcgssd stop ; chkconfig rpcgssd off ; service rpcidmapd stop ; chkconfig rpcidmapd off
+
+
+
+
+vi /etc/inittab
+ # Run gettys in standard runlevels
+ 1:2345:respawn:/sbin/mingetty tty1
+ 2:2345:respawn:/sbin/mingetty tty2
+ #3:2345:respawn:/sbin/mingetty tty3     //mark 掉
+ #4:2345:respawn:/sbin/mingetty tty4     //mark 掉
+ #5:2345:respawn:/sbin/mingetty tty5     //mark 掉
+ #6:2345:respawn:/sbin/mingetty tty6     //mark 掉
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+ln -s (soft link)
+chmod  u=rwx,g=rx,o=x filename
+ls -al filename
+chown apache filename
+chown -R mysql lfx9skin/*
+chgrp apache filename
+ls -al filename
+umask
+----------------------------------------------------------------quota------------------------------------------------------------------------
+vi /etc/fstab
+LABEL=/home     ext3     defaults , usrquota , grpquota
+reboot   (write to /etc/mtab)
+quotacheck -avgu
+quota adminjerry
+edquota -u adminjerry    (10240=10M)
+edquota -t                       (all grace period) 
+edquota -p adminjerry adminmarry    (copy)
+quotaon -aguv
+quotaoff -aguv   
+repquota -aguv     (all)
+----------------------------------------------------------------------------------------------------------------------------------------------
+ls -al /etc > /test1/etc.txt
+cat > /test1/write.txt              (編輯器  enter   ...ctrl+c)
+ls -al /etc >> /test1/etc.txt
+cat >> /test1/write.txt 
+patch patch-2.4.3-2
+patch < patch-2.4.3-2
+mail jerryhuang@9skin.com <<finish
+ls -al /nodir &> /test1/error.txt    (錯誤顯示於檔案內)
+----------------------------------------------------------------shell----------------------------------------------------------------------------
+cat p     (2tab)
+mk       (1tab or 2esc)
+history 5
+(*)ls -l /etc/m*
+(?)ls -al ./file?
+(`)echo `date`
+(;)ls -al ; cat ./file
+([ ])ls -al file[1-2] 
+(!)ls -al file[!1-2] 
+set
+/etc/profile
+~/.bash_profile
+~/.bashrc
+~/.bash_login
+~/.profile
+~/.bash_logout
+~/.bash_history
+-----------------------------------------------------------shell script----------------------------------------------------------------------------
+10 5 * * * root /usr/sbin/ntpdate time.stdtime.gov.tw ; /sbin/hwclock -w
+0 3 * * * yum -y update
+*/10 * * * * /var/www/html/leedogo/V2/annual_fees_payment.php >/dev/null 2>&1
+*/10 * * * * /var/www/html/leedogo/V2/investment_reward.php >/dev/null 2>&1
+
+----------------------------------------------------------------lamp-----------------------------------------------------------------------------
+iptable&selinux  都會檔
+apache
+rpm -qa | grep httpd
+vi /etc/httpd/conf/httpd.conf
+
+echo "we are the world" > /var/www/html/index.html
+vi /etc/httpd/conf/httpd.conf                   >>>>>Options FollowSymLinks    >>>>DocumentRoot "/aproot/http"
+chkconfig sshd on
+chkconfig httpd on
+chkconfig mysqld on
+
+
+mysqladmin -u root password '9ski9ski9ski...'            設定root密碼
+mysqladmin -u root -p原密碼 password 新密碼
+mysql -u root -p                                                         登入
+mysql> grant all privileges on *.* to adminjerry@localhost identified by '1qaz2wsx3edc4' ;      新增管理帳號
+mysql> DELETE FROM user WHERE User = '';        刪除空帳號?????
+mysql> FLUSH PRIVILEGES;                                   即時更新
+mysql> quit
+
+<<匯入sql資料檔
+mysql -u root -p9ski9ski9ski... yuhsuan_demo < yuhsuan_demo.sql
+
+
+rpm -qa | grep mysql
+vi /etc/my.cnf   
+
+yum升級php
+yum -y install php-gd
+yum -y install ImageMagick
+yum -y install php-mysql
+yum -y install php-mbstring
+yum -y install php-mcrypt
+
+vi /etc/yum.repos.d/CentOS-Base.repo
+[c5-testing]
+name=CentOS-5 Testing
+baseurl=http://dev.centos.org/centos/5/testing/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://dev.centos.org/centos/RPM-GPG-KEY-CentOS-testing
+
+yum -y update php*
+yum -y update mysql*
+php -v
+reboot
+
+phpMyAdmin 官方網站：http://www.phpmyadmin.net/
+直接拷貝到根目錄phpMyAdmin-3.5.7-all-languages.tar
+tar zxvf phpMyAdmin-3.5.7-all-languages.tar
+安裝套件 (登入頁才會出來)
+yum install php-mysqli
+測試網址
+http://124.219.58.110/ppma2010_aa110a/ppma357/
+
+*****************************************
+wget http://museum.php.net/php5/php-5.3.3.tar.gz
+yum install php53-devel
+yum install libmcrypt-devel
+cd /usr/src/
+tar zxvf /php-5.3.3.tar.gz
+cd php-5.3.3/ext/mcrypt/
+phpize
+aclocal
+./configure
+make
+make install
+
+vi /etc/php.d/mcrypt.ini
+###Add following line to  mcrypt.ini###
+extension=mcrypt.so
+php-m 
+確認已加入延展
+
+******************************************
+tar xf ppma2100.tgz
+tar zxvf phpMyAdmin-2.10.0.2-all-languages.tar.gz
+mv phpMyAdmin-2.10.0.2-all-languages /aproot/http/ppma
+#cd /aproot/http/ppma210                                                       //切換路徑
+#cp config.sample.inc.php config.inc.php                            //複製範例設定檔
+#vi config.inc.php                                                                 //修改 config.inc.php                             內容如下
+/* 設定phpmyadmin的認證方式(config、http、cookie) */
+$cfg['Servers'][$i]['auth_type'] = 'config'; //不需輸入密碼即可登入
+$cfg['Servers'][$i]['auth_type'] = 'http'; //有變動到資料庫就要輸入一次密碼
+$cfg['Servers'][$i]['auth_type'] = 'cookie'; //利用cookie方式只要輸入一次密碼即可
+30 行 $cfg['PmaAbsoluteUri'] = '';                                    修改成--> $cfg['PmaAbsoluteUri'] = 'http://IP/ppma210/';
+71 行 $cfg['Servers'][$i]['auth_type'] = 'config';               修改成--> $cfg['Servers'][$i]['auth_type'] = 'http';
+
+測試：https://IP/ppma2010/index.php，帳號 root，密碼空白
+            https://219.87.153.221/ppma2010/index.php
+            https://219.87.147.178/ppma2010/index.php
+      
+            http://www.9skin.com/ppma2010/index.php
+            https://61.219.193.29/ppma2010_PPm01A_jerry
+
+cd /aproot/http
+ln -s /home/user/gwadmin/leedogo leedogo            >>> ln –s  實際資料夾 捷徑
+
+---------------------------------MRTG----------------------------------------------------------------------------------------------------------
+yum -y install (software)net-snmp、net-snmp-utils、mrtg
+
+
+--------------------------------------------------------------FTP server-------------------------------------------------------------------------
+yum -y install vsftpd
+cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
+vi /etc/vsftpd/vsftpd.conf
+
+anonymous_enable=YES 修改成--> anonymous_enable=NO
+#xferlog_file=/var/log/vsftpd.log 修改成--> xferlog_file=/var/log/xferlog
+
+#chroot_list_enable=YES                        修改成--> chroot_list_enable=YES
+#chroot_list_file=/etc/vsftpd/chroot_list   修改成--> chroot_list_file=/etc/vsftpd/chroot_list
+
+#在檔案最後面加入下面這一行
+chroot_local_user=YES
+
+
+echo 'adminjerry' >> /etc/vsftpd/chroot_list
+echo 'joy140' >> /etc/vsftpd/chroot_list     
+
+/etc/rc.d/init.d/vsftpd start
+chkconfig vsftpd on    
+modprobe ip_conntrack_ftp       <<<<執行下面的語句就可以讓ftp工作在pasv或非pasv模式     這樣才能才能連
+modprobe ip_nat_ftp
+
+------------如何隱藏FTP上層目錄---------------
+1. 新增一個 SFTP 專用的群組
+在這裡我們先建立一個 sftponly 群組（你當然也可以建立其他的名稱）
+addgroup --system sftponly
+2. 修改 OpenSSH 的設定檔
+編輯 "/etc/ssh/sshd_config" 檔案，先找到以下 Subsystem 設定：
+Subsystem sftp /usr/lib/openssh/sftp-server internal-sftp
+並修改成：
+Subsystem sftp internal-sftp
+然後在該設定檔最後加上以下設定，其中的 ChrootDirectory 設定的 %u 代表使用者帳號：
+Match group sftponly
+         ChrootDirectory /home/%u
+         X11Forwarding no
+         AllowTcpForwarding no
+         ForceCommand internal-sftp
+3. 建立新使用者，並加入 sftponly 群組
+建立新使用者後，預設會建立 /home/USERNAME 家目錄 (Home Directory)：
+adduser sftpuser
+由於我們在 sshd_config 設定檔中有宣告只要符合 sftponly 群組的使用者都套用 ChrootDirectory 的設定，因此必須將該使用者加入到 sftponly 群組中：
+adduser sftpuser sftponly
+另一個重點是，由於要套用 chroot() 的關係，該使用者登入後的根目錄必須擁有一些必要的目錄，為了節省設定上的麻煩，我們只要將該使用者的家目錄修改為根目錄 ( / ) 即可：
+usermod -d / sftpuser
+4. 修正使用者帳戶的家目錄權限
+也是由於 chroot() 的特殊限制，這個要 chroot() 目錄的擁有者必須為 root，而且該目錄的權限也必須設定為 755 才行：
+chown root.root /home/sftpuser
+chmod 755 /home/sftpuser
+
+5. 在使用者目錄下建立允許上傳檔案的目錄，並賦予適當的目錄權限
+這一個步驟也是蠻重要的，因為 chroot() 過的目錄擁有者必須為 root 且目錄權限為 755
+所以使用者登入後一定無法上傳任何檔案到這個目錄，若要讓使用者能上傳檔案，
+則必須先幫使用者建立好適當的目錄與設定權限才能夠上傳檔案：
+cd /home/sftpuser
+mkdir upload
+chown sftpuser.sftpuser upload
+由於該帳戶只需讓使用者上傳檔案，不允許使用者登入使用 shell，
+所以也建議將一些家目錄內的隱藏檔刪除，
+以免使用者透過 WinSCP 或 FileZilla Client 登入時看到一些奇怪的檔案。
+
+
+5.設定完成這兩個要重新開啟服務
+service sshd restart
+service vsftpd restart
+
+
+touch /home/user/adminjerry/ftptest.txt
+
+
+
+  Linux  測試：lftp -u adminjerry IP                   （或 lftp adminjerry@IP） 
+Window測試：ftp://adminjerry@219.87.153.221
+                         ftp://219.87.153.222
+                         ftp://219.87.147.178
+
+限制每個 IP 最大連線數量：max_per_ip=5
+限制傳輸速率：local_max_rate=30000           （30000 表 30KB）
+
+以匿名身份登入 ftp 服務，會被限定在 /var/ftp 目錄下工作
+
+
+
+--------------------------------------------------------------mail server-------------------------------------------------------------------------
+smtp
+vi /etc/mail/local-host-names
+netstat -nutlp | grep :25
+service sendmail stop
+hkconfig sendmail off
+echo "/usr/sbin/postfix start" >> /etc/rc.d/rc.local      <<<開機時以 postfix 使為 mail system
+vi /etc/postfix/main.cf
+
+# 設定本機的 host name
+myhostname = ms1.abc.com.tw
+# 設定 domain 網域
+mydomain = abc.com.tw
+# 設定幫忙 relay 的 hosts
+mynetworks = 192.168.1.0/24, 127.0.0.0/8
+# 設定本機要接收的 mail, 同 sendmail 的 local-host-names
+mydestination = abc.com.tw
+
+postfix start
+netstat -ntulp | grep :25
+rpm -qa | grep dovecot            <<<查看有無安裝 dovecot
+rpm -ih dovecot-0.99.11-2.EL4.1.i386.rpm
+vi /etc/dovecot.conf           >>>>protocols = pop3
+service dovecot start; netstat -ntulp | grep :110
+
+# 利用 Postfix 抵擋垃圾信
+Vi main.cf
+header_checks = regexp:/etc/postfix/header_checks                                  <<<檔頭內容過濾
+body_checks = regexp:/etc/postfix/body_checks
+smtpd_client_restrictions = check_client_access hash:/etc/postfix/access   <<<拒絕動態 IP 所發出來的信件
+
+
+postmap hash:/etc/postfix/access
+postfix reload
+--------------------------------------------------------------------------------------------------------------------------------------------
+chmod 755 /path/dir -fR                      >>>>把整個目錄改成目錄要的權限  755
+
+find /path/dir -type f -exec chmod 644 {} \;             >>>再改目錄下  檔案要的權限 644
+
+不是 chmod -R 644 /home/dir/.* 就好了喔?    >>>這個會連相關目錄都一起變權限
+不過看樣子您說的是不修改"子目錄"權限.
+一般在homedir下設定711是較好的, httpd 讀取也較沒問題
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+TCP Wrappers(tcpd) 流程
+            connect
+                  |
+yes----- hosts.allow
+|                 |
+|            hosts.deny ----yes--->deny
+|                 |
+------>   service
+
+echo "sshd:all" >>/etc/hosts.deny     <<先加上安全機制
+
+vi /etc/hosts.allow                                <<加入可連線的範圍(視自己的管理情況加入IP)
+sshd:localhost
+sshd:219.87.153.222
+sshd:219.87.153.220
+sshd:60.251.65.159
+sshd:60.251.65.160
+sshd:60.251.65.161
+sshd:122.116.196.129     //ggw
+sshd:114.32.110.178      //yu-hsuan
+
+
+
+hosts.allow:
+sshd:localhost
+sshd:192.168.1.2
+hosts.deny:
+sshd:all
+------------------------------------------------------------------------------------------------------------------------------------------------
+硬體清單 
+在核心 2.4 版之前，此組態檔名為 /etc/conf.modules
+在核心 2.4 版中，此 組態檔被更名為 /etc/modules.conf
+在核心 2.6 版中，此組態檔又被更名為 /etc/modprobe.conf
+
+vi  /etc/modprobe.conf
+
+PCI驅動模組
+cd /lib/modules/`uname -r`/kernel/drivers/net
+dmesg | grep -in eth0
+dmesg | cat -n | less
+lspci
+------------------------------------------------------------------------------------------------------------------------------------------------
+增量備份   tar 的 -g參數
+tar -cf backup_`date +%F`.tar -g backup_`date +%F`.snapshot /path/source/
+
+
+
+完整管理linux為主
+selinux架設
+apache資料夾的權限與伺服器會員的關係
+mysql管理會員的權限控管
+遠端備分   
+增量備份
+gfs   
+cluster
+------------------------------------------------------------------------------------------------------------------------------------------------
+釋放LINUX記憶體
+To free pagecache: "echo 1 > /proc/sys/vm/drop_caches"
+To free dentries and inodes: "echo 2 > /proc/sys/vm/drop_caches"
+To free pagecache, dentries and inodes: "echo 3 > /proc/sys/vm/drop_caches".
+sync;sync;sync 
+sync;sync;echo 1 > /proc/sys/vm/drop_caches
+sync;sync;echo 0 > /proc/sys/vm/drop_caches
+sync;sync;sync
+
+當 /proc/sys/vm/drop_caches 的值被設定為 1 時，表示要求核心捨棄沒在使用的 cache (一般的)，
+而被設定為 2 時則要求將 dentry, inode 所用的 cache memory 一併釋放，
+而設定為 3 時，就是 (1) + (2) 的效果，也就是幾乎把非作用的 cache 都釋放了
+
+------------------------------------------------------------------joomla------------------------------------------------------------------------------
+ssh apache account
+unzip j001.zip
+mv j002 filename
+權限才會完整
+
+
+-----------------------------------------------------------------vpn--------------pptp----------------------------------------------------------------------
+cd /tmp
+wget http://poptop.sourceforge.net/yum/stable/packages/dkms-2.0.17.5-1.noarch.rpm
+wget http://poptop.sourceforge.net/yum/stable/packages/kernel_ppp_mppe-1.0.2-3dkms.noarch.rpm
+wget http://poptop.sourceforge.net/yum/stable/packages/ppp-2.4.4-14.1.rhel5.i386.rpm
+wget http://poptop.sourceforge.net/yum/stable/packages/pptpd-1.3.4-2.rhel5.i386.rpm
+
+
+yum -y install gcc
+yum -y install mysql-devel.i386
+yum -y install httpd mysql mysql-server php php-mysql php-gd php-mbstring
+yum -y install httpd mysql mysql-server php53-*
+
+rpm -ivh dkms-2.0.17.5-1.noarch.rpm
+rpm -ivh kernel_ppp_mppe-1.0.2-3dkms.noarch.rpm
+
+rpm -Uvh ppp-2.4.4-14.1.rhel5.i386.rpm
+rpm -Uvh pptpd-1.3.4-2.rhel5.i386.rpm
+
+vi /etc/pptpd.conf
+找到最下面  localip    后面要改为你的服务IP   219.87.153.213
+remoteip 后面改为你分配给VPN用户的IP段....比如192.168.213.2-254
+这时已经可以启动VPN服务器了.
+
+
+vi /etc/ppp/chap-secrets
+在最下面插入新行..它的写法是
+用户名   服务名   密码   IP
+
+比如我新增加的一个用户
+im286      pptpd       bendy    192.168.10.20
+vpn001    pptpd       11223344    192.168.213.2
+
+想多人同时使用...可以将192.168.10.20改为*
+
+
+service iptables stop    <<停掉防火牆
+chkconfig pptpd on    <<開機啟動
+连接之后.我们还需要设置NAT   IP转发.否则用户连接上服务器后.是不能访问外网的内容
+iptables -t nat -F
+iptables -t nat -A POSTROUTING -s 192.168.213.0/24 -j SNAT --to 219.87.153.213
+
+打开LINUX服务器的IP转发功能就大功告成了
+echo 1 >/proc/sys/net/ipv4/ip_forward
+
+
+以上是临时打开的.重启服务器后无效..
+长期调整的话..可以编辑
+vi /etc/sysctl.conf  这个文件中的 net.ipv4.ip_forward = 1
+iptables-save > /etc/iptables.save2010.1
+iptables-restore < /etc/iptables.save2010.1    開機自動寫入防火牆    將此行寫入vi /etc/rc.d/rc.local  檔裡面
+
+启动
+service pptpd start
+停止
+service pptpd stop
+
+-------------------RADIUS-----------------------------------------------------------------------------------------------------------------------------------
+yum install mysql-devel.i386
+yum -y install cpp gcc gcc-c++ glibc-devel glibc-headers glibc-kernheaders libstdc++-devel
+yum -y install kernel-devel
+modprobe ppp-compress-18 && echo ok
+
+下载freeradius 2.1.9
+cd /tmp
+wget ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-2.1.9.tar.gz
+tar -zxvf freeradius-server-2.1.9.tar.gz
+
+ppp結合radius認證
+wget ftp://ftp.samba.org/pub/ppp/ppp-2.4.5.tar.gz
+tar -zxvf ppp-2.4.5.tar.gz
+cp -R /tmp/ppp-2.4.5/pppd/plugins/radius/etc  /etc/radiusclient/
+
+
+
+cd freeradius-server-2.1.9
+./configure
+make
+make install
+./configure,make,make install
+
+
+service radiusd restart
+
+vi /usr/local/etc/raddb/users
+
+找下面这段,把前面的注释去掉
+
+steve   Cleartext-Password := “testing”
+Service-Type = Framed-User,
+Framed-Protocol = PPP,
+Framed-IP-Address = 219.87.153.213,                       <<<<自己的ip和netmask     如果不變   公鑰是testing123
+Framed-IP-Netmask = 255.255.255.224,
+Framed-Routing = Broadcast-Listen,
+Framed-Filter-Id = “std.ppp”,
+Framed-MTU = 1500,
+Framed-Compression = Van-Jacobsen-TCP-IP
+
+这样你就有了一个测试的用户,用户名：steve 密码：testing
+
+
+启动freeraidus的debug模式
+
+[root@localhost raddb]# radiusd -X（注：大写）        
+如果看到
+Listening on authentication address * port 1812
+Listening on accounting address * port 1813
+Listening on command file /usr/local/var/run/radiusd/radiusd.sock
+Listening on proxy address * port 1814
+Ready to process requests.
+这就是正常启动了。
+
+
+/usr/local/sbin/radiusd
+
+radius測試
+radtest steve testing localhost 1812 testradius
+
+Sending Access-Request of id 100 to 127.0.0.1 port 1812
+        User-Name = "steve"
+        User-Password = "testing"
+        NAS-IP-Address = 127.0.0.1
+        NAS-Port = 1812
+rad_recv: Access-Accept packet from host 127.0.0.1 port 1812, id=100, length=71
+        Service-Type = Framed-User
+        Framed-Protocol = PPP
+        Framed-IP-Address = 219.87.153.213
+        Framed-IP-Netmask = 255.255.255.224
+        Framed-Routing = Broadcast-Listen
+        Filter-Id = "std.ppp"
+        Framed-MTU = 1500
+        Framed-Compression = Van-Jacobson-TCP-IP
+
+Access-Accept    <<<就是已經成功了
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+幫 pptpd 加入 radius client 支援
+1.vi /etc/ppp/options.pptpd
+  #plugin service
+  plugin /usr/local/lib/pppd/2.4.4/radius.so          <<<加入這一行
+
+
+2.vi /etc/radiusclient/servers                           (在servers中，你需要增加一个radiusd的地址和密码)
+localhost       11223344key                                 (这里localhost表示你的radiusd就在本机，并且访问的密码是11223344)
+
+3.vi /etc/radiusclient/radiusclient.conf             (在radiusclient.conf中加入)
+authserver     localhost:1812
+acctserver      localhost:1813                           (一般不需要修改)
+
+4.vi /usr/local/etc/raddb/clients.conf                (secret就是我们刚才在servers里设置的那个)
+client 127.0.0.1      {
+                        secret =11223344key
+                        shortname = ww
+                        nastype     = other
+                        }
+
+
+5.vi /usr/local/etc/raddb/users                     
+
+ww Auth-Type:= MS-CHAP, User-Password=="ww", Simultaneous-Use:=1
+          Service-Type = Framed-User,
+          Framed-Protocol = PPP,
+          Framed-IP-Address = 255.255.255.254,
+          Framed-IP-Netmask = 255.255.255.0
+
+
+
+
+/etc/init.d/pptpd start
+
+killall radiusd        <<<radius和freeradius只能取一個
+
+--------------------------------------------------------------------------nano-------------------------------------------------------------------------
+对于linux新人来说那个VI编辑太强大了..保存个文件也来那么多命令,从windows过来还真不习惯.这里引用了军哥推荐的nano编辑器很适合新手.具体nano编辑使用指南如下
+
+安装
+CentOS：执行yum -y install nano
+Debian：执行apt-get install -y nano
+新建／打开文件
+nano 路径+文件名
+如果改文件存在，上面的命令将打开这个文件；如果文件不存在则将会创建一个新文件并打开。
+Note：在Windows系统中，一个文件应当有后缀名，比如.txt，以供系统进行类型判断，不过Linux并不根据 后缀名来判断类型。当然，写上后缀名也无妨，比如example也可以用example.txt。
+光标控制
+移动光标：使用用方向键移动。
+选择文字：按住鼠标左键拖到。
+复制、剪贴和粘贴
+复制一整行：Alt+6
+剪贴一整行：Ctrl+K
+粘贴：Ctrl+U
+如果需要复制／剪贴多行或者一行中的一部分，先将光标移动到需要复制／剪贴的文本的开头，按Ctrl+6（或者Alt+A）做标记，然后移动光标到 待复制／剪贴的文本末尾。这时选定的文本会反白，用Alt+6来复制，Ctrl+K来剪贴。若在选择文本过程中要取消，只需要再按一次Ctrl+6。
+搜索
+按Ctrl+W，然后输入你要搜索的关键字，回车确定。这将会定位到第一个匹配的文本，接着可以用Alt+W来定位到下一个匹配的文本。
+翻页
+用Ctrl+Y到上一页，Ctrl+V到下一页
+保存
+使用Ctrl+O来保存所做的修改
+退出
+按Ctrl+X
+如果你修改了文件，下面会询问你是否需要保存修改。输入Y确认保存，输入N不保存，按Ctrl+C取消返回。
+如果输入了Y，下一步会让你输入想要保存的文件名。如果不需要修改文件名直接回车就行；若想要保存成别的名字（也就是另存为）则输入新名称然后确 定。这个时候也可用Ctrl+C来取消返回。
+获得帮助
+进入nano界面后，下面有两行菜单，例如，“^G Get Help”。其意义如下：
+^G意味着快捷键是Ctrl+G，“Get Help”当然是功能了。
+根据这些提示就可以立刻开始使用nano了，也可以Ctrl+G看看帮助。
+Note：nano中，黑底白字表示快捷键操作。其中“^”表示Ctrl键，则Ctrl+G就表示成“^G”。“M”表示 Alt键，则Alt+W表示为“M-W”。
+
+-------------------------------socks5----------------------------------------------------------------------------------------------------------------------------------
+yum -y install gcc automake make
+yum -y install pam-devel openldap-devel cyrus-sasl-devel
+
+wget http://disk.boluo.org/linux/27001-ss5-3.6.1-1.tar.gz
+tar zxvf 27001-ss5-3.6.1-1.tar.gz
+cd ss5-3.6.1
+./configure 
+make
+make install
+cd /etc/opt/ss5/
+cp ss5.conf ss5.conf.bak && cp ss5.passwd ss5.passwd.bak
+ 
+
+vi ss5.conf
+关闭匿名代理,改为需要验证
+auth    0.0.0.0/0               -               -
+修改为
+auth    0.0.0.0/0               -               u
+ 
+启动ss5
+service ss5 start
+ 
+拿掉socks4
+cd /usr/lib/ss5/
+mv mod_socks4.so mod_socks4.so.bak
+
+添加ss5到服务中，并随机启动
+chkconfig --add ss5
+chkconfig ss5 on
+
+
+啟動檔修改
+vi /etc/rc.d/init.d/ss5
+start)
+   # Start daemon.
+
+   echo -n "Starting ss5... "
+   if [ $OS = "Linux" ] || [ $OS = "SunOS" ]; then
+   /usr/sbin/ss5 -m -t (-b 91.207.192.35:2080)
+   touch /var/lock/subsys/ss5
+   else
+   /usr/local/sbin/ss5 -m -t (-b 91.207.192.35:2080)
+   fi
+   echo "done"
+
+如果想用pam认证：
+vi /etc/pam.d/ss5 使下列语句生效
+auth required /lib/security/pam_unix.so
+
+在/etc/opt/ss5/ss5.conf增加下来语句
+echo "set SS5_PAM_AUTH" >> /etc/opt/ss5/ss5.conf
+
+這個動作一定要做  PAM才會work
+起動ss5之後如下  要有一個nobody  再去執行每個帳號的開啟
+[root@localhost ~]#service ss5 start
+[root@localhost ~]# ps aux|grep ss5
+nobody    7347  0.0  0.1   7208  1144 ?        S    03:33   0:00 /usr/sbin/ss5 -m -t
+root      7350  0.0  0.0   4224   616 pts/0    S+   03:33   0:00 grep ss5
+以上狀況PAM才有成功.....  新建立的user也能進入了 
+
+
+
+vi /etc/opt/ss5/ss5.passwd     (修改帳號)
+vi /etc/opt/ss5/ss5.conf       (設定檔)
+vi /etc/pam.d/ss5              (pam設定檔)
+ps aux|grep ss5 
+
+/usr/sbin/ss5 -u root -b -m 
+
+service ss5 stop
+service ss5 start
+
+1.查看apache(ss5)进程:
+ps aux | grep httpd(ss5) | grep -v grep | wc -l
+
+
+ 
+ 
+1 ) 添加用户:(增加一個帳號s72188   UID 1188   權限最低pwd的會員)
+useradd s72188 -u 1188 -s /bin/false -p pwd
+useradd s72187 -u 1187 -s /bin/false -p pwd
+useradd s72186 -u 1186 -s /bin/false -p pwd
+useradd s72185 -u 1185 -s /bin/false -p pwd
+useradd s72184 -u 1184 -s /bin/false -p pwd
+useradd s72183 -u 1183 -s /bin/false -p pwd
+useradd s72182 -u 1182 -s /bin/false -p pwd
+useradd s72181 -u 1181 -s /bin/false -p pwd
+useradd s72180 -u 1180 -s /bin/false -p pwd
+useradd s72179 -u 1179 -s /bin/false -p pwd
+useradd s72178 -u 1178 -s /bin/false -p pwd        
+useradd s72177 -u 1177 -s /bin/false -p pwd
+useradd s72176 -u 1176 -s /bin/false -p pwd
+useradd s72175 -u 1175 -s /bin/false -p pwd
+useradd s72174 -u 1174 -s /bin/false -p pwd
+useradd s72173 -u 1173 -s /bin/false -p pwd
+useradd s72172 -u 1172 -s /bin/false -p pwd
+useradd s72171 -u 1171 -s /bin/false -p pwd
+useradd s72170 -u 1170 -s /bin/false -p pwd
+useradd s72169 -u 1169 -s /bin/false -p pwd
+useradd s72168 -u 1168 -s /bin/false -p pwd        
+useradd s72167 -u 1167 -s /bin/false -p pwd
+useradd s72166 -u 1166 -s /bin/false -p pwd
+useradd s72165 -u 1165 -s /bin/false -p pwd
+useradd s72164 -u 1164 -s /bin/false -p pwd
+useradd s72163 -u 1163 -s /bin/false -p pwd
+useradd s72162 -u 1162 -s /bin/false -p pwd
+useradd s72161 -u 1161 -s /bin/false -p pwd
+useradd s72160 -u 1160 -s /bin/false -p pwd
+useradd s72159 -u 1159 -s /bin/false -p pwd
+useradd s72158 -u 1158 -s /bin/false -p pwd        
+useradd s72157 -u 1157 -s /bin/false -p pwd
+useradd s72156 -u 1156 -s /bin/false -p pwd
+useradd s72155 -u 1155 -s /bin/false -p pwd
+useradd s72154 -u 1154 -s /bin/false -p pwd
+useradd s72153 -u 1153 -s /bin/false -p pwd
+useradd s72152 -u 1152 -s /bin/false -p pwd
+useradd s72151 -u 1151 -s /bin/false -p pwd
+useradd s72150 -u 1150 -s /bin/false -p pwd
+useradd s72149 -u 1149 -s /bin/false -p pwd
+useradd s72148 -u 1148 -s /bin/false -p pwd        
+useradd s72147 -u 1147 -s /bin/false -p pwd
+useradd s72146 -u 1146 -s /bin/false -p pwd
+useradd s72145 -u 1145 -s /bin/false -p pwd
+useradd s72144 -u 1144 -s /bin/false -p pwd
+useradd s72143 -u 1143 -s /bin/false -p pwd
+useradd s72142 -u 1142 -s /bin/false -p pwd
+useradd s72141 -u 1141 -s /bin/false -p pwd
+useradd s72140 -u 1140 -s /bin/false -p pwd
+useradd s72139 -u 1139 -s /bin/false -p pwd
+useradd s72138 -u 1138 -s /bin/false -p pwd        
+useradd s72137 -u 1137 -s /bin/false -p pwd
+useradd s72136 -u 1136 -s /bin/false -p pwd
+useradd s72135 -u 1135 -s /bin/false -p pwd
+useradd s72134 -u 1134 -s /bin/false -p pwd
+useradd s72133 -u 1133 -s /bin/false -p pwd
+useradd s72132 -u 1132 -s /bin/false -p pwd
+useradd s72131 -u 1131 -s /bin/false -p pwd
+useradd s72130 -u 1130 -s /bin/false -p pwd
+useradd s72129 -u 1129 -s /bin/false -p pwd
+
+
+echo 's72188ABC' | passwd --stdin s72188
+echo 's72188ABC' | passwd --stdin s72187
+echo 's72188ABC' | passwd --stdin s72186
+echo 's72188ABC' | passwd --stdin s72185
+echo 's72188ABC' | passwd --stdin s72184
+echo 's72188ABC' | passwd --stdin s72183
+echo 's72188ABC' | passwd --stdin s72182
+echo 's72188ABC' | passwd --stdin s72181
+echo 's72188ABC' | passwd --stdin s72180
+echo 's72188ABC' | passwd --stdin s72179
+echo 's72188ABC' | passwd --stdin s72178
+echo 's72188ABC' | passwd --stdin s72177
+echo 's72188ABC' | passwd --stdin s72176
+echo 's72188ABC' | passwd --stdin s72175
+echo 's72188ABC' | passwd --stdin s72174
+echo 's72188ABC' | passwd --stdin s72173
+echo 's72188ABC' | passwd --stdin s72172
+echo 's72188ABC' | passwd --stdin s72171
+echo 's72188ABC' | passwd --stdin s72170
+echo 's72188ABC' | passwd --stdin s72169
+echo 's72188ABC' | passwd --stdin s72168
+echo 's72188ABC' | passwd --stdin s72167
+echo 's72188ABC' | passwd --stdin s72166
+echo 's72188ABC' | passwd --stdin s72165
+echo 's72188ABC' | passwd --stdin s72164
+echo 's72188ABC' | passwd --stdin s72163
+echo 's72188ABC' | passwd --stdin s72162
+echo 's72188ABC' | passwd --stdin s72161
+echo 's72188ABC' | passwd --stdin s72160
+echo 's72188ABC' | passwd --stdin s72159
+echo 's72188ABC' | passwd --stdin s72158
+echo 's72188ABC' | passwd --stdin s72157
+echo 's72188ABC' | passwd --stdin s72156
+echo 's72188ABC' | passwd --stdin s72155
+echo 's72188ABC' | passwd --stdin s72154
+echo 's72188ABC' | passwd --stdin s72153
+echo 's72188ABC' | passwd --stdin s72152
+echo 's72188ABC' | passwd --stdin s72151
+echo 's72188ABC' | passwd --stdin s72150
+echo 's72188ABC' | passwd --stdin s72149
+echo 's72188ABC' | passwd --stdin s72148
+echo 's72188ABC' | passwd --stdin s72147
+echo 's72188ABC' | passwd --stdin s72146
+echo 's72188ABC' | passwd --stdin s72145
+echo 's72188ABC' | passwd --stdin s72144
+echo 's72188ABC' | passwd --stdin s72143
+echo 's72188ABC' | passwd --stdin s72142
+echo 's72188ABC' | passwd --stdin s72141
+echo 's72188ABC' | passwd --stdin s72140
+echo 's72188ABC' | passwd --stdin s72139
+echo 's72188ABC' | passwd --stdin s72138
+echo 's72188ABC' | passwd --stdin s72137
+echo 's72188ABC' | passwd --stdin s72136
+echo 's72188ABC' | passwd --stdin s72135
+echo 's72188ABC' | passwd --stdin s72134
+echo 's72188ABC' | passwd --stdin s72133
+echo 's72188ABC' | passwd --stdin s72132
+echo 's72188ABC' | passwd --stdin s72131
+echo 's72188ABC' | passwd --stdin s72130
+echo 's72188ABC' | passwd --stdin s72129
+
+
+ 
+2 ) 得到用户UID
+awk -F: '/^s72188:/{print $1,$4}'  /etc/passwd   (得到user 500)
+ 
+3 ) 定义iptables
+查看 iptables 狀況
+iptables -L -nv                    (filter)     INPUT+FORWARD+OUTPUT
+iptables -t nat -L -n             (nat)        PREROUTING+POSTROUTING+OUTPUT
+iptables -t mangle -L -n      (mangle)  PREROUTING+ INPUT+FORWARD+OUTPUT+POSTROUTING
+
+iptables -t mangle -A OUTPUT -m owner --uid-owner USER_UID(500) -j MARK --set-mark USER_UID(500)
+iptables -t nat -A POSTROUTING -m mark --mark USER_UID(500) -j SNAT --to-source (outgoing-IP(124.219.72.188))
+
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1188 -j MARK --set-mark 1188
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1187 -j MARK --set-mark 1187
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1186 -j MARK --set-mark 1186
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1185 -j MARK --set-mark 1185
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1184 -j MARK --set-mark 1184
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1183 -j MARK --set-mark 1183
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1182 -j MARK --set-mark 1182
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1181 -j MARK --set-mark 1181
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1180 -j MARK --set-mark 1180
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1179 -j MARK --set-mark 1179
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1178 -j MARK --set-mark 1178
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1177 -j MARK --set-mark 1177
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1176 -j MARK --set-mark 1176
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1175 -j MARK --set-mark 1175
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1174 -j MARK --set-mark 1174
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1173 -j MARK --set-mark 1173
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1172 -j MARK --set-mark 1172
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1171 -j MARK --set-mark 1171
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1170 -j MARK --set-mark 1170
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1169 -j MARK --set-mark 1169
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1168 -j MARK --set-mark 1168
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1167 -j MARK --set-mark 1167
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1166 -j MARK --set-mark 1166
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1165 -j MARK --set-mark 1165
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1164 -j MARK --set-mark 1164
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1163 -j MARK --set-mark 1163
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1162 -j MARK --set-mark 1162
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1161 -j MARK --set-mark 1161
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1160 -j MARK --set-mark 1160
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1159 -j MARK --set-mark 1159
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1158 -j MARK --set-mark 1158
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1157 -j MARK --set-mark 1157
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1156 -j MARK --set-mark 1156
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1155 -j MARK --set-mark 1155
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1154 -j MARK --set-mark 1154
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1153 -j MARK --set-mark 1153
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1152 -j MARK --set-mark 1152
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1151 -j MARK --set-mark 1151
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1150 -j MARK --set-mark 1150
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1149 -j MARK --set-mark 1149
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1148 -j MARK --set-mark 1148
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1147 -j MARK --set-mark 1147
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1146 -j MARK --set-mark 1146
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1145 -j MARK --set-mark 1145
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1144 -j MARK --set-mark 1144
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1143 -j MARK --set-mark 1143
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1142 -j MARK --set-mark 1142
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1141 -j MARK --set-mark 1141
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1140 -j MARK --set-mark 1140
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1139 -j MARK --set-mark 1139
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1138 -j MARK --set-mark 1138
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1137 -j MARK --set-mark 1137
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1136 -j MARK --set-mark 1136
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1135 -j MARK --set-mark 1135
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1134 -j MARK --set-mark 1134
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1133 -j MARK --set-mark 1133
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1132 -j MARK --set-mark 1132
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1131 -j MARK --set-mark 1131
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1130 -j MARK --set-mark 1130
+iptables -t mangle -A OUTPUT -m owner --uid-owner 1129 -j MARK --set-mark 1129
+
+
+
+iptables -t nat -A POSTROUTING -m mark --mark 1188 -j SNAT --to-source 124.219.72.188
+iptables -t nat -A POSTROUTING -m mark --mark 1187 -j SNAT --to-source 124.219.72.187
+iptables -t nat -A POSTROUTING -m mark --mark 1186 -j SNAT --to-source 124.219.72.186
+iptables -t nat -A POSTROUTING -m mark --mark 1185 -j SNAT --to-source 124.219.72.185
+iptables -t nat -A POSTROUTING -m mark --mark 1184 -j SNAT --to-source 124.219.72.184
+iptables -t nat -A POSTROUTING -m mark --mark 1183 -j SNAT --to-source 124.219.72.183
+iptables -t nat -A POSTROUTING -m mark --mark 1182 -j SNAT --to-source 124.219.72.182
+iptables -t nat -A POSTROUTING -m mark --mark 1181 -j SNAT --to-source 124.219.72.181
+iptables -t nat -A POSTROUTING -m mark --mark 1180 -j SNAT --to-source 124.219.72.180
+iptables -t nat -A POSTROUTING -m mark --mark 1179 -j SNAT --to-source 124.219.72.179
+iptables -t nat -A POSTROUTING -m mark --mark 1178 -j SNAT --to-source 124.219.72.178
+iptables -t nat -A POSTROUTING -m mark --mark 1177 -j SNAT --to-source 124.219.72.177
+iptables -t nat -A POSTROUTING -m mark --mark 1176 -j SNAT --to-source 124.219.72.176
+iptables -t nat -A POSTROUTING -m mark --mark 1175 -j SNAT --to-source 124.219.72.175
+iptables -t nat -A POSTROUTING -m mark --mark 1174 -j SNAT --to-source 124.219.72.174
+iptables -t nat -A POSTROUTING -m mark --mark 1173 -j SNAT --to-source 124.219.72.173
+iptables -t nat -A POSTROUTING -m mark --mark 1172 -j SNAT --to-source 124.219.72.172
+iptables -t nat -A POSTROUTING -m mark --mark 1171 -j SNAT --to-source 124.219.72.171
+iptables -t nat -A POSTROUTING -m mark --mark 1170 -j SNAT --to-source 124.219.72.170
+iptables -t nat -A POSTROUTING -m mark --mark 1169 -j SNAT --to-source 124.219.72.169
+iptables -t nat -A POSTROUTING -m mark --mark 1168 -j SNAT --to-source 124.219.72.168
+iptables -t nat -A POSTROUTING -m mark --mark 1167 -j SNAT --to-source 124.219.72.167
+iptables -t nat -A POSTROUTING -m mark --mark 1166 -j SNAT --to-source 124.219.72.166
+iptables -t nat -A POSTROUTING -m mark --mark 1165 -j SNAT --to-source 124.219.72.165
+iptables -t nat -A POSTROUTING -m mark --mark 1164 -j SNAT --to-source 124.219.72.164
+iptables -t nat -A POSTROUTING -m mark --mark 1163 -j SNAT --to-source 124.219.72.163
+iptables -t nat -A POSTROUTING -m mark --mark 1162 -j SNAT --to-source 124.219.72.162
+iptables -t nat -A POSTROUTING -m mark --mark 1161 -j SNAT --to-source 124.219.72.161
+iptables -t nat -A POSTROUTING -m mark --mark 1160 -j SNAT --to-source 124.219.72.160
+iptables -t nat -A POSTROUTING -m mark --mark 1159 -j SNAT --to-source 124.219.72.159
+iptables -t nat -A POSTROUTING -m mark --mark 1158 -j SNAT --to-source 124.219.72.158
+iptables -t nat -A POSTROUTING -m mark --mark 1157 -j SNAT --to-source 124.219.72.157
+iptables -t nat -A POSTROUTING -m mark --mark 1156 -j SNAT --to-source 124.219.72.156
+iptables -t nat -A POSTROUTING -m mark --mark 1155 -j SNAT --to-source 124.219.72.155
+iptables -t nat -A POSTROUTING -m mark --mark 1154 -j SNAT --to-source 124.219.72.154
+iptables -t nat -A POSTROUTING -m mark --mark 1153 -j SNAT --to-source 124.219.72.153
+iptables -t nat -A POSTROUTING -m mark --mark 1152 -j SNAT --to-source 124.219.72.152
+iptables -t nat -A POSTROUTING -m mark --mark 1151 -j SNAT --to-source 124.219.72.151
+iptables -t nat -A POSTROUTING -m mark --mark 1150 -j SNAT --to-source 124.219.72.150
+iptables -t nat -A POSTROUTING -m mark --mark 1149 -j SNAT --to-source 124.219.72.149
+iptables -t nat -A POSTROUTING -m mark --mark 1148 -j SNAT --to-source 124.219.72.148
+iptables -t nat -A POSTROUTING -m mark --mark 1147 -j SNAT --to-source 124.219.72.147
+iptables -t nat -A POSTROUTING -m mark --mark 1146 -j SNAT --to-source 124.219.72.146
+iptables -t nat -A POSTROUTING -m mark --mark 1145 -j SNAT --to-source 124.219.72.145
+iptables -t nat -A POSTROUTING -m mark --mark 1144 -j SNAT --to-source 124.219.72.144
+iptables -t nat -A POSTROUTING -m mark --mark 1143 -j SNAT --to-source 124.219.72.143
+iptables -t nat -A POSTROUTING -m mark --mark 1142 -j SNAT --to-source 124.219.72.142
+iptables -t nat -A POSTROUTING -m mark --mark 1141 -j SNAT --to-source 124.219.72.141
+iptables -t nat -A POSTROUTING -m mark --mark 1140 -j SNAT --to-source 124.219.72.140
+iptables -t nat -A POSTROUTING -m mark --mark 1139 -j SNAT --to-source 124.219.72.139
+iptables -t nat -A POSTROUTING -m mark --mark 1138 -j SNAT --to-source 124.219.72.138
+iptables -t nat -A POSTROUTING -m mark --mark 1137 -j SNAT --to-source 124.219.72.137
+iptables -t nat -A POSTROUTING -m mark --mark 1136 -j SNAT --to-source 124.219.72.136
+iptables -t nat -A POSTROUTING -m mark --mark 1135 -j SNAT --to-source 124.219.72.135
+iptables -t nat -A POSTROUTING -m mark --mark 1134 -j SNAT --to-source 124.219.72.134
+iptables -t nat -A POSTROUTING -m mark --mark 1133 -j SNAT --to-source 124.219.72.133
+iptables -t nat -A POSTROUTING -m mark --mark 1132 -j SNAT --to-source 124.219.72.132
+iptables -t nat -A POSTROUTING -m mark --mark 1131 -j SNAT --to-source 124.219.72.131
+iptables -t nat -A POSTROUTING -m mark --mark 1130 -j SNAT --to-source 124.219.72.130
+iptables -t nat -A POSTROUTING -m mark --mark 1129 -j SNAT --to-source 124.219.72.129
+
+ 
+4 ) 以用户模式启动ss5,绑定iptables出口IP
+ss5 -u user -b (outgoing-IP:port(59.124.137.46(124.219.72.188-129):1-65535  TCP和UDP各65535個ports))
+
+ps -ef | grep ss5
+service ss5 stop
+ss5 -u s72188 -b 124.219.72.188:18811
+ss5 -u s72187 -b 124.219.72.187:18711
+ss5 -u s72186 -b 124.219.72.186:18611
+ss5 -u s72185 -b 124.219.72.185:18511
+ss5 -u s72184 -b 124.219.72.184:18411
+ss5 -u s72183 -b 124.219.72.183:18311
+ss5 -u s72182 -b 124.219.72.182:18211
+ss5 -u s72181 -b 124.219.72.181:18111
+ss5 -u s72180 -b 124.219.72.180:18011
+ss5 -u s72179 -b 124.219.72.179:17911
+ss5 -u s72178 -b 124.219.72.178:17811
+ss5 -u s72177 -b 124.219.72.177:17711
+ss5 -u s72176 -b 124.219.72.176:17611
+ss5 -u s72175 -b 124.219.72.175:17511
+ss5 -u s72174 -b 124.219.72.174:17411
+ss5 -u s72173 -b 124.219.72.173:17311
+ss5 -u s72172 -b 124.219.72.172:17211
+ss5 -u s72171 -b 124.219.72.171:17111
+ss5 -u s72170 -b 124.219.72.170:17011
+ss5 -u s72169 -b 124.219.72.169:16911
+ss5 -u s72168 -b 124.219.72.168:16811
+ss5 -u s72167 -b 124.219.72.167:16711
+ss5 -u s72166 -b 124.219.72.166:16611
+ss5 -u s72165 -b 124.219.72.165:16511
+ss5 -u s72164 -b 124.219.72.164:16411
+ss5 -u s72163 -b 124.219.72.163:16311
+ss5 -u s72162 -b 124.219.72.162:16211
+ss5 -u s72161 -b 124.219.72.161:16111
+ss5 -u s72160 -b 124.219.72.160:16011
+ss5 -u s72159 -b 124.219.72.159:15911
+ss5 -u s72158 -b 124.219.72.158:15811
+ss5 -u s72157 -b 124.219.72.157:15711
+ss5 -u s72156 -b 124.219.72.156:15611
+ss5 -u s72155 -b 124.219.72.155:15511
+ss5 -u s72154 -b 124.219.72.154:15411
+ss5 -u s72153 -b 124.219.72.153:15311
+ss5 -u s72152 -b 124.219.72.152:15211
+ss5 -u s72151 -b 124.219.72.151:15111
+ss5 -u s72150 -b 124.219.72.150:15011
+ss5 -u s72149 -b 124.219.72.149:14911
+ss5 -u s72148 -b 124.219.72.148:14811
+ss5 -u s72147 -b 124.219.72.147:14711
+ss5 -u s72146 -b 124.219.72.146:14611
+ss5 -u s72145 -b 124.219.72.145:14511
+ss5 -u s72144 -b 124.219.72.144:14411
+ss5 -u s72143 -b 124.219.72.143:14311
+ss5 -u s72142 -b 124.219.72.142:14211
+ss5 -u s72141 -b 124.219.72.141:14111
+ss5 -u s72140 -b 124.219.72.140:14011
+ss5 -u s72139 -b 124.219.72.139:13911
+ss5 -u s72138 -b 124.219.72.138:13811
+ss5 -u s72137 -b 124.219.72.137:13711
+ss5 -u s72136 -b 124.219.72.136:13611
+ss5 -u s72135 -b 124.219.72.135:13511
+ss5 -u s72134 -b 124.219.72.134:13411
+ss5 -u s72133 -b 124.219.72.133:13311
+ss5 -u s72132 -b 124.219.72.132:13211
+ss5 -u s72131 -b 124.219.72.131:13111
+ss5 -u s72130 -b 124.219.72.130:13011
+ss5 -u s72129 -b 124.219.72.129:12911
+
+
+
+
+
+
+------------------------------------IBM blade center---------------------------------------------------------------- 
+Nortel Networks Layer2-3 GbE Switch Module
+192.168.70.125  >>預設值  USERID   PASSW0RD  (admin  myqaq123ABC)
+192.168.70.127  >>預設值  admin    admin     (admin  myqaq123ABC)
+
+
+Spanning Tree Group的配置指南：
+1 将一个VLAN添加到一个Spanning Tree Group
+_ 添加端口到一个VLAN（除了默认的VLAN1）。
+_ 将VLAN添加到STG，用命令/cfg/l2/stg <stg-#>/add <vlan-number>。
+注意 – 要保证与使用Cisco Per VLAN Spanning Tree (PVST+)的switch兼容，必须：
+为每个VLAN创建一个不同的STG。
+或者将所有相关的VLAN都加入到一个单一的STG。
+
+创建一个VLAN
+创建VLAN时会自动属于STG 1，若要移动到其他的STG，则：
+􀀀 县创建一个VLAN
+􀀀 将此VLAN添加到一个存在的STG
+
+_ 不能从STG 1种删除或者挪动VLAN。
+VLAN只能存在于一个STG中，不能跨多个STG。当一个VLAN跨多个switch时，则在不同的switch上，VLAN一定要在同一个Spanning Tree Group (有相同的STG ID)中。
+_ 若端口启用了tag，则所有启用trunk的端口可以属于多个STG。
+_一个不属于任何VLAN的端口不能添加到任何STG中。
+
+启用VLAN Tag端口的规则
+_ 启用Tag的端口可以属于多个STG，未启用tag的端口只能属于一个STG。
+_ 当端口启用tag后并属于多个STG时，产生的BPDU会包含tag，从而区别不同的STG。
+_ 未启用tag的端口不能垮多个STG。
+
+从STG添加或删除端口
+_ 当把端口添加到一个VLAN时，也就加入了此VLAN所属的STG。
+_ 当把端口从VLAN中删除时，也就从此VLAN所属的STG中删除。但是，若此端口还属于另外一个VLAN，且此VLAN也在这个STG中，则此端后也还在这个STG中。
+例如，端口1属于VLAN1和2，且这两个VLAN都属于STG 1，则端口从VLAN1种删除时，并不会把它从STG 1种删除，因为VLAN 2还是STG 1的成员。
+_ 不能删除STG，只能禁用。禁用后，STG中VLAN的端口都会失去STG功能。
+
+-------------------------IFTOP---------------------------------------------------------------------------------------
+yum install flex byacc  libpcap ncurses ncurses-devel
+wget ftp://fr2.rpmfind.net/linux/dag/redhat/el5/en/i386/dag/RPMS/iftop-0.17-1.el5.rf.i386.rpm
+rpm -ivh iftop-0.17-1.el5.rf.i386.rpm
+iftop -i eth0
+
+
+-------------------------------------------------------------------------------------------------------
+四、改變遠程終端模式打開“控制面板”，雙擊“添加刪除程序”，單擊“添加刪除windows組件”,
+“組件”，在windows組件向導對話框中選中“終端服務” , “下一步”,“應用服務器”,“下一步”
+，然后按照提示即可改變終端服務的模式。  windows 2000終端服務有2種運行模式: 
+遠程管理模式和應用程序服務器模式。遠程管理模式允許系統管理員遠程管理服務器，
+而且只允許2個終端會話同時登錄終端服務器。應用程序服務器模式允許用戶運行一個以上應用程序，
+允許多個用戶從終端登錄訪問服務器。但是，應用終端服務的用戶必須有終端服務授權，
+即必須在90天之內在這個域或工作組中設置終端服務授權服務器，否則用戶需刪除應用程序，然后再重新安裝。
+
+--------------------------------------------lamp-----------------------------------------------------------------------
+#!/bin/bash
+clear
+printf "
+# This is a Shell-Based tool of radiusmanager 3.9.0 installation
+# Author: yishan
+# Website: http://www.yishanhome.com
+#
+"
+cd $HOME
+mkdir ram39-temp
+cd ram39-temp
+ 
+#安装 apache PHP MYSQL
+yum install -y httpd mod_ssl php php-common php-gd php-pear php-pecl-memcache php-mhash php-xml gcc gcc-c++
+yum install -y mysql-devel curl php-mysql php-mcrypt compat-libstdc++-33 libtool-ltdl-devel
+ 
+#设置服务自动启动
+chkconfig httpd on
+service httpd start
+ 
+#添加ioncube支持
+php_version=`php -r 'echo PHP_VERSION;'`
+php_version=${php_version:0:3}
+sysinfo=`uname -i`
+if [ $sysinfo = "x86_64" ]; then
+  sysinfo="x86-64"
+  else
+   sysinfo="x86"  
+fi
+>>>做完上面動作才能下載
+wget http://www.dmasoftlab.com/cont/download/ioncube_loaders_lin_$sysinfo.tar.gz
+tar zxvf ioncube_loaders_lin_$sysinfo.tar.gz
+cp -rf ioncube /usr/local/
+cat >>/etc/php.ini << END
+zend_extension=/usr/local/ioncube/ioncube_loader_lin_$php_version.so
+END
+ 
+#安装及配置mysql
+  ret=`rpm -qa|grep mysql|wc -l`
+  ret1=`service mysql stop|wc -l`
+if [ $ret = "0" ] || [ $ret1 = "0" ]; then
+yum install -y mysql-server
+fi
+chkconfig mysqld on
+service mysqld start
+cat >> mysql-temp.sql << END
+CREATE DATABASE radius;
+CREATE DATABASE conntrack;
+CREATE USER 'radius'@'localhost' IDENTIFIED BY 'radius123';
+CREATE USER 'conntrack'@'localhost' IDENTIFIED BY 'conn123';
+GRANT ALL ON radius.* TO radius@localhost;
+GRANT ALL ON conntrack.* TO conntrack@localhost;
+END
+mysql -u root < mysql-temp.sql
+ 
+ 
+#安装freeradius
+wget http://www.dmasoftlab.com/cont/download/freeradius-server-2.1.8-dmamod-1.tar.gz
+tar xvf freeradius-server-2.1.8-dmamod-1.tar.gz
+cd freeradius-server-2.1.8
+./configure
+make
+make install
+chmod 644 /usr/local/etc/raddb/dictionary
+chown apache /usr/local/etc/raddb
+chown apache /usr/local/etc/raddb/clients.conf
+nohup radiusd -X&
+sleep 30
+ 
+#修改网卡mac破解radiusmanager
+cat >>/etc/rc.d/rc.sysinit<<END
+/sbin/ifconfig eth0 down
+/sbin/ifconfig eth0 hw ether 00:D0:09:B8:B7:34
+/sbin/ifconfig eth0 up
+END
+#/sbin/ifconfig eth0 down
+#/sbin/ifconfig eth0 hw ether 00:D0:09:B8:B7:34
+#/sbin/ifconfig eth0 up
+ 
+#安装radiusmanager3.9.0包含中文语言包
+service httpd restart
+wget http://yishanhome.vip129.2hezu.com/vpn3in1/radiusmanager-3.9.0.tar.gz
+tar zxvf radiusmanager-3.9.0.tar.gz
+cd radiusmanager-3.9.0/
+chmod 755 install.sh
+./install.sh
+
+
+WWW root path: [/var/www/html] 
+RADIUS database host: [localhost] 
+RADIUS database username: [radius] 
+RADIUS database password: [radius123] 
+CTS database host: [localhost] 
+CTS database username: [conntrack] 
+CTS database password: [conn123] 
+Freeradius UNIX user: [root] 
+Httpd UNIX user: [apache] 
+Create rmpoller service: [y] 
+Create rmconntrack service: [y] 
+Back up RADIUS database: [y] 
+
+
+/usr/local/sbin/radiusd
+/usr/local/sbin/rmpoller
+/sbin/service httpd start
+/sbin/service mysqld start
+
+
+http://192.168.1.100/radiusmanager/admin.php
+http://192.168.1.100/radiusmanager/user.php
+
+---------------------Radius manager------------------------------------------------------------------------------
+安装radius manager 3.9 全过程手记
+
+1.安装centos 5.6。
+
+2.改MAC、IP、GATEWAY、nameserver，关闭SELINUX，重启系统。
+
+改MAC地址
+
+/etc/rc.d/rc.sysinit
+
+ifconfig eth0 down
+
+ifconfig eth0 hw ether 00:D0:09:B8:B7:34
+
+ifconfig eth0 up
+
+配置IP地址，因为上面改了MAC地址，所以文件中的HWADDR注释掉，否则网卡不能启用。
+
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+BOOTPROTO=static
+
+IPADDR=10.1.1.242
+
+NETMASK=255.255.255.0
+
+BROADCAST=10.1.1.255
+
+GATEWAY=10.1.1.254
+
+配置网关
+
+/etc/sysconfig/network
+
+GATEWAY=10.1.1.254
+
+配置DNS
+
+/etc/resolv.conf
+
+nameserver 218.2.135.1
+
+nameserver 8.8.8.8
+
+重启网络
+
+/etc/init.d/network restart
+
+关闭SELINUX
+
+/etc/sysconfig/selinux
+
+SELINUX=disabled
+
+重启系统
+
+reboot
+
+3.升级大约200个包，大约耗时30到60分钟。
+
+yum update
+
+4.导入RPM-GPG-KEY*
+
+rpm -import /etc/pki/rpm-gpg/RPM-GPG-KEY*
+5.安装基础服务组件（很重要的一步，一定不要落下某个组件，否则不能安装freeradius和radiusmanager）
+
+yum -y install httpd mod_ssl php php-common php-gd php-pear php-pecl-memcache php-mhash php-xml mysql-server gcc gcc-c++
+
+yum -y install mysql-devel php-mysql php-mcrypt compat-libstdc++-33 libtool-ltdl-devel curl
+
+6.启动httpd和mysqld服务，后面会讲到如何让服务自动运行。
+
+/sbin/service httpd start
+
+/sbin/service mysqld start
+
+7.下载安装webmin（webmin可以实现通过web界面操作来维护mysql数据库，但后面我使用命令行维护mysql数据库，所以webmin可以不用安装）
+
+wget http://ncu.dl.sourceforge.net/project/webadmin/webmin/1.520/webmin-1.520-1.noarch.rpm
+
+rpm -ivh webmin-1.520-1.noarch.rpm
+
+http://10.1.1.242:10000
+8.安装ionCUBE
+
+下载安装ionCUBE
+
+wget http://www.dmasoftlab.com/cont/download/ioncube_loaders_lin_x86.tar.gz
+
+tar zxvf ioncube_loaders_lin_x86.tar.gz
+
+cp -rf ioncube /usr/local/
+
+显示php版本，记下版本为5.1
+
+php  -v
+
+PHP 5.1.6 (cli) (built: Nov 29 2010 16:47:37)
+Copyright (c) 1997-2006 The PHP Group
+
+Zend Engine v2.1.0, Copyright (c) 1998-2006 Zend Technologies
+
+修改php.ini，其中5.1和上步显示php版本一致。
+
+vi /etc/php.ini
+
+zend_extension=/usr/local/ioncube/ioncube_loader_lin_5.1.so
+
+php -m
+重启httpd服务。
+
+service httpd restart
+
+测试ionCUBE是否工作正常
+php -v
+Zend Engine v2.1.0, Copyright (c) 1998-2006 Zend Technologies
+    with the ionCube PHP Loader v3.3.14, Copyright (c) 2002-2010, by ionCube Ltd.
+
+或
+cp ioncube/ioncube-encoded-file.php /var/www/html
+
+http://yourhost/ioncube-encoded-file.php
+
+This file has been successfully decoded. ionCube Loaders are correctly installed
+
+————————————————————————————
+9.FreeRadius安装及配置
+
+FreeRadius安装
+
+wget http://www.dmasoftlab.com/cont/download/freeradius-server-2.1.8-dmamod-1.tar.gz
+
+tar xvf freeradius-server-2.1.8-dmamod-1.tar.gz
+
+cd freeradius-server-2.1.8
+
+./configure
+
+make
+
+make install
+
+测试FreeRadius，显示Ready to process requests.
+
+radiusd  -X
+
+Listening on authentication address * port 1812
+
+Listening on accounting address * port 1813
+
+Listening on command file /usr/local/var/run/radiusd/radiusd.sock
+
+Listening on proxy address * port 1814
+
+Ready to process requests.
+
+文件所有者和权限配置
+
+chmod 644 /usr/local/etc/raddb/dictionary
+
+chown apache /usr/local/etc/raddb
+
+chown apache /usr/local/etc/raddb/clients.conf
+
+ 
+
+10.建立MySql相关的数据库并作设置。
+
+修改mysql配置文件sql.conf(可使用默认值)
+
+vi /usr/local/etc/raddb/sql.conf                                     #使用radius/radius123
+
+# Connection info:
+server = “localhost”
+#port = 3306
+login = “radius”
+password = “radius123″
+
+重启mysqld服务
+
+/etc/init.d/mysqld start
+
+创建相关数据库和连接数据库的用户
+/usr/bin/mysqladmin -u root password password
+mysql -u root -ppassword                                       #登录mysql，默认密码password
+
+CREATE DATABASE radius;                             
+CREATE DATABASE conntrack;
+CREATE USER 'radius'@'localhost' IDENTIFIED BY 'radius123';
+CREATE USER 'conntrack'@'localhost' IDENTIFIED BY 'conn123';
+GRANT ALL ON radius.* TO radius@localhost;
+GRANT ALL ON conntrack.* TO conntrack@localhost;
+exit
+mysql -u root < mysql-temp.sql
+
+————————————————————————————
+
+11.安装Radius Manager，在交互式安装模式下可全部使用默认选项，只有最后一步按y回车确认安装。
+
+wget ftp://angela-ctce.3322.org/radiusmanager-3.9.0.tgz
+
+tar xf radiusmanager-3.9.0.tgz
+
+cd radiusmanager-3.9.0-rel/
+
+chmod  755  install.sh
+
+./install.sh
+
+Radius Manager installer
+
+Copyright 2004-2011, DMA Softlab LLC
+
+All right reserved.
+
+
+(Use CTRL+C to abort any time)
+
+Select the type of your operating system:
+1. Redhat (Fedora, CentOS etc.)
+
+2. Debian (Ubuntu etc.)
+
+Choose an option: [1]
+Selected operating system is: REDHAT
+
+Select installation type:
+1. New installation
+
+2. Upgrade old system
+
+Choose an option: [1]
+Selected installation method: NEW INSTALLATION
+
+WWW root path: [/var/www/html]
+RADIUS database host: [localhost]
+RADIUS database username: [radius]                        #使用radius/radius123
+
+RADIUS database password: [radius123]
+CTS database host: [localhost]
+CTS database username: [conntrack]                        #使用conntrack/conn123
+
+CTS database password: [conn123]
+Freeradius UNIX user: [root]                              #使用root
+
+Httpd UNIX user: [apache]                                 #使用apache
+
+Create rmpoller service: [y]
+Create rmconntrack service: [y]
+Back up RADIUS database: [y]
+
+WARNING! If You continue You will overwrite the existing RADIUS database!
+
+Are You sure to start the installation? [n] y
+
+Starting installation process…
+
+Copying WEB content to /var/www/html/radiusmanager
+
+Copying binaries to /usr/local/bin
+
+Copying rootexec to /usr/local/sbin
+
+Copying radiusmanager.cfg to /etc
+
+Backing up RADIUS database…
+
+Creating MySQL tables
+
+Creating rmpoller service
+
+Creating rmconntrack service
+
+Copying logrotate script
+
+Setting permission on raddb files
+
+Copying radiusd init script to /etc/init.d
+
+Installation finished!
+
+确认radiusmanager.cfg和system_cfg.php的rootexec_psw值相同，默认都为12345，一般不要修改。
+
+查看 radiusmanager.cfg
+/etc/radiusmanager.cfg
+db_host                 localhost                       ; mysql RADIUS host address
+
+db_name                 radius                          ; mysql RADIUS database name
+
+db_user                 radius                          ; mysql RADIUS username
+
+db_psw                  radius123                       ; mysql RADIUS password
+
+db_host_cts             localhost                       ; mysql CONNTRACK host address
+
+db_name_cts             conntrack                       ; mysql CONNTRACK database name
+
+db_user_cts             conntrack                       ; mysql CONNTRACK username
+
+db_psw_cts              conn123                         ; mysql CONNTRACK password
+
+rootexec_psw            12345                           ; rootexec password
+
+查看 system_cfg.php
+
+/var/www/html/radiusmanager/config/system_cfg.php
+
+<?php
+
+// database credentials
+
+define(“db_host”, “localhost”);                               // database host
+
+define(“db_base”, “radius”);                                  // database name
+
+define(“db_user”, “radius”);                                  // database user
+
+define(“db_psw”, “radius123″);                                // database password
+
+define(“db_host_cts”, “localhost”);                           // database host
+
+define(“db_base_cts”, “conntrack”);                           // database name
+
+define(“db_user_cts”, “conntrack”);                           // database user
+
+define(“db_psw_cts”, “conn123″);                              // database password
+
+// system definitions
+
+define(“admin_user”, “admin”);                                // name of superuser
+
+define(“rootexec_psw”, “12345″);                              // rootexec password
+
+define(“rmscheduler_psw”, “12345″);                           // password for starting rmscheduler
+
+?>
+
+————————————————————————————
+
+12.注册radius manager
+
+把注册相关文件复制到radiusmanager目录下，否则radius manager的rmpoller和rmconntrack服务不能启动。
+
+cp mod.txt /var/www/html/radiusmanager/
+
+cp lic.txt /var/www/html/radiusmanager/
+cp mac.txt /var/www/html/radiusmanager/
+13.配置radius manager(非必要情况不要配置)
+
+/etc/radiusmanager.cfg
+
+/etc/radiusmanager/config
+
+使rmscheduler.php每到午夜执行。
+
+/etc/crontab
+
+02 0 * * * root /usr/bin/php /var/www/html/radiusmanager/rmscheduler.php 12345     #使用12345
+
+（注意下面的12345是默认密码，可在system_cfg.php修改）
+
+14.设置相关服务开机自动启动
+chkconfig httpd on
+chkconfig mysqld on
+
+启动radiusd服务，并且使其自动启动（centos中不能通过chkconfig添加此服务为自动启动，可根据后面讲到的在rc.local中使用脚本启动）。
+/sbin/service radiusd start
+chkconfig –-add radiusd
+chkconfig radiusd on
+
+启动rmpoller服务，并且使其自动启动（centos中不能通过chkconfig添加此服务为自动启动，可根据后面讲到的在rc.local中使用脚本启动））。
+/sbin/service rmpoller start
+chkconfig –-add rmpoller
+chkconfig rmpoller on
+
+启动rmconntrack服务，并且使其自动启动（centos中不能通过chkconfig添加此服务为自动启动，可根据后面讲到的在rc.local中使用脚本启动））。
+/sbin/service rmconntrack start
+chkconfig –-add rmconntrack
+chkconfig rmconntrack on
+
+通过rc.local脚本使用相关服务自动运行。
+
+vi /etc/rc.local
+
+/sbin/service radiusd start
+
+/sbin/service rmpoller start
+
+/sbin/service httpd start
+
+/sbin/service mysqld start
+
+/sbin/service rmpoller start
+
+/sbin/service rmconntrack start
+
+15.测试
+
+一个终端窗口启动FreeRadius Debug模式
+
+radiusd  -X
+Access-Accept
+
+另一个终端窗口发请求认证报文，会得到
+
+radtest user 1111 localhost 1812 testing123
+
+Sending Access-Request of id 28 to 127.0.0.1 port 1812
+
+User-Name = “user”
+
+User-Password = “1111″
+
+NAS-IP-Address = 127.0.0.1
+
+NAS-Port = 1812
+
+rad_recv: Access-Accept packet from host 127.0.0.1 port 1812, id=28, length=53
+
+Mikrotik-Xmit-Limit = 209715200
+
+Mikrotik-Rate-Limit = “131072/262144″
+
+查看管理面板，默认用户名密码admin/1111
+
+http://10.1.1.242/radiusmanager/admin.php
+查看用户面板，默认用户名密码user/1111
+
+http://10.1.1.242/radiusmanager/user.php
+重启计算机，确认所有服务启动正常，再次登录管理面板仍正常。
+
+
+16.汉化Radius Manager
+
+wget  http://www.dmasoftlab.com/cont/download/lang/Chinese-3.9.0.zip
+
+unzip -o Chinese-3.9.0.zip  -d /var/www/html/radiusmanager/lang/
+
+——下面是可选配置—————————————————
+
+修改mysql数据库密码（非必需）
+
+在my.cfg中添加skip-grant-tables
+/etc/my.cnf
+
+skip-grant-tables
+
+/etc/init.d/mysqld restart
+
+修改mysql登录密码(默认无密码，改密码为12345678)
+
+mysql -u root -p mysql
+
+update user set password=password(“12345678″) where user=’root’;
+
+exit
+
+重启mysqld，再登录mysql即要输入密码。
+
+/etc/init.d/mysqld restart
+在my.cfg中注释掉skip-grant-tables
+/etc/my.cnf
+
+#    skip-grant-tables
+
+/etc/init.d/mysqld restart
+
+修改myql数据库密码，需要修改以下三个文件。
+
+/etc/radiusmanager.cfg
+
+/var/www/html/radiusmanager/config/system_cfg.php
+
+/usr/local/etc/raddb/sql.conf
+
+----------------------------------------------------------------
+以下是关于Radius Manager数据库表的功能一些介绍注释，方便今后使用。 
+请注明出处：http://www.whypc.info
+
+radacct表：记录了用户登陆时间和上传下载使用的流量。 
+因为我只是在学校机房限制学生上网流量，所以该表中的记录对于我来说基本无用。而且每月的月初我需要初始化用户流量，
+只需要使用：delete from radacct 即可让所有用户上网流量归零。
+racheck表：记录了用户的操作日志，例如更改密码，自助注册用户等信息。 
+经常有学生告诉我忘记了自己的密码，其实在这里可以查到他自助注册时候的口令，
+只需要使用： select * from racheck where username='用户名' 看最新的一条带Password的value值即可看到口令不需要重新为其设置登录口令。
+rm_managers表：记录了Radius Manager管理员信息。经常有人问我忘记Radius Manager管理员口令忘记之后怎么办。其实只需要： 
+update rm_managers set password=md5('123456') where managername='管理员用户名' 
+这样该管理员的密码就会被重置为123456了。
+rm_users表：记录了Radius Manager用户注册信息和管理员设置的限制的时间或流量，
+但是用户已使用时间和流量不在该表中如果需要查询用户上传下载总流量需要查询radacct表。
+rm_ias表：记录了在Radius Manager中添加的ias服务器信息。
+rm_services表：记录了Radius Manager创建服务的信息。
+更多的功能各位可以自主研究了，我只列觉了我需要的一些功能！
+
+
+----------------雙路由雙網關----------------------------------------------------------------------
+首先在/etc/sysconfig/network-scripts/ifcfg-eth0和ifcfg-eth1
+中把两个IP地址设置好,分别为：192.168.0.1和61.157.66.2 
+然后： 
+vi   /etc/rc.d/rc.local 
+添加： 
+route   add   -net   192.168.0.0/24   gw   192.168.0.254   dev   eth0 
+route   add   -net   61.157.0.0/16   gw   61.157.66.1   dev   eth1
+
+
+------------------系統轉移-----------------------------------------------------------------------------
+1.用life CD 可以移出軟體RAID的資料
+2.life CD可以進入文字模式  無密碼登入
+3.MOUNT硬碟上去   
+4.開啟life CD SSHD
+5.傳檔到遠端   scp -r /home/disk/aproot root@124.219.58.108:/aproot
+6.yum安裝apache php mysql
+7.新/var/lib/mysql先備份   變動舊mysql權限  chmod mysql.mysql    拷貝到新的資料夾/var/lib/mysql
+
+------------------selinux-----------------------------------------------------------------------------
+vi /etc/sysconfig/selinux
+SELINUX=enforcing 改成--> SELINUX=disabled
+setenforce 0  (套用設定)
+
+------------------postfix-----------------------------------------------------------------------------
+
+在 UNIX 的寄信程式不論是  Sendmail 或是 Postfix 都有處理「當信件無法即時寄出」的方法，
+簡單的來說就是 Mail Queue （郵件佇列），底下就簡單的來說說一些指令，怎麼來觀看並處理 Mail Queue.
+
+※ 查看卡在 mail queue 的信件 ※※※
+mailq
+postqueue -p 
+
+※ Mail Queue 所在的目錄 ※※※
+/var/spool/mqueue 
+/var/spool/postfix -- 底下列出 postfix 的子目錄
+
+　》active
+　　目前正在準備發送的信件。（在 message id 後會多加一個 * 號）
+Messages  that  the  queue  manager  has opened for delivery. Only a  limited  number  of  messages  is allowed  to  enter  the  active queue (leaky bucket strategy, for a fixed delivery rate).
+
+　》bounce
+　　每一位收件者的傳送狀態，並記載為何會被退信
+Per-recipient status information about why mail  is bounced.    These   files  are  maintained  by  the bounce(8) daemon.
+
+　》corrupt
+　　信件損毀導致無法傳送的信件
+Unreadable  or  damaged  queue files are moved here for inspection.
+
+　》defer
+　　暫時無法被傳送的信件，並記載為何會被延遲傳送。這種情形最常發生在你的 Mail Server 被列入灰名單（GrayList）的時候，你會看到訊息為「 Your access to this mail system has been rejected due to the sending MTA's poor reputation. If you believe that this failure is in error, please contact the intended recipient via alternate means.」
+Per-recipient status information about why mail  is delayed. These files are maintained by the defer(8) daemon.
+
+　》deferred
+　　無法被傳送的信件會放置在此目錄，但 Mail Server 還是會嘗試幫你繼續送，只是必須等 Backoff time。
+Mail that could not be  delivered  upon  the  first attempt.  The  queue manager implements exponential backoff  by  doubling  the  time  between  delivery attempts.
+
+　》hold
+　　被暫時停止發送的信件，如要發送出去，需要由手動（在 message id 後會多加一個 ! 號）
+Messages that are kept  "on  hold"  are  kept  here until someone sets them free.
+
+　》incoming
+　　從外部或本地寄送到本機的信件。
+Inbound mail from the network, or mail picked up by the local pickup(8) daemon from the maildrop directory.
+
+※ 刪除所有在 Mail Queue 中所有的信件 ※※※
+
+rm /var/spool/mqueue
+postsuper -d ALL
+不建議這麼做，除非你真的清楚知道你不要所有的信件！ 
+
+※ 刪除所有在 deferred 狀態的信件 ※※※
+
+因為 /var/spool/postfix/deferred 目錄下尚有 0~F 的子目錄，所以不好用 rm 一次將他清空，故系統有提供指令方式幫助你清理 deferred 下的信件
+
+1. postsuper -d ALL deferred
+　　　後面帶的 deferred 是 queue_id ，所以你也可以用這個方法來清除其他的 queue
+2. find /var/spool/postfix/deferred -type f -exec rm -vf \{\} \; 
+ 　　　這個方法是用 find 找出該目錄下所有的檔案，找到後丟給後面的 rm 去做刪除的動作。
+
+3. find /var/spool/postfix/deferred/  -type f -exec mv -vf \{\} /backup/mqueue/deferred/ \;
+　　　小弟建議用這個方法！這方法同第二種，只不過他不直接殺，而是將 deferred 的信件搬移到你指定的目錄去，例如例子中的 /backup/mqueue/deferred/，萬一有啥問題還可以救回來。（註：最後的 \; 不能省略唷！）
+
+※ 刪除過了 5天仍被放在 deferred 還是寄不出去的信件 ※※※
+1.  find /var/spool/postfix/deferred -type f -mtime +5 -exec rm -f \{\} \;
+2.  find /var/spool/postfix/deferred -type f -mtime +5 -exec mv -vf \{\} /backup/mqueue/deferred/ \;
+
+※ 刪除來自於 xxx@123.com 的信件 ※※※
+通常我們都會開放「認證」的使用者在單位以外的地方，透過 mail server 發送信件，但萬一某個使用者帳號被盜用後，這個方便將是非常大的傷害，你會發現你的 mail queue 裡怎麼會有那麼多，不是自己 domain e-mail 所發出的信件。
+
+刪除特定 e-mail 寄送的信件
+mailq | grep "xxx@123.com" | cut -d " " -f1 | cut -d’*’ -f1 | postsuper -d - 
+--------------------------------------------------------------------------------------
+mailq 列出 queue
+grep 找特定人事
+cut -d" " -f1 取出第一個欄位 message_id
+cut -d"*" -f1 去掉星號 * （因為若該訊息是在 active queue 會多個 *）
+postsuper -d - 刪除前面所取出來的  message_id
+
+刪除特定文字的訊息 
+
+/usr/sbin/postqueue -p | grep "MAILER-DAEMON" | cut -d " " -f1 | cut -d"*" -f1 | /usr/sbin/postsuper -d -
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+POSTFIX MAILQ 指令集 – 管理MAIL Queue
+by 蔡漢澤 2014-05-06 13:25:53, Reply(0), Views(246)
+如果你要套用其中一筆 Queue 中的郵件，可以先用 mailq 或 postqueue 指令查詢出或篩選出你要重新排 Queue 的郵件 ID，並使用以下指令重新排 Queue： 
+#postsuper -r 7B8CE830BD
+若要套用「所有」郵件，可以使用特殊的 ALL 關鍵字： 
+#postsuper -r ALL
+
+最後再強制重送所有的信件 
+#postqueue -f
+
+檢視剩下多少Queue 
+#postqueue -p
+
+若還是不行的話… 那就考慮刪除掉吧XD
+
+# 列出目前在 Mail Queue 中的信件 
+    mailq
+
+# 刪除某一個佇列的郵件 
+   postsuper -d queue_id
+
+# 刪除所有在 Queue 中的郵件 
+    postsuper -d ALL
+
+# 刪除所有正在 deferred 佇列中的郵件 ( 刪除曾經發送失敗的信 ) 
+    postsuper -d ALL deferred
+
+# 刪除所有正在 deferred 佇列中的郵件 ( 可看出哪些信被刪除了 ) 
+    find /var/spool/postfix/deferred -type f -exec rm -vf \{\} \;
+
+# 刪掉「三天以前」無法發出的郵件 
+    find /var/spool/postfix/deferred -type f -mtime +3 -exec rm -f \{\} \;
+
+# 列出目前所有無法發出的郵件 
+    find /var/spool/postfix/deferred -type f -exec ls -l –time-style=+%Y-%m-%d_%H:%M:%S {} \;
+
+# 刪除超過 5 天的 "defer" 佇列中的退信紀錄 
+    find /var/spool/postfix/defer -type f -mtime +5 -exec rm -f \{\} \;
+
+若你發現在MailQ裡面有相同的地址大量寄送垃圾信件時，可以透過下面的方式來擋掉…
+
+# vi /etc/postfix/header_checks 
+# 加入要擋掉的來原信 
+/^From:.service\@kcg\.gov\.tw/ DISCARD Attack Mail
+
+# postmap -q – regexp:/etc/postfix/header_checks < /etc/postfix/header_checks 
+# 重新讓 Postfix 新 header_checks 生效
+
+# mailq | grep "xxx@abc.com" | cut -d " " -f1 | cut -d’*’ -f1 | postsuper -d - 
+# 刪掉所有來自xxx@abc.com的MailQ
+
+此內容轉貼自: Mail Attack & Delete Postfix selected mailq
+
+預設所有跟 Postfix 相關的郵件都會放在 /var/spool/postfix/ 目錄下， 
+想瞭解 Postfix 是如何管理 Mail Queue 的可以參考 qmgr – Postfix queue manager 的手冊。
+
+以下是每個目錄摘要的說明其用途：
+
+MAIL QUEUES
+
+    * 
+      incoming
+
+          從網路寄信進來本機的信。 
+          或從本地寄送到本地的信。 
+    * 
+      active
+
+          正在準備發送的郵件。 
+    * 
+      defered
+
+          無法傳送的信。會持續重試。 
+    * 
+      corrupt
+
+          無法讀取或毀損的信。 
+    * 
+      hold
+
+          被暫停發送的信。需要手動開啟才會發出。
+
+DELIVERY STATUS REPORTS
+
+    * 
+      bounce
+
+          每一位收件者的寄送狀態資訊，說明為什麼被「退信」。 
+          由 bounce(8) 程式控管 
+    * 
+      defer
+
+          每一位收件者的寄送狀態資訊，說明為什麼被「延遲寄信」。 
+          由 defer(8) 程式控管 
+    * 
+      trace
+
+          每一位收件者的寄送狀態資訊，說明被 Postfix 用 "sendmail -v" 或 "sendmail -bv" 指令執行過的狀態。 
+          由 trace(8) 程式控管
+-----------------------postfix dovecot鎖定問題--暫時解決方法---------------------------------------------------------------------------------------
+
+最近我也遇到這個問題,兩間公司合併但還是各自獨立網段,MAIL SERVER 整合後另一邊外站人太多,
+又習慣用 mail 傳檔, 2M上傳每天都滿載.....又因群組關係,每封信一卡就是好久,重複收信狀況超嚴重,信件延持收到也是很誇張,
+剛自己寫了個script,然後每10分鐘跑一次,同用到啟用中斷過程非常微小,確可以把mailq內老是積50封因LOCK問題的信給寄出去清乾淨.
+
+#!/bin/bash
+/etc/init.d/dovecot stop
+postqueue -f
+/etc/init.d/dovecot start
+postqueue -p
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Postfix內建的 header_checks與 body_checks
+      [1.] vi /etc/postfix/main.cf
+
+header_checks = regexp:/etc/postfix/header_checks
+body_checks = regexp:/etc/postfix/body_checks
+            postfix reload
+
+      [2.] 編輯 /etc/postfix/header_checks或者 /etc/postfix/body_checks建立規則
+
+# /規則/   動作   顯示在maillog檔裡的訊息
+/^from.*root/   DISCARD  from root be droped
+
+# 多重條件時
+if /xxx/
+if /xxx/
+/xxx/ DISCARD the spam mail
+endif
+endif
+
+      [3.] 測試
+              postmap -q – regexp:/etc/postfix/header_checks < /etc/postfix/header_checks
+              (無任何訊息顯示，代表正確無誤)
+----------------------------------------------------------------------------------------------------------------------------------------------
+Postfix 的郵件的分析與過濾管理：
+採用 header_checks 及 body_checks 的方式，其為正規表示法 ( Regular Expression, RE ) 來進行設定，
+其方式是真對郵件的 Header 及 Body 去過濾，何謂 Header？即郵件上面的資訊 
+( 包括 寄件者 From:、收件者 To:、地址、與信件標題 Subject: 等 )。何謂 Body？即是對方寄信給你的時所書寫的內容。
+兩個條件 
+1.收件者 To:service@spexeshop.com 
+2.信件標題 Subject: (Re:客服回應 請勿回覆此信件)
+或直接加入BODY
+3.body_checks   在BODY裡面加入"請勿回覆此信件"  然後針對這個內容去進行SPAM
+4.postfix如果要利用header_checks來check中文是會有問題的
+必須先把中文進行編碼
+網址如下
+http://www.mytju.com/classCode/tools/base64.asp
+要分utf8或big5
+
+編出來之後再加入header_checks
+/^Subject:.*5biQ5oi3/ DISCARD
+/^Subject:.*pc6k4Q==/ DISCARD
+
+postfix要重啟
+
+-------------------------------------------------------------------------------------------------------------------
+header_checks 單一規則的設定方法為：
+/規則/  動作 
+顯示在登錄檔裡面的訊息
+請注意，要使用兩個『 / 』將規則包起來喔！舉個例子來說明：例如我想要
+(1)抵擋掉標題為 A funny game 的信件，(2)並且在登錄檔裡面顯示 drop header
+deny，我可以這樣寫：
+/^Subject:.*A funny game/ 
+DISCARD drop header deny
+
+/^To:.*noreply@spexeshop.com/ DISCARD To noreply be droped
+
+/^To:.*\.TXT@/ DISCARD Commercial unavailable header
+/^To:.*apatite.*#vi /usr/local/etc/postfix/body_checks
+-------------------------------------------------------------------------------------------------------------------------
+最後修改日期： 2005/05/09
+　　@. Queue 管理
+　　#mailq # 使用 mailq 檢查曾經發經發送的電郵
+　　-Queue ID-------Size------Arrival Time------Sender/Recipient-------
+　　D7982233D37 2936 Fri May 6 00:18:16 2daniel@12.hinet.net
+　　#postcat /var/spool/postfix/deferred/1/17461233D42 # 把在 mail queue 內的電郵內容顯示出來
+　　#postsuper -d A1F23E009A # 刪除 mail queue 內還未發送的信件
+　　#postsuper -d ALL # 刪除所有 mailq
+　　@. Mail 郵件內容過濾管理
+　　 Postfix 的郵件的分析與過濾管理：採用 header_checks 及 body_checks 的方式，其為正規表示法 ( Regular Expression, RE ) 來進行設定，其方式是真對郵件的 Header 及 Body 去過濾，何謂 Header？即郵件上面的資訊 ( 包括 寄件者 From:、收件者 To:、地址、與信件標題 Subject: 等 )。何謂 Body？即是對方寄信給你的時所書寫的內容。
+　　#vi /etc/postfix/main.cf
+　　header_checks = regexp:/usr/local/etc/postfix/header_checks
+　　body_checks = regexp:/usr/local/etc/postfix/body_checks
+　　寫法說明：
+　　『.』：代表任意字元 
+　　『\』：代表跳脫字元，可以讓後面接的一個字元變成一般字元； 
+　　『*』：代表重複零個或多個前一個 RE 的字元，例如『.*』則代表任意零個或多個字元的意思； 
+　　『^』：代表『這一行的第一個字元需要符合規則』的意思； 
+　　『$』：代表這一行的最後一個字元必須要符合這個字元的意思，
+　　單一規則的設定標準： 
+　　 /規則/ 動作 顯示在登錄檔裡面的訊息
+　　/^Subject:.*A funny game/ DISCARD drop header deny
+　　#vi /usr/local/etc/postfix/header_checks
+　　# 範例：header_checks
+　　/filename\=\".*src\.exe/ REJECT Virus filename is unavailable header
+　　/filename\=\".*\.cpl\"/ REJECT Virus filename is unavailable header
+　　/name\=\".*\.bat\"/ REJECT Virus filename is unavailable header
+　　/name\=\".*\.scr/ REJECT Virus filename is unavailable header
+　　/^Subject:.*Hello\,.*\,how\ are\ you.*/ DISCARD Virus drop the unavailable header
+　　/^Subject:.*W32.*removal\ tools$/ DISCARD Virus drop the unavailable header
+　　/^From:.*rayman\.com\.cn/ DISCARD Commercial unavailable header
+　　/^From:.*\@263\.net/ DISCARD Commercial unavailable header
+　　/^To:.*\.TXT@/ DISCARD Commercial unavailable header
+　　/^To:.*apatite.*#vi /usr/local/etc/postfix/body_checks
+    
+　　範例：body_checks
+　　/http\:\/\/168\-news\.com/ DISCARD Commercial drop the unavailable body
+　　/http\:\/\/.*edms\.tv/ DISCARD Commercial drop the unavailable body
+　　/mailto\:.*\@126\.com/ DISCARD Commercial drop the unavailable body
+　　/mailto\:.*\@powererp\.org/ DISCARD Commercial drop the unavailable body
+　　/0982\-281\-125/ DISCARD Commercial unavailable body
+　　/www\.email104\.com/ DISCARD Commercial unavailable body
+　　/\/nomail\.gif\"/ DISCARD Commercial nomail unavailable body
+　　/\/nomail\.htm\"/ DISCARD Commercial nomail unavailable body
+　　#postmap -q - regexp:/usr/local/etc/postfix/header_checks # 不需要重新啟動 postfix，設定立刻生效
+　　@. Mail 連線 IP 管理
+　　擋掉惡意 Spam 攻擊的 IP 網段 CIDR (Classless Inter-Domain Routing) postfix 2.x 之後的版本應該都支援這個用法，它可直接編輯允許連線及不可連線的 IP 網段，挺不錯用的 ^^ 可是有問題 .. 在我的機器上掛上就收不到信還是需要再 try 看看 ...
+　　#vi /usr/local/etc/postfix/main.cf
+　　smtpd_client_restrictions = cidr:/usr/local/etc/postfix/client.cidr
+　　#vi /usr/local/etc/postfix/client.cidr
+　　# Sapm IP Groups
+　　220.163.0.0/16 DISCARD spam
+　　218.62.0.0/16 DISCARD spam
+　　218.63.0.0/16 DISCARD spam
+　　61.159.0.0/16 DISCARD spam
+　　#postmap -q - cidr:/usr/local/etc/postfix/client.cidr 
+　　#postfix reload
+
+alias_maps = hash:/etc/postfix/aliases
+
+---------------------------linux 互傳檔案-----scp----------------------------------------
+A電腦 IP : 1.1.1.1
+B電腦 IP : 1.1.1.2
+[上傳]若目前使用A電腦，我們要將 A電腦 某個檔案，傳送至 B電腦 中，可以這麼輸入
+scp  [-P  Port]  [-pr]  [-l  速度]  [傳送至遠端的檔案]  [遠端帳號@IP:放置的路徑]
+ex.  scp  -P  1234  -pr  /home/user/temp/  test@1.1.1.2:/home/test/test/
+[下載]若目前使用A電腦，我們想從 B電腦 某個檔案，下載至 A電腦 中，可以這麼輸入
+scp  [-P  Port]  [-pr]  [-l  速度]  [遠端帳號@IP:檔案路徑]  [儲存至本機的路徑]
+ex.  scp  -P  1234  -pr  test@1.1.1.2:/home/test/test/  /home/user/temp/
+參數說明
+[-P  Port]  scp 指令預設是走 22 Port ，若想走其他 Port 可以加入此參數
+[-p]  保留原檔案的屬性(權限)資料
+[-r]  若要傳送目錄時，要記得+此指令才可以傳送整個目錄
+[-l  速度]  限制傳輸速度，單位為  Kbits/s
+
+安裝支援SCP命令的元件
+yum install openssh-clients
+
+關閉遠端的SSH RSA驗證
+vi /etc/ssh/ssh_config
+RSAAuthentication no     <<改no
+
+
+scp -pr /var/www/html root@124.219.58.117:/var/www       (會自己建立資料夾  所以後面不用有html)
+scp -pr /aproot/http root@124.219.58.117:/aproot
+
+scp -pr /var/www/html/j-gms  root@124.218.73.182:/var/www/html
+
+完成網站移轉  全紀錄
+1.把資料用SCP移轉過去/aproot   指令如上
+2.把資料庫移轉到/var/lib/mysql
+3.更改/etc/httpd/conf/httpd.conf  路徑改到/aproot/http  不進vhosts  因為要用PPMA2010
+4.更改/etc/httpd/conf.d/裏面所有檔先備份  然後覆蓋上去  httpd-vhosts.conf這個檔裏面的路徑  不會去抓httpd.conf原始路徑
+5.更改IP  把IP換到新機器  觀察看看狀況  已拔除刀鋒伺服器的網卡
+
+=====================================================================================================
+#1045 無法登入 MySQL 伺服器
+發生原因：安裝phpMyAdmin後，密碼異動所致，結果出現#1045 error message
+解決方式：
+# mysql -uroot -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+# mysql
+ERROR 1045 (28000): Access denied for user 'mysql'@'localhost' (using password: NO)
+解釋：沒有ROOT密碼權限。
+(網路爬文ERROR 1045 (28000): Access denied for user 'mysql'@'localhost' (using password: NO) ，是因為如果沒有修改pid的路徑，這裡​​根本登入不進去，何談修改密碼。因為mysql始終無法創建pid文件）解決方式如下：
+/etc/init.d/mysql stop   ( 或service mysqld stop )
+/usr/bin/mysqld_safe --skip-grant-tables
+
+再開一個SSH
+# mysql
+mysql>use mysql
+mysql>update user set password=password("1234") where user="root";
+mysql>flush privileges;
+mysql>exit
+
+接者
+# ps -aux | grep mysql
+1234 pts/0    00:00:00 mysqld_safe
+5678 pts/0    00:00:00 mysqld
+[mysql@localhost etc]$ kill -9 1234 5678
+啟動MySQL：/etc/init.d/mysql start   (或service mysqld start)
+
+===================================================================================================================================
+httpd.conf安全設定
+1. 設定能存取伺服器網址
+    在設定檔中可利用 order、 allow 及 deny 項目來設定
+    Apache 伺服器允許哪些主機存取
+    以下將解說如何設定過程
+    首先請開啟 httpd.conf 設定檔
+# vi /etc/httpd/conf/httpd.conf
+    可在目錄設定區中加入以下參數 (假設只開放給 123.com.tw 來存取主機)
+...
+Order deny , allow 	              	先處理 deny 項目,其次才適 allow 項目
+Deny from all                       	拒絕所有主機存取
+Allow from 123.com.tw       	        只允許來自 123.com.tw 網域可存取主機
+...
+    反過來如果只限制某些主機無法存取而其他任何主機皆可存取
+...
+Order allow , deny                	先處理 allow 項目,其次才是 deny 項目
+Allow from all                      	 允許所有主機都可存取
+Deny from 123.123.123.12  123.123.123.13    不允取來自 123.123.123.12 和
+                                                                          123.123.123.13 主機存取
+...
+    存檔後離開 :wq
+　
+2. 設定使否允取執行 CGI
+    有些執行 CGI 會影響 Linux 系統安全的指令或者是洩露主機資訊
+    以及可能也因 CGI 程式編寫關係而影響主機的系統資源
+    因此在設定 CGI 權限時請要特別注意安全性...
+    如果要在該目錄加上可執行 CGI 功能則可以依照以下方式設定
+    首先請開啟 httpd.conf 設定檔
+# vi /etc/httpd/conf/httpd.conf
+    在要開放 CGI 執行權限目錄下新增參數 (假設要在 cgitest 目錄開啟 CGI 功能)
+...
+ 	  設定 cgitest 目錄功能區
+    AllowOverride None
+    Options ExecCGI       	    如果要允許執行 CGI 則加入此參數
+    Order allow , deny
+    Allow from all
+...
+    設定好後請存檔離開即可 :wq
+    如果非必要開放 CGI 建議在前面加上 # 關閉此功能以維護主機安全
+　
+3. 關閉檔案列表功能
+    首先，用文字編輯器打開Apache的設定檔httpd.conf，找到設定文件目錄區塊中的這一行：
+
+      Options Indexes FollowSymLinks MultiViews
+      改成這樣存檔後，重新啟動Apache即可：
+      Options FollowSymLinks MultiViews
+
+之所以去掉Indexes這個功能，是讓Apache不自動產生目錄的索引，
+就不會出現前面燦坤網站某一個文件目錄列出目錄頁面的情形。
+如果你的Apache有將Indexes拿掉，點選連結目錄就不會秀出目錄來，會改成403 forbidden的訊息頁面。
+
+4.錯誤ServerName
+正在啟動 httpd：httpd: apr_sockaddr_info_get() failed for jgms002.ser
+httpd: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1 for ServerName
+
+修改成  ServerName  jgms002.j-gms.com
+
+5.------禁用apache 測試頁--------------------------------------------------------------------------------------------------------------------
+vi /etc/httpd/conf.d/welcome.conf
+
+#<LocationMatch "^/+$">
+#    Options -Indexes
+#    ErrorDocument 403 /error/noindex.html
+#</LocationMatch>
+
+mark起來  就可以
+---------------------------------------------------------------------------------
+壓縮
+tar -jcv -f filename.tar  目錄名稱
+tar -jcv -f jgms.tar /var/www/html/j-gms
+
+解壓縮
+tar xvf FileName.tar
+
+mv /var/www/html/var/www/html/j-gms/ /var/www/html/
+
+mv /var/www/html/j-gms/ /var/www/html/
+
+tar xvf jgms1.tar (解壓縮)
+tar -jcv -f jgms3.tar j-gms-3-test (壓縮)
+----------------------------------------------------------------------------------------------------------------
+2016年4月19日 星期二
+【CentOS 6】透過 SCL 將 Apache(httpd) 升級到 2.4 版
+參考資料 ----
+軟件選集（SCL）軟件庫
+義守大學檔案伺服器
+Using Apache httpd 2.4 on Red Hat Enterprise Linux 6
+RHEL/CentOS 的慣例是主版本發行後，接下來就進入維護狀態，只做 bug fix / 次版本 的更新。
+
+例如：
+CentOS 6.x 的 Apache 是 2.2 版，即使現在最新的 CentOS 6.7，Apache 是 2.2.15-47。
+但 Apache 2.2 被發現有安全性漏洞(CVE-2012-0053)，必須要升級到 2.2.22 以上的版本，這怎麼辦呢? 尤其對企業而言，不可能任意地就將主機 從 CentOS 6.x 升級到 CentOS 7.x。
+所幸 CentOS 推出了 SCL (RHEL 則為 RHSCL) 彌補了上述的缺憾。
+centos-release-scl 歸類在 extras section，所以如果原本您有將
+
+[extras]
+enabled=0
+
+則需
+
+[extras]
+enabled=1
+
+
+[root]# yum  install  centos-release-scl
+
+yum 會連帶安裝 centos-release-scl-rh
+
+
+為了跟正式版本區隔，Apache 2.4 的程式名稱為 httpd24
+
+[root]# yum  install  httpd24
+
+您也可以上義守大學 FTP server 看看有哪些新版本的套件。
+
+
+安裝完成後，要啟動 httpd24 的指令為
+
+［root］＃ service  httpd24－httpd  start
+
+
+設為開機啟動
+
+[root]# chkconfig  httpd24-httpd  on
+
+大多數人都會 Apache 搭配 PHP 使用，因為 CentOS 6 內建的 PHP 相依於 Apache 2.2，所以您移除 httpd2.2 時會一併移除 PHP。
+
+要改用 Apache 2.4，則要搭配 PHP 5.5
+
+[root]# yum  install  php55
+
+注意 Apache 2.4 的 config 設定檔在 /opt/rh/httpd24/root/etc/httpd/conf/

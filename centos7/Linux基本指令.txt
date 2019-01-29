@@ -1,0 +1,115 @@
+
+===============
+
+使用文字編輯器新增一個 index.php 的檔案到網站目錄下測試
+
+vi /var/www/html/index.php
+
+===============
+
+掛載USB
+
+1.先查USB隨身碟是被系統辨識成那個裝置
+fdisk -l 
+
+sda 很可能是硬碟,往下查容量可以找到隨身碟的編號
+我們假設為sdb
+
+2.建立USB隨身碟的掛載點：
+mkdir /mnt/usb
+
+3.掛載USB隨身碟
+mount -v -t auto /dev/sdb /mnt/usb
+
+-v 顯示資訊
+-t auto 讓系統自動分辯檔案系統
+
+4.到 /mnt/usb 可看到usb的內容
+
+卸載
+----------------
+1.使用eject命令
+eject命令[2]曾被廣泛應用於彈出光碟機，實際上它也可以用於「彈出」USB、磁帶等設備。只要為其指明設備名，就可以完成卸載分區等操作。使用eject通常可以讓USB設備的工作指示燈熄滅。
+
+eject的使用方法為：
+
+eject 设备名
+
+ex:eject sdb
+
+查看所有的掛載內容
+mount
+---------------
+2.使用umount卸載
+
+使用umount命令卸載分區實現的行為與圖形界面點「卸載」類似，命令格式為：
+
+# umount 设备名或挂载点
+
+設備名為具體的USB磁碟上分區的設備名，如/dev/sda，/dev/sdb1等。
+
+如果umount命令失敗，一般是由於還在訪問相應分區所導致的。注意即便是當前的工作目錄在USB分區的目錄內，也會導致umount失敗。如果umount命令實在不能成功，請參考以下解決方法。
+
+使用sync同步文件
+系統一般會為USB設備建立緩衝區，對USB設備的讀寫一般都經過緩衝區，如果拔下USB設備時有緩衝區中的內容未寫入USB設備，就可能導致數據丟失。umount命令執行成功時可以保證緩衝區被處理，但如果umount失敗，你可以選擇手動執行同步命令：[3]
+
+sync
+當umount不成功時，執行這一命令後再拔出USB設備可以大大減小丟失數據的可能性。
+
+===============
+
+[aaa@localhost ~]$ cd ~ ←進入自己的家目錄
+
+[aaa@localhost ~]$ pwd ←顯示完整的工作目錄(帳號〝aaa〞的家目錄)
+/home/aaa
+
+[aaa@localhost ~]$ cd /var/mail ←進入目錄〝/var/mail〞
+
+[aaa@localhost mail]$ pwd ←顯示目前的目錄
+/var/mail
+
+[aaa@localhost mail]$ pwd -P ←列出真正的工作目錄(非連結檔的目錄)
+/var/spool/mail
+
+===============
+
+[aaa@localhost /]$ cd /usr/share/dict ←用絕對路徑先進入路径〝/usr/share/dict〞
+
+[aaa@localhost dict]$ pwd ←用 pwd 指令確認一下
+/usr/share/dict
+
+[aaa@localhost dict]$ cd .. ←用相對路徑〝..〞到其父目錄〝/usr/share〞(上一層)
+
+[aaa@localhost share]$ pwd ← pwd 再確認一下
+/usr/share
+
+[aaa@localhost share]$ cd dict ←用相對路徑再進入目錄〝/usr/share/dict〞
+
+[aaa@localhost dict]$ cd ../../.. ←回到上一層的操作可連續喔!(連回三次上一層到到根目錄了)
+
+[aaa@localhost /]$ pwd ← pwd 再確認一下
+/
+
+[aaa@localhost /]$ cd /usr/share ←用絕對路徑先進入路径〝/usr/share〞
+
+[aaa@localhost share]$ cd ../sbin ←用相對路徑回上一層再進入子目錄〝sbin〞
+
+[aaa@localhost sbin]$ pwd ← 確認目前在何處
+/usr/sbin
+
+===============
+
+查看所有安裝於centos的mysql
+
+yum list installed | grep mysql
+
+===============
+
+移除
+
+yum remove
+
+===============
+
+整個網路服務重啟
+service network restart

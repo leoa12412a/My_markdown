@@ -1,0 +1,30 @@
+
+
+========================
+config\email.php
+
+-------------------------
+<?php defined('BASEPATH') OR exit('No direct script access allowed.');
+
+$config['protocol']     = 'smtp';
+$config['smtp_host']    = 'ssl://smtp.gmail.com';
+$config['smtp_port']    = '465';
+$config['smtp_timeout'] = '30';
+$config['smtp_user']    = 'richard@9skin.com';    // 填 Google App Domain Mail 也可以
+$config['smtp_pass']    = 'kevin78126';
+$config['charset']      = 'utf-8';
+$config['newline']      = "\r\n";
+$config['mailtype']     = 'html';
+$config['wordwrap']     = true;                      // DKIM Identity, usually the email address used as the source of the email.
+-------------------------
+
+Controller
+
+-------------------------
+
+ $this->load->library('email');
+		  $this->email->from('richard@9skin.com', '九卡雲動');
+		  $this->email->to('leoa12412a@gmail.com');
+		  $this->email->subject('來自9KYD的信');
+		  $this->email->message('姓名:'.$name.'。'.'電子郵件:'.$email.'。'.'電話:'.$phone.'。'.'訊息:'.$msg.'。');
+		  $email=$this->email->send();

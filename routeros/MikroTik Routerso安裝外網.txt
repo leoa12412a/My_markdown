@@ -1,0 +1,56 @@
+MikroTik Routeros
+
+灌好之後 
+
+要先進去系統 把網卡設定內網IP
+
+tab= centos ls
+
+查看網卡
+
+interface print
+
+ip>address>add interface=網卡 address=192.168.88.1 netmask=255.255.255.0
+ex:ip>address>add interface=ether1 address=192.168.88.1 netmask=255.255.255.0
+
+刪除ip設定 ip>address>print 
+		   remove 
+		   
+查看防火牆設定 /ip f f > remove(刪除)
+
+winBOX登入 192.168.88.1 預設帳號:admin 密碼:空的  (找一台電腦下載winBOX 並且把本地區域 網域設定為 192.168.88.X (通常我都用192.168.88.2))
+
+
+
+登入進去以後
+
+設定IP
+
+使用 Winbox 登入 Router OS ，選擇選項 IP > Addresses
+
+開啟 Addresses 視窗後，按下 + 號 新增項目
+
+Address：輸入您的 WAN IP，例如 WAN IP 為 192.168.5.15，子網路遮罩為255.255.255.0，即輸入 192.168.5.15/24。
+
+Interface：選擇您的 WAN，來自於哪個 Port 網路介面。ex:ether1
+
+接下來選擇選項 IP > Routes
+
+開啟 Routes 視窗後，按下 + 號 新增項目
+
+Dst. Address：輸入預設值 0.0.0.0/0
+
+Gateway：輸入您的 WAN IP 預設閘道，例如 192.168.5.1
+
+可以使用Ping測試網路是否正常，選擇選項 Tools > Ping
+
+ping to: 8.8.8.8
+
+IP>> Firewall  全部關閉   不然會不能連
+
+=============================
+
+WinBox 的 ERROR: could not fetch index
+
+MikroTik 的 RouterOS 很好用，也成了駭客攻擊目標。操作 RouterOS 用 WinBox 很好用，但 WinBox 3.18 版，要連 RouterOS v5.20 時，就會出現 ERROR: could not fetch index 的字眼。
+要解決這個問題，用舊的 WinBox，例如 v2.2.18 版，就不會再出現 ERROR: could not fetch index 字樣。

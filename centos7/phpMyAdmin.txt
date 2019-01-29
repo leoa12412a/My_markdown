@@ -1,0 +1,24 @@
+
+phpMyAdmin - Error
+Error during session start; please check your PHP and/or webserver log file and configure your PHP installation properly. Also ensure that cookies are enabled in your browser.
+session_start(): open(SESSION_FILE, O_RDWR) failed: Permission denied (13)
+
+phpMyAdmin錯誤
+會話開始時出錯; 請檢查您的PHP和/或Web服務器日誌文件並正確配置您的PHP安裝。還要確保在瀏覽器中啟用了cookie。
+session_start（）：open（SESSION_FILE，O_RDWR）失敗：權限被拒絕（13）
+
+chmod 770(or 777) /var/lib/php/session
+
+缺少php擴充元件mysqli 
+
+yum install php-mysqli
+
+1-找到mysqli
+
+/usr/lib64/php/modules/mysqli.so
+
+2-編輯php.ini添加
+
+extension=pathroyourfile
+
+3-重啟apache

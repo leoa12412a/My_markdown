@@ -1,0 +1,14 @@
+ vagrant box add first centos-6.6-x86_64.box 掛載ISO檔案=git bash=>> vagrant box add <name>  <檔名>
+ vagrant box list 列出所有掛載box
+ vagrant init  -->移到資料夾後輸入初始化
+ vi Vagrantfile -->修改此檔案
+	修改config.vm.box = "first" ==>資料夾名稱
+	config.vm.network "private_network", ip: "192.192.1.1"  => 取消註解,改IP
+
+vagrant up 執行
+
+
+
+	
+ 
+ 

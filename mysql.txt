@@ -1,0 +1,42 @@
+
+=================
+[MySQL] 解決中文亂碼，預設編碼改為UTF-8設定
+
+------------------
+在C:\xampp\mysql\bin\my.ini     （Windows版的路徑）
+
+找到 [client] 區塊
+
+加入
+
+default-character-set=utf8
+
+找到 [mysqld] 區塊
+
+加入
+
+character-set-server=utf8
+collation-server=utf8_general_ci
+
+------------------
+
+如果是Linux的Xampp for linux，用命令列打入
+vi /opt/lampp/etc/my.cnf
+
+如果是yum裝的mysqld，用命令列打入
+
+vi /etc/my.cnf
+
+
+https://www.jianshu.com/p/35017063b13c
+
+
+照Windows的敘述做修改
+
+------------------
+
+建立UTF-8 資料庫
+
+CREATE DATABASE dbname DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+==================

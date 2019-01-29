@@ -1,0 +1,7 @@
+掛載 LVM 硬碟
+
+root@ubuntu # lvdisplay
+
+查看:LV Path   ex: /dev/iotserv-vg/root
+
+掛載 mount /dev/iotserv-vg/root /mnt/harddisk(掛載/dev/iotserv-vg/root到/mnt/harddisk目錄下方) 

@@ -1,0 +1,95 @@
+安裝伺服器centos7
+=============================
++ SSH 連線 到需架設的伺服器 例如:加州45.79.71.36
++ 輸入yum -y update 更新系統版本
++ 安裝防火牆
+	- firewall 放入 /usr/local/bin/
+	- 執行 systemctl stop firewalld 關閉防火牆
+	- 執行 chmod 744 /usr/local/bin/firewall 開放此檔案權限
+	- 執行 /usr/local/bin/firewall start 啟動文件
+	- vi /usr/local/bin/firewall 修改文件
+	- 執行 iptables-save > /etc/iptables.save2010.1
+	- 執行 iptables-restore < /etc/iptables.save2010.1 開機自動寫入防火牆    將此行寫入vi /etc/rc.d/rc.local  檔裡面
+
++ 安裝Apache 2.4
+	- yum install httpd 執行安裝
+	- systemctl start httpd
+	- systemctl enable httpd設定開機啟動
+	- vim /etc/httpd/conf/httpd.conf 確認執行權限
+	- 重啟 sudo systemctl restart httpd.service
+	
++ 安裝MYSQL
+	- rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+	- yum install mysql-community-server
+	- /usr/bin/systemctl enable mysqld
+	- /usr/bin/systemctl start mysqld
+	- /usr/bin/mysql_secure_installation
+	- grep 'temporary password' /var/log/mysqld.log (查密碼)
+	- 登入 mysql -u root -p
+	- 密碼空白
+	- mysql>select user,host,password from mysql.user where user='root'; 查詢使用者
+	- mysql>update mysql.user set password=password('密碼') where user='root'; 設定密碼
+	- 修改 /etc/my.cnf 
+	- 在 [mysqld]下面 加入下面的一行 skip-grant-tables
+	- 重啟systemctl restart mysql
+
++ 安裝PHP 5.6
+	- yum list installed | grep php
+	- yum install epel-release
+	- rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+	- yum list --enablerepo=remi --enablerepo=remi-php56 | grep php
+	- yum install --enablerepo=remi --enablerepo=remi-php56 php php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof
+	- php --version
+	- yum install --enablerepo=remi --enablerepo=remi-php56 php-fpm
+	- systemctl restart httpd
+	- systemctl restart php-fpm
+	
+	
++永久性的關掉 selinux
+	- vi /etc/sysconfig/selinux  
+	找到
+	SELINUX=enforcing
+	然後修改為
+	SELINUX=disabled
+	要重新開機 reboot / restart 後才會套用
+
++ crontab排程
+	- yum install -y vixie-cron 安裝
+	- service crond start 啟動服務
+	- service crond stop 關閉服務
+	- service crond restart 重啟服務
+	- service crond reload 重新載入服務
+	- crontab -u 設定的cron服務
+	- crontab -l 列出cron服務的詳細內容
+	- crontab -e 編輯cron服務
+	- 2 0 1 * * /usr/bin/curl http://www.champ-team.com/index.php/cron/everyday
+	
++ 伺服器時間調整
+	- date –s ‘2018-09-10 10:10:10’ 設定時間
+	- clock –w 將日期寫入CMOS
+	- date 伺服器時間
+	
+	
++ 添加VirtualHost 功能
+	- 修改 /etc/httpd/conf/httpd.conf
+		<VirtualHost *:80>
+			ServerName crm.9skin.com/
+			DocumentRoot  /var/www/html/01_crm
+			ErrorLog logs/01_crm
+			CustomLog logs/01_crm_log common
+
+			<Directory "/var/www/html/01_crm">
+				Options FollowSymLinks
+				AllowOverride None
+				Order allow,deny
+				allow from all
+			</Directory>
+		</VirtualHost>
+	- 重啟service httpd restart
+	
++ 備份伺服器
+	- scp -pr /var/www/html/  root@124.219.73.157:/var/www/html/copy_USA  備份加州資料庫到157
+	- /etc/httpd/conf/httpd.conf備份
+	- MYSQL手動備份
+	
+	

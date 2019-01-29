@@ -1,0 +1,2110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mibew Messenger 2.0\n"
+"Report-Msgid-Bugs-To: support@mibew.org\n"
+"POT-Creation-Date: 2014-08-19 12:44+0000\n"
+"PO-Revision-Date: 2016-12-24 02:25+0300\n"
+"Last-Translator: X Chen\n"
+"Language: zh_TW\n"
+"Language-Team: Mibew Translators <support@mibew.org>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"MIME-Version: 1.0\n"
+
+msgid "\"Mail is sent\" window"
+msgstr "郵件送出窗口"
+
+msgid "\"Max number of threads\" field should be a number"
+msgstr "“最大連接數”字段應該填入數字"
+
+msgid "\"Message is delivered\" window"
+msgstr "離開訊息送出窗口"
+
+msgid "\"Thread lifetime\" field should be a number"
+msgstr "“主題壽命”字段應該是一個數字"
+
+msgid "\"Visitor is redirected\" window"
+msgstr "訪客已轉移窗口"
+
+msgid "&lt;no description&gt;"
+msgstr "沒有描述"
+
+msgid "(away)"
+msgstr "(離開)"
+
+msgid "(online)"
+msgstr "(線上)"
+
+msgid "-all operators-"
+msgstr "所有的客服"
+
+msgid "-from general settings-"
+msgstr "-預設-"
+
+msgid "0 allows any number of connections"
+msgstr "0 表示不限制"
+
+msgid "<b>Application installed successfully.</b>"
+msgstr "程式安裝完成。"
+
+msgid "<strong>Caution!</strong> Please don't change<br/> the code manually because<br/> we don't guarantee that<br/> it will work!"
+msgstr "<strong>警告!</strong> 請勿手動更改語法，我們並不保證更改後能正常運作!"
+
+msgid "A history of your chat was sent to address {0}"
+msgstr "對談紀錄已經寄送到 {0}"
+
+msgid "A new visitor is waiting for an answer."
+msgstr "有新的訪問者"
+
+msgid "A preview all pages for each style is available <a href=\"{0}\">here</a>"
+msgstr "若要預覽頁面的每個樣式，請點 <a href=\"{0}\">這裏</a>"
+
+msgid "Ability to modify profile"
+msgstr "修改個人資料"
+
+msgid "Add address"
+msgstr "增加IP地址"
+
+msgid "Add message..."
+msgstr "添加訊息..."
+
+msgid "Add new message."
+msgstr "添加新訊息"
+
+msgid "Add operator..."
+msgstr "創建一個新客服"
+
+msgid "Address {0} is blocked for a specified number of days."
+msgstr "地址 {0} 已經封鎖幾天."
+
+msgid "Adds a page with messenger usage reports."
+msgstr "添加用戶使用統計頁面。"
+
+msgid "Administration"
+msgstr "管理員"
+
+msgid "All strings"
+msgstr "所有字串"
+
+msgid "Allow secure connections (SSL)"
+msgstr "允許安全連接 (SSL)"
+
+msgid "Allows a visitor to choose department/group"
+msgstr "允許訪客選擇部門/群組"
+
+msgid "Allows users to change their names"
+msgstr "允許使用者更改名稱"
+
+msgid "Application path is {0}"
+msgstr "應用程式路徑是 {0}"
+
+msgid "Are you sure that you want to delete address {0} from the blocked list?"
+msgstr "您確定要從封鎖列表裏刪除地址 {0} 嗎？"
+
+msgid "Are you sure that you want to delete operator \"{0}\"?"
+msgstr "您確定要刪除客服“{0}”嗎？"
+
+msgid "Are you sure that you want to delete the group \"{0}\"?"
+msgstr "您確定要刪除群組“{0}”嗎？"
+
+msgid "Ask for visitor's email"
+msgstr "詢問訪客的郵件地址"
+
+msgid "Ask your question"
+msgstr "直接與客服詢問"
+
+msgid "Average message length (in chars)"
+msgstr "平均訊息長度（字數）"
+
+msgid "Away"
+msgstr "離開"
+
+msgid "Back to login"
+msgstr "返回登錄"
+
+msgid "Back..."
+msgstr "回上一頁..."
+
+msgid "Ban List"
+msgstr "封鎖"
+
+msgid "Ban this visitor"
+msgstr "封鎖訪客"
+
+msgid "Block address"
+msgstr "封鎖IP地址"
+
+msgid "Blocked visitors"
+msgstr "封鎖訪客"
+
+msgid "Browser"
+msgstr "閱覽器"
+
+msgid "Button HTML code generation"
+msgstr "產生客服HTML按鈕"
+
+msgid "Button HTML code generation."
+msgstr "產生放置在網站上的HTML語法。"
+
+msgid "Button code"
+msgstr "圖片語法"
+
+msgid "Can slow down the update rate of the list"
+msgstr "可能會導致列表更新頻率降低"
+
+msgid "Canned Messages"
+msgstr "預製資訊"
+
+msgid "Cannot execute:"
+msgstr "無法執行:"
+
+msgid "Cannot read file {0}"
+msgstr "無法讀取檔 {0}"
+
+msgid "Change"
+msgstr "更改"
+
+msgid "Change locale."
+msgstr "改變地區"
+
+msgid "Change name"
+msgstr "重新命名"
+
+msgid "Change operator"
+msgstr "更換客服"
+
+msgid "Change restrictions and available features for this operator."
+msgstr "您可以控管客服人員的許可權"
+
+msgid "Change your password"
+msgstr "更改您的密碼"
+
+msgid "Changes saved"
+msgstr "保存修改"
+
+msgid "Chat Threads"
+msgstr "聊天記錄"
+
+msgid "Chat history"
+msgstr "對談紀錄"
+
+msgid "Chat log"
+msgstr "對話記錄"
+
+msgid "Chat refresh time"
+msgstr "對談窗口刷新間隔"
+
+msgid "Chat themes preview"
+msgstr "主題預覽"
+
+msgid "Chat threads"
+msgstr "聊天記錄"
+
+msgid "Chat window (operator-mode)"
+msgstr "對談窗口(客服模式)"
+
+msgid "Chat window (user-mode)"
+msgstr "對談窗口 (訪客模式)"
+
+msgid "Chat window style"
+msgstr "對話窗口樣式"
+
+msgid "Checksum differs for {0}"
+msgstr "效驗 {0} 不符"
+
+msgid "Choose Department:"
+msgstr "選擇部門："
+
+msgid "Choose groups according to operator skills."
+msgstr "按客服的技能選擇群組"
+
+msgid "Choose image"
+msgstr "選擇圖片"
+
+msgid "Choose style"
+msgstr "選擇樣式"
+
+msgid "Choose template"
+msgstr "選擇樣板"
+
+msgid "Choose the avatar file to upload.<br/>The picture size should not exceed 100x100 px."
+msgstr "請選擇要上傳的圖片。<br/> 圖片不可超過 100x100 像素。"
+
+msgid "Choose your language"
+msgstr "選擇您的語言"
+
+msgid "Choose:"
+msgstr "選擇"
+
+msgid "Click on this link to close the window"
+msgstr "點此連結關閉窗口"
+
+msgid "Click to chat with the visitor"
+msgstr "點選與訪客對談"
+
+msgid "Click to check the sound: {0} and {1}"
+msgstr "點擊檢查聲音： {0} 和 {1}"
+
+msgid "Click to close the window"
+msgstr "點此關閉窗口"
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Close chat"
+msgstr "離開對談"
+
+msgid "Close..."
+msgstr "關閉..."
+
+msgid "Closed"
+msgstr "已關閉"
+
+msgid "Code for group"
+msgstr "組群"
+
+msgid "Code for language"
+msgstr "選擇語系"
+
+msgid "Comment"
+msgstr "批註"
+
+msgid "Company title"
+msgstr "公司名稱"
+
+msgid "Compatibility with mod_security (modsecurity.org), turn on only if you have problems with it"
+msgstr "與mod_security的相容性（modsecurity.org），只有當你有問題時才打開它"
+
+msgid "Completed:"
+msgstr "完成:"
+
+msgid "Confirm new password."
+msgstr "再輸入一次密碼確保密碼正確。"
+
+msgid "Confirmation"
+msgstr "確認密碼"
+
+msgid "Correct the mistakes:"
+msgstr "修正錯誤:"
+
+msgid "Could not connect. Please check server settings in config.yml. Error: {0}"
+msgstr "無法聯機，請檢查 config.yml 伺服器設定。錯誤: {0}"
+
+msgid "Create database \"{0}\""
+msgstr "建立資料庫“{0}”"
+
+msgid "Create new group"
+msgstr "創建一個新群組"
+
+msgid "Create new group here."
+msgstr "您可以在這裏創建新的群組。"
+
+msgid "Create or delete company operators. Manage their permissions."
+msgstr "建立、刪除或管理客服許可權。"
+
+msgid "Create required tables."
+msgstr "建立必要數據表。"
+
+msgid "Current avatar image"
+msgstr "目前個人圖片"
+
+msgid "Database \"{0}\" is created."
+msgstr "資料庫“{0}”已經建立."
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Days"
+msgstr "天數"
+
+msgid "Delete"
+msgstr "刪除"
+
+msgid "Department or skill based groups."
+msgstr "部門或者技術性客服組群"
+
+msgid "Description"
+msgstr "群組描述"
+
+msgid "Description in English."
+msgstr "英文描述"
+
+msgid "Description of the group."
+msgstr "對這個群組的簡要描述"
+
+msgid "Destination for your company name or logo link"
+msgstr "您的公司網址"
+
+msgid "Direction:"
+msgstr "方向"
+
+msgid "Drop existing tables from database"
+msgstr "刪除已存在的數據表"
+
+msgid "E-Mail: {0}"
+msgstr "電子郵件地址: {0}"
+
+msgid "E-mail"
+msgstr "電子郵件信箱"
+
+msgid "Edit Message"
+msgstr "編輯訊息"
+
+msgid "Edit an existing message."
+msgstr "編輯現有的資訊。"
+
+msgid "Edit general operator settings."
+msgstr "顯示客服詳細數據，若您有許可權則可以編輯。"
+
+msgid "Edit messages that you frequently type into the chat."
+msgstr "編輯您經常輸入的聊天訊息"
+
+msgid "Email"
+msgstr "電子郵件"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Enable \"Groups\""
+msgstr "啟用“群組”"
+
+msgid "Enable \"Popup dialog notification of the new visitor\"."
+msgstr "啟用新訪客到來彈出窗口提醒"
+
+msgid "Enable \"Pre-chat survey\""
+msgstr "啟用“交談前調查”"
+
+msgid "Enable \"Statistics\""
+msgstr "啟用“統計功能”"
+
+msgid "Enable feature \"Malicious Visitors\""
+msgstr "開啟“封鎖惡意訪客”功能"
+
+msgid "Enter"
+msgstr "輸入"
+
+msgid "Enter a new password or leave the field empty to keep the previous one."
+msgstr "輸入新密碼或保持空白不更動。"
+
+msgid "Enter a valid email address"
+msgstr "輸入適當的Email"
+
+msgid "Enter an email to receive system messages"
+msgstr "輸入接收系統訊息Email"
+
+msgid "Enter http address of your company logo"
+msgstr "輸入您的公司LOGO網址"
+
+msgid "Enter your company title"
+msgstr "輸入公司名稱"
+
+msgid "Enter your email:"
+msgstr "請輸入電子郵件信箱:"
+
+msgid "Enter your translation."
+msgstr "輸入您的翻譯。"
+
+msgid "Entered login/password is incorrect"
+msgstr "輸入的帳號/密碼不正確"
+
+msgid "Entered passwords do not match"
+msgstr "輸入的密碼不符合"
+
+msgid "Environment:"
+msgstr "環境："
+
+msgid "Error"
+msgstr "錯誤"
+
+msgid "Error moving file"
+msgstr "無法移動檔案"
+
+msgid "Error occurred:"
+msgstr "錯誤發生:"
+
+msgid "Error uploading file \"{0}\": {1}."
+msgstr "無法上傳檔案“{0}”:“{1}”。"
+
+msgid "Error window"
+msgstr "錯誤窗口"
+
+msgid "Ex: 127.0.0.1 or example.com"
+msgstr "例如: 127.0.0.1 或 example.com"
+
+msgid "Example"
+msgstr "範例"
+
+msgid "Exit"
+msgstr "離開"
+
+msgid "Features activated"
+msgstr "功能啟動"
+
+msgid "File is absent: {0}"
+msgstr "檔不在： {0}"
+
+msgid "Follow the wizard to setup your database."
+msgstr "請依照引導精靈來安裝資料庫"
+
+msgid "For group:"
+msgstr "對於組群："
+
+msgid "For language:"
+msgstr "語言:"
+
+msgid "For notifications and password retrieval."
+msgstr "該客服的電子郵箱。"
+
+msgid "Force all chats to be secure"
+msgstr "強制所有對話使用安全連接。"
+
+msgid "Force visitor to enter a verification code when leaving message"
+msgstr "在訪客留言之前要求輸入校驗碼"
+
+msgid "Forces the user to fill out a special form to start a chat."
+msgstr "強制用戶在交談前先填寫特定的表單"
+
+msgid "Forgot your password?"
+msgstr "忘記密碼？"
+
+msgid "Found 0 elements"
+msgstr "找到 0 個"
+
+msgid "From this page you can generate a variety of usage reports."
+msgstr "您可以從這個網頁生成各種使用報告。"
+
+msgid "From:"
+msgstr "從："
+
+msgid "Full list of operators:"
+msgstr "客服人員清單:"
+
+msgid "Functions available for site operators."
+msgstr "管理員可以利用下方功能進行管理。"
+
+msgid "General"
+msgstr "普遍"
+
+msgid "Go to search"
+msgstr "搜索"
+
+msgid "Group"
+msgstr "群組"
+
+msgid "Group details"
+msgstr "組群詳細資訊"
+
+msgid "Group email for notifications. Leave empty to use the default address."
+msgstr "用於接收通知的群組郵件地址。保持空白以使用默認地址。"
+
+msgid "Group:"
+msgstr "組群："
+
+msgid "Groups"
+msgstr "組群"
+
+msgid "Guest"
+msgstr "訪客"
+
+msgid "HTML code"
+msgstr "HTML 語法"
+
+msgid "Hello. How may I help you?"
+msgstr "您好，有什麼可以協助您的嗎?"
+
+msgid "Here you can block malicious visitors that affect your work with spam messages."
+msgstr "這裏可以用來封鎖一些惡意的訪客。"
+
+msgid "Here you can block malicious visitors."
+msgstr "封鎖惡意使用訪客，進行IP管理。"
+
+msgid "Hide menu"
+msgstr "隱藏菜單"
+
+msgid "Hide menu >>"
+msgstr "隱藏菜單>>"
+
+msgid "Home"
+msgstr "首頁"
+
+msgid "How to build visitor's identifying string from {name}, {id} or {addr}. Default: {name}"
+msgstr "設定{name}，{id}或{addr}來顯示訪客的名稱。預設：{name}"
+
+msgid "If you don't agree with the translation please send us an update."
+msgstr "如果您不喜歡這個翻譯，請寄給我們更新。"
+
+msgid "Impossible to update tables structure. Try to do it manually or recreate all tables (warning: all your data will be lost)."
+msgstr "無法更新數據表結構。請試著手動或重新建立所有數據表 (警告: 所有數據將遺失)。"
+
+msgid "In chat"
+msgstr "對談中"
+
+msgid "In queue"
+msgstr "等候中"
+
+msgid "Include host name into the code"
+msgstr "包含主機名稱到語法中"
+
+msgid "Info: {0}"
+msgstr "資訊: {0}"
+
+msgid "Initial Question:"
+msgstr "最初的問題："
+
+msgid "Installation"
+msgstr "安裝"
+
+msgid "Installed localizations:"
+msgstr "已安裝的語言："
+
+msgid "Insufficient file permissions {0}"
+msgstr "檔使用權限不夠 {0}"
+
+msgid "International description"
+msgstr "國際化的描述"
+
+msgid "International name"
+msgstr "國際化群組名"
+
+msgid "International name (Latin)"
+msgstr "英文名稱"
+
+msgid "Invalid file type"
+msgstr "無效的檔案格式"
+
+msgid "Key identifier"
+msgstr "鍵"
+
+msgid "Language"
+msgstr "語言"
+
+msgid "Last active"
+msgstr "最後一次登陸"
+
+msgid "Latest version:"
+msgstr "最新版本："
+
+msgid "Leave message window"
+msgstr "離開訊息窗口"
+
+msgid "Leave your message"
+msgstr "留下離線訊息"
+
+msgid "License"
+msgstr "許可證"
+
+msgid "List of banned IPs:"
+msgstr "封鎖IP:"
+
+msgid "List of supported browsers window"
+msgstr "支持流覽器窗口"
+
+msgid "List of visitors waiting"
+msgstr "列出等候中訪客"
+
+msgid "Live support"
+msgstr "線上客服"
+
+msgid "Loading"
+msgstr "讀取中"
+
+msgid "Localize"
+msgstr "本地化"
+
+msgid "Log out of the system."
+msgstr "註銷系統。"
+
+msgid "Login"
+msgstr "登入"
+
+msgid "Login can consist of small Latin letters and underscore."
+msgstr "登入名稱可以包含小寫字母及底線。"
+
+msgid "Login or E-mail:"
+msgstr "帳戶或電子郵箱:"
+
+msgid "Login should contain only latin characters, numbers and underscore symbol."
+msgstr "登入名稱只能包含英文、數字及下劃線。"
+
+msgid "Login using your new password."
+msgstr "是用您的新密碼登陸。"
+
+msgid "Login:"
+msgstr "帳號:"
+
+msgid "Mail thread window"
+msgstr "郵件主題窗口"
+
+msgid "Main"
+msgstr "主要"
+
+msgid "Max number of threads from one address"
+msgstr "來自於同一地址的最大訪客數"
+
+msgid "Members"
+msgstr "成員"
+
+msgid "Message"
+msgstr "內容"
+
+msgid "Messages"
+msgstr "訊息"
+
+msgid "Messages from operators"
+msgstr "客服的訊息"
+
+msgid "Messages from visitors"
+msgstr "訪問者的訊息"
+
+msgid "Messenger settings"
+msgstr "基本設定"
+
+msgid "Mibew <span class=\"grey\">Messenger</span>"
+msgstr "網站 <span class=\"grey\">即時訊息</span>"
+
+msgid "Mibew Messenger"
+msgstr "網站即時訊息"
+
+msgid "Mibew Messenger Community"
+msgstr "網頁即時通訊"
+
+msgid "Mibew Messenger is an open-source live support application."
+msgstr "網站即時訊息是一個開源的線上客服應用。"
+
+msgid "Mibew package is valid."
+msgstr "Mibew組件有效。"
+
+msgid "Misc"
+msgstr "選項"
+
+msgid "Modify"
+msgstr "修改"
+
+msgid "Name"
+msgstr "名稱"
+
+msgid "Name in English."
+msgstr "英文群組名。"
+
+msgid "Name of your company for example."
+msgstr "例如您公司的部門"
+
+msgid "Name to identify the group."
+msgstr "唯一標識這個群組的名字"
+
+msgid "Name:"
+msgstr "姓名:"
+
+msgid "Never"
+msgstr "從不"
+
+msgid "New Message"
+msgstr "新訊息"
+
+msgid "New Visitor"
+msgstr "新訪客"
+
+msgid "Next step:"
+msgstr "下一步:"
+
+msgid "No elements"
+msgstr "沒有符合"
+
+msgid "No such Operator"
+msgstr "沒有該客服"
+
+msgid "No such group"
+msgstr "組群不存在"
+
+msgid "No such message"
+msgstr "訊息不存在"
+
+msgid "No. Close the window"
+msgstr "不，關閉窗口"
+
+msgid "Not enough data"
+msgstr "沒有足夠的數據"
+
+msgid "Numbers of days this address is blocked"
+msgstr "設定封鎖的天數，過後解除封鎖"
+
+msgid "OFFLINE"
+msgstr "不線上上"
+
+msgid "ONLINE"
+msgstr "正在線上"
+
+msgid "Old browsers need to refresh the whole page to get messages. Default is 7 seconds."
+msgstr "舊版本的流覽器需要刷新整個頁面，默認間隔為7秒。"
+
+msgid "On this page you can edit group details."
+msgstr "在這裏您可以編輯群組的詳細資訊。"
+
+msgid "Online"
+msgstr "線上"
+
+msgid "Operator"
+msgstr "客服"
+
+msgid "Operator <strong>{0}</strong> changed operator <strong>{1}</strong>"
+msgstr "訪客 {0} 更換客服 {1}"
+
+msgid "Operator details"
+msgstr "客服人員明細"
+
+msgid "Operator groups"
+msgstr "客服群組"
+
+msgid "Operator online time threshold"
+msgstr "客服線上時間閥值"
+
+msgid "Operator {0} is back"
+msgstr "客服人員 {0} 回到線上"
+
+msgid "Operator {0} joined the chat"
+msgstr "客服人員 {0} 加入對談"
+
+msgid "Operator {0} left the chat"
+msgstr "客服人員 {0} 離開對談"
+
+msgid "Operator {0} redirected you to another operator. Please wait a while."
+msgstr "客服人員 {0} 將您轉移給另一位客服，請稍後"
+
+msgid "Operator's console refresh time"
+msgstr "客服控制臺的刷新間隔"
+
+msgid "Operator:"
+msgstr "客服接線員："
+
+msgid "Operators"
+msgstr "客服人員"
+
+msgid "Operators list"
+msgstr "客服人員清單"
+
+msgid "Optional Services"
+msgstr "可選服務"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "PHP version {0}"
+msgstr "PHP 版本 {0}"
+
+msgid "Page refresh time for old browsers"
+msgstr "舊版本流覽器的刷新間隔"
+
+msgid "Page {0} of {1}, {2}-{3} from {4}"
+msgstr "第 {0} / {1} 頁，{2}-{3} 至 {4}"
+
+msgid "Password"
+msgstr "密碼"
+
+msgid "Password retrieval"
+msgstr "取回密碼"
+
+msgid "Password:"
+msgstr "密碼:"
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Permissions"
+msgstr "許可權"
+
+msgid "Photo"
+msgstr "個人圖片"
+
+msgid "Please choose a password to use with your account."
+msgstr "請選擇一個您要使用的密碼。"
+
+msgid "Please choose another login because an operator with that login is already registered in the system."
+msgstr "請選擇其他登入名稱，此名稱已經存在於系統中。"
+
+msgid "Please choose another name because a group with that name already exists."
+msgstr "改群組名已存在，請使用其他名字。"
+
+msgid "Please enter your company title"
+msgstr "請輸入您的公司名稱"
+
+msgid "Please enter your username and password to access administrative tools. See your visitors and browse the history."
+msgstr "請輸入您的用戶名和密碼才能訪問管理工具。"
+
+msgid "Please fill \"{0}\" correctly."
+msgstr "請輸入“{0}”正確。"
+
+msgid "Please fill \"{0}\"."
+msgstr "請輸入“{0}”。"
+
+msgid "Please note that your web server should be configured to support https requests."
+msgstr "請確保您的Web伺服器已配置為支持HTTPS連接。"
+
+msgid "Please run the <a href=\"{0}\">Update wizard</a> to adjust your database."
+msgstr "請點擊 <a href=\"{0}\">更新嚮導</a> 來調整您的資料庫。"
+
+msgid "Please use a more recent browser"
+msgstr "請使用較新版的流覽器"
+
+msgid "Please, re-upload files to the server."
+msgstr "請重新上傳檔到伺服器。"
+
+msgid "Powered by:"
+msgstr "Powered by:"
+
+msgid "Pre-chat survey"
+msgstr "交談前的調查"
+
+msgid "Priority visitors' queue"
+msgstr "優先等候訪客"
+
+msgid "Problem"
+msgstr "問題"
+
+msgid "Proceed to login"
+msgstr "繼續登陸"
+
+msgid "Proceed to the login page"
+msgstr "繼續到登入頁面"
+
+msgid "Profile"
+msgstr "個人資料"
+
+msgid "Protection against automated spam (captcha)"
+msgstr "以抵禦自動化蠕蟲攻擊"
+
+msgid "Reason for block"
+msgstr "批註封鎖的原因"
+
+msgid "Redirect to<br/>another operator"
+msgstr "轉移到其他客服"
+
+msgid "Redirect visitor to another operator"
+msgstr "將訪客轉移到另一位客服"
+
+msgid "Redirect visitor to another operator window"
+msgstr "轉移訪客到其他客服窗口"
+
+msgid "Refresh"
+msgstr "重新整理"
+
+msgid "Remember"
+msgstr "記住登入"
+
+msgid "Remote user is typing..."
+msgstr "使用者正在輸入..."
+
+msgid "Remove avatar"
+msgstr "移除個人圖片"
+
+msgid "Required tables are created."
+msgstr "必要數據表已經建立。"
+
+msgid "Reset password"
+msgstr "重置密碼"
+
+msgid "Resolve the problem and try again. Press <a>back</a> to return to the wizard."
+msgstr "解決問題並再試一次。點選 <a>回上一頁</a> 回到導引精靈。"
+
+msgid "Save"
+msgstr "儲存"
+
+msgid "Saved"
+msgstr "保存"
+
+msgid "Search"
+msgstr "搜尋"
+
+msgid "Search the chat history for a specified user, an operator or a specified phrase in messages."
+msgstr "藉由名稱或字串來搜尋對談紀錄。"
+
+msgid "Search the dialogs history."
+msgstr "搜尋過去的對談紀錄。"
+
+msgid "Select a style for your chat windows"
+msgstr "選擇對談窗口的樣式"
+
+msgid "Select answer..."
+msgstr "選擇回答..."
+
+msgid "Select dates"
+msgstr "選擇日期"
+
+msgid "Send"
+msgstr "送出"
+
+msgid "Send ({0})"
+msgstr "送出 ({0})"
+
+msgid "Send chat history by e-mail"
+msgstr "將對談紀錄寄到電子郵件信箱"
+
+msgid "Send chat history<br/>by mail"
+msgstr "將對談紀錄發送到電子郵件信箱"
+
+msgid "Send message"
+msgstr "送出訊息"
+
+msgid "Send messages with:"
+msgstr "使用如下鍵發送消息"
+
+msgid "Sent"
+msgstr "送出"
+
+msgid "Set status as \"Available\""
+msgstr "將狀態改為“線上”"
+
+msgid "Set status as \"Away\""
+msgstr "將狀態改為“離開”"
+
+msgid "Set the number of seconds to show an operator as online. Default is 30 seconds."
+msgstr "設置顯示客服線上的秒數，默認為30秒。超時不活動的客服將顯示為“離開”。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Show chats only through https connection"
+msgstr "只通過HTTPS連接顯示對談窗口。"
+
+msgid "Show errors"
+msgstr "顯示錯誤"
+
+msgid "Show initial question field"
+msgstr "顯示原始問題的輸入區"
+
+msgid "Show menu"
+msgstr "顯示"
+
+msgid "Show menu >>"
+msgstr "顯示>>"
+
+msgid "Show online operators on \"List of awaiting visitors\" page"
+msgstr "在“等候的訪客列表”頁面顯示線上的客服"
+
+msgid "Show/hide department selection field in the survey"
+msgstr "在調查窗口中顯示/隱藏“部門/群組”選擇項"
+
+msgid "Show/hide email field in the survey"
+msgstr "在調查窗口中顯示/隱藏電子郵件輸入區"
+
+msgid "Show/hide initial question field in the survey"
+msgstr "顯示/隱藏原始問題的輸入區"
+
+msgid "Show:"
+msgstr "顯示："
+
+msgid "Simple chat window. Refresh to post messages (IE 5, Opera 7)"
+msgstr "簡單對談窗口，更新送出訊息(IE 5，Opera 7)"
+
+msgid "Site consultant"
+msgstr "線上即時客服"
+
+msgid "Site style"
+msgstr "網站樣式"
+
+msgid "Small dialog appears to attract your attention."
+msgstr "彈出一個小窗口以引起客服注意。"
+
+msgid "Software license agreement"
+msgstr "軟體授權協議"
+
+msgid "Sorry. None of the support team is available at the moment. <br/>Please leave a message and someone will get back to you shortly."
+msgstr "很抱歉，目前客服不在線上，請稍後再試，或用窗體與我們聯繫。"
+
+msgid "Sort by:"
+msgstr "排序："
+
+msgid "Source language string"
+msgstr "源語言"
+
+msgid "Specify options affecting chat window and common system behavior."
+msgstr "設定基本選項以及開放功能"
+
+msgid "Specify the lifetime of the thread after closing the dialog box in seconds. Default is 600 seconds. Set 0 for unlimited thread lifetime."
+msgstr "指定關閉對話後的主題壽命(以秒計)。缺省值為600秒。無限主題壽命設置為0。"
+
+msgid "Specify the poll interval in seconds. Default is 2 seconds."
+msgstr "設置客服控制臺的刷新間隔，默認是2秒。"
+
+msgid "Start Chat"
+msgstr "開始聊天"
+
+msgid "State"
+msgstr "狀態"
+
+msgid "Statistics"
+msgstr "統計"
+
+msgid "Strings for administrator"
+msgstr "管理員可見的字串"
+
+msgid "Strings for operator"
+msgstr "客服可見的字串"
+
+msgid "Strings for visitor"
+msgstr "訪客可見的字串"
+
+msgid "Structure of your tables should be adjusted for new version of Messenger."
+msgstr "您必須調整數據表結構來因應新版本。"
+
+msgid "Submit"
+msgstr "送出"
+
+msgid "System administration: settings, operators management, button generation"
+msgstr "系統管理員： 系統設定、管理客服、客服HTML按鈕"
+
+msgid "Tables structure is up to date."
+msgstr "資料表結果是最新的。"
+
+msgid "Take over chat thread"
+msgstr "接管對談"
+
+msgid "Thank you for contacting us. An operator will be with you shortly."
+msgstr "歡迎您使用網站即時訊息，請稍待客服回應..."
+
+msgid "Thank you for contacting us. Please fill out the form below and click the Start Chat button."
+msgstr "感謝您與我們聯繫！為了更好地為您服務，請填寫以下表格，並點擊開始聊天按鈕。"
+
+msgid "Thank you for your message. We'll answer your query by email as soon as possible."
+msgstr "謝謝您使用我們的服務。我們將會儘快回復您。"
+
+msgid "The database was not found on the server. If you have permissions to create it now, click on the following link."
+msgstr "無法找到資料庫。如果您有許可權新增，點選下方連結。"
+
+msgid "The letters you typed don't match the letters that were shown in the picture."
+msgstr "您輸入的字元同圖片上顯示的不一致。"
+
+msgid "The list of visitors waiting is empty"
+msgstr "目前沒有等候中的訪客"
+
+msgid "The specified address is already in use. Click <a href=\"{1}\">here</a> if you want to edit it."
+msgstr "地址 {0} 已經存在於系統之中，點選　<a href=\"{1}\">這裏</a> 進行編輯。"
+
+msgid "The visitor changed their name <strong>{0}</strong> to <strong>{1}</strong>"
+msgstr "訪客將名稱 {0} 改成 {1}"
+
+msgid "The visitor has been placed in a priorty queue of the group {0}."
+msgstr "訪客放在優先群組 {0}。"
+
+msgid "The visitor has been placed in the priorty queue of the operator {0}."
+msgstr "訪可以經優先等候客服 {0}。"
+
+msgid "The visitor has been redirected to another operator"
+msgstr "訪客已經轉移到另一位客服"
+
+msgid "There are so many browsers to choose from. Which ones do you recommend?"
+msgstr "有好多流覽器可以選擇，您會推薦哪一種？"
+
+msgid "This name will be seen by your visitors."
+msgstr "顯示名稱是給訪客辨識使用。"
+
+msgid "This page displays a list of company operators."
+msgstr "顯示目前系統已建立客服人員，可在此進行新增、刪除與修改。"
+
+msgid "This page displays a list of groups. Each group can have separate button and canned responses."
+msgstr "這裏顯示組群列表，每個組群可以有自己獨立的按鈕和預製消息。"
+
+msgid "This page displays a list of visitors who are waiting."
+msgstr "顯示等候中訪客名單。"
+
+msgid "This page displays chat details and content."
+msgstr "顯示對話頁面"
+
+msgid "Thread lifetime"
+msgstr "主題壽命"
+
+msgid "Threads by operator"
+msgstr "客服的訊息"
+
+msgid "Till"
+msgstr "期限"
+
+msgid "Till:"
+msgstr "直至："
+
+msgid "Time in chat"
+msgstr "對談時間"
+
+msgid "Title in the chat window"
+msgstr "對談窗口標題"
+
+msgid "To answer the visitor click their name in the list."
+msgstr "若要回應訪客只要點選名單上的名稱即可。"
+
+msgid "Today at {0}"
+msgstr "今天 {0}"
+
+msgid "Total time"
+msgstr "總計時間"
+
+msgid "Total:"
+msgstr "全部："
+
+msgid "Translation"
+msgstr "翻譯"
+
+msgid "Translations"
+msgstr "翻譯網站即時訊息"
+
+msgid "Trouble Accessing Your Account?"
+msgstr "訪問您的帳戶遇到困難？"
+
+msgid "Turn off to hide edit box from chat window"
+msgstr "關閉名稱編輯功能"
+
+msgid "URL of your website"
+msgstr "首頁網址"
+
+msgid "Update tables"
+msgstr "更新數據表"
+
+msgid "Upload avatar"
+msgstr "更新個人圖片"
+
+msgid "Upload photo"
+msgstr "上傳圖片"
+
+msgid "Uploaded file size exceeded"
+msgstr "上傳檔案尺寸過大"
+
+msgid "Usage statistics for each date"
+msgstr "每個日期的使用數據統計"
+
+msgid "Use it to have separate queues for different questions."
+msgstr "為不同的問題使用不同的佇列"
+
+msgid "Use secure links (https)"
+msgstr "使用安全連結 (https)"
+
+msgid "User name, operator name or message text search:"
+msgstr "輸入名稱或字串進行搜尋："
+
+msgid "Using it you can block attacks from specific IPs"
+msgstr "可用來封鎖惡意訪客的IP地址"
+
+msgid "View Chat window (operator in read-only mode)"
+msgstr "檢視對談窗口(客服只讀模式)"
+
+msgid "View and edit the member list."
+msgstr "查看和編輯成員列表。"
+
+msgid "View another operator's chat thread"
+msgstr "檢視其他客服對談"
+
+msgid "Visit history"
+msgstr "流覽紀錄"
+
+msgid "Visit your <a href=\"{0}\">Profile Page</a>."
+msgstr "訪問您的<a href=\"{0}\">個人資料</a>。"
+
+msgid "Visitor <span class=\"visitor\">{0}</span> is already being assisted by <span class=\"operator\">{1}</span>.<br/> Are you really sure you want to start chatting the visitor?"
+msgstr "訪客 <span class=\"visitor\">{0}</span> 已經由 <span class=\"operator\">{1}</span> 服務。您真的確定您要與訪客對談嗎?"
+
+msgid "Visitor closed chat window"
+msgstr "訪客關閉窗口"
+
+msgid "Visitor joined chat again"
+msgstr "訪客再一次加入對談"
+
+msgid "Visitor navigated to {0}"
+msgstr "訪客正在流覽 {0}"
+
+msgid "Visitor {0} left the chat"
+msgstr "{0} 離開對談"
+
+msgid "Visitor's Address"
+msgstr "IP地址"
+
+msgid "Visitor's address"
+msgstr "IP地址"
+
+msgid "Visitor's identifier"
+msgstr "訪客顯示名稱"
+
+msgid "Visitor's messages"
+msgstr "訪客訊息"
+
+msgid "Visitors"
+msgstr "客服線上"
+
+msgid "Visitors in dialogs"
+msgstr "對話中的訪客"
+
+msgid "Visitor came from page {0}"
+msgstr "訪客來源頁面：{0}"
+
+msgid "Waiting an operator for the first time"
+msgstr "第一次等候客服"
+
+msgid "Waiting for operator"
+msgstr "等待客服人員"
+
+msgid "Waiting time"
+msgstr "等候時間"
+
+msgid "Watch the chat"
+msgstr "觀看對談"
+
+msgid "We've sent the instructions to your email. Please check it."
+msgstr "我們已經給您發送了一封郵件，請查收。"
+
+msgid "Yes. I'm sure"
+msgstr "是，我確定"
+
+msgid "Yesterday at {0}"
+msgstr "昨天 {0}"
+
+msgid "You are"
+msgstr "您的稱呼："
+
+msgid "You are Offline. <a href=\"{0}\">Connect...</a>"
+msgstr "當前狀態為“離開”。 <a href=\"{0}\">將狀態改為“線上”...</a>"
+
+msgid "You are Offline.<br/><a href=\"{0}\">Connect...</a>"
+msgstr "當前狀態為“離開”。<br/><a href=\"{0}\">將狀態改為“線上”...</a>"
+
+msgid "You are chatting with:"
+msgstr "您正在對談:"
+
+msgid "You are connected to MySQL server version {0}"
+msgstr "您正在連接 MySQL 伺服器版本 {0}"
+
+msgid "You are not allowed to change this person's profile."
+msgstr "您沒有許可權修改該客服的個人資料。"
+
+msgid "You are not chatting with the visitor."
+msgstr "你不在和訪客對話"
+
+msgid "You are using:"
+msgstr "您正在使用："
+
+msgid "You are <a href=\"{0}\">{1}</a>"
+msgstr "目前登入的是「<a href=\"{0}\">{1}</a>」"
+
+msgid "You can change your personal information on this page."
+msgstr "您可以在此頁面更改您的個人資訊。"
+
+msgid "You can create a new operator here."
+msgstr "填寫以下數據以便進行新增客服人員。"
+
+msgid "You can find awaiting visitors."
+msgstr "由此開放線上服務，等候訪客請求服務。"
+
+msgid "You can find the chat history of your visitors here."
+msgstr "您可以在此找尋訪客對談紀錄."
+
+msgid "You can generate HTML code to place at your site here."
+msgstr "您可以產生 HTML 語法並放在您的網站上。"
+
+msgid "You can logon as <b>admin</b> with empty password.<br/><br/><span class=\"warning\">!!! For security reasons please change your password immediately and remove the {0} folder from your server.</span>"
+msgstr "您可以用 admin 名稱及空的密碼來登入。<br/><br/><span class=\"warning\">!!! 基於安全性考慮，請立即更改您的密碼並刪除網站 {0} 數據夾。</span>"
+
+msgid "You can upload your photo only as JPG, GIF, PNG or TIF image files."
+msgstr "您的圖片只允許JPG、GIF、PNG或TIF格式。"
+
+msgid "You can view the list of themes you currently have installed here."
+msgstr "您可以在這預覽所有樣式"
+
+msgid "You cannot retrieve your password, but you can set a new one by following a link sent to you by email."
+msgstr "您不能取回密碼，但可以根據發送給您的郵件中的鏈接設置一個新密碼。"
+
+msgid "You have selected From date after Till date"
+msgstr "您選擇了錯誤的日期"
+
+msgid "You opened this window for \"{0}\" thread. <i>Address</i> field is already filled. Select a number of days and click <i>Send</i>."
+msgstr "您已經開啟“{0}”主題的窗口，<i>地址</i>字段已經輸入。選擇天數後點選<i>送出</i>。"
+
+msgid "Your avatar image."
+msgstr "您的個人圖片。"
+
+msgid "Your company logo"
+msgstr "您的公司LOGO"
+
+msgid "Your email"
+msgstr "E-mail"
+
+msgid "Your message has been sent"
+msgstr "您的訊息已經送出"
+
+msgid "Your name"
+msgstr "名稱"
+
+msgid "Your operator has connection issues. We have moved you to a priorty position in the queue. Sorry for keeping you waiting."
+msgstr "客服人員發生聯機問題，我們暫時將您移到等候區。抱歉讓您等候。"
+
+msgid "Your password has been changed."
+msgstr "您的密碼已更改。"
+
+msgid "Your session has expired. Please login again"
+msgstr "您閒置超過時限，請重新登入。"
+
+msgid "Your translation is saved."
+msgstr "您的翻譯已經儲存。"
+
+msgid "[spam]"
+msgstr "[垃圾訊息]&nbsp;"
+
+msgid "edit"
+msgstr "編輯"
+
+msgid "mandatory fields"
+msgstr "必填字段"
+
+msgid "next"
+msgstr "下一個"
+
+msgid "previous"
+msgstr "上一個"
+
+msgid "remove"
+msgstr "移除"
+
+msgid "without menu"
+msgstr "關閉菜單"
+
+msgid "Visitor accepted invitation from operator {0}"
+msgstr "Visitor accepted invitation from operator {0}"
+
+msgid "Thank you for contacting us. We are sorry, but requested operator <strong>{0}</strong> is offline. Another operator will be with you shortly."
+msgstr "Thank you for contacting us. We are sorry, but requested operator <strong>{0}</strong> is offline. Another operator will be with you shortly."
+
+msgid "This action is irreversible, proceed anyway?"
+msgstr "This action is irreversible, proceed anyway?"
+
+msgid "-none-"
+msgstr "-none-"
+
+msgid "Are you sure that you want to uninstall plugin \"{0}\"?"
+msgstr "Are you sure that you want to uninstall plugin \"{0}\"?"
+
+msgid "Operator {0} invites visitor at {1} page"
+msgstr "Operator {0} invites visitor at {1} page"
+
+msgid "Hello, how can I help you?"
+msgstr "Hello, how can I help you?"
+
+msgid "Visitor rejected invitation"
+msgstr "Visitor rejected invitation"
+
+msgid "Visitor ignored invitation and it was closed automatically"
+msgstr "Visitor ignored invitation and it was closed automatically"
+
+msgid "Ability to view system statistics"
+msgstr "Ability to view system statistics"
+
+msgid "Department description:"
+msgstr "Department description:"
+
+msgid "Please note that by leaving the message you're explicitly agree with the <a href=\"{0}\" target=\"_blank\">Privacy Policy</a>"
+msgstr "Please note that by leaving the message you're explicitly agree with the <a href=\"{0}\" target=\"_blank\">Privacy Policy</a>"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Please note that by starting the chat you're explicitly agree with the <a href=\"{0}\" target=\"_blank\">Privacy Policy</a>"
+msgstr "Please note that by starting the chat you're explicitly agree with the <a href=\"{0}\" target=\"_blank\">Privacy Policy</a>"
+
+msgid "Network problems detected. Please refresh the page."
+msgstr "Network problems detected. Please refresh the page."
+
+msgid "Turn off sound"
+msgstr "Turn off sound"
+
+msgid "Turn on sound"
+msgstr "Turn on sound"
+
+msgid "Operator canceled invitation"
+msgstr "Operator canceled invitation"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Styles"
+msgstr "Styles"
+
+msgid "Mail templates"
+msgstr "Mail templates"
+
+msgid "About"
+msgstr "About"
+
+msgid "About Mibew Messenger"
+msgstr "About Mibew Messenger"
+
+msgid "Mibew Messenger is an open-source live support application licensed under the terms of the Apache License 2.0."
+msgstr "Mibew Messenger is an open-source live support application licensed under the terms of the Apache License 2.0."
+
+msgid "Copyright &copy; {0} Contributors of the Mibew Messenger project."
+msgstr "Copyright &copy; {0} Contributors of the Mibew Messenger project."
+
+msgid "For more information visit the official site of the project: <a href=\"https://mibew.org/\">https://mibew.org/</a>"
+msgstr "For more information visit the official site of the project: <a href=\"https://mibew.org/\">https://mibew.org/</a>"
+
+msgid "System information"
+msgstr "System information"
+
+msgid "Available updates"
+msgstr "Available updates"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "There are no available updates."
+msgstr "There are no available updates."
+
+msgid "Check for available updates"
+msgstr "Check for available updates"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Generating code type"
+msgstr "Generating code type"
+
+msgid "Use windows (even for modern browsers)"
+msgstr "Use windows (even for modern browsers)"
+
+msgid "Invitation style"
+msgstr "Invitation style"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "{0} plugin"
+msgstr "{0} plugin"
+
+msgid "Weight"
+msgstr "Weight"
+
+msgid "Groups with lower weight display higher in groups list. Group weight is a positive integer value."
+msgstr "Groups with lower weight display higher in groups list. Group weight is a positive integer value."
+
+msgid "Parent group"
+msgstr "Parent group"
+
+msgid "Groups can be organized in a hierarchical structure"
+msgstr "Groups can be organized in a hierarchical structure"
+
+msgid "The fields that located below are extra fields. These fields are only available for the top level groups and override corresponding system settings if specified."
+msgstr "The fields that located below are extra fields. These fields are only available for the top level groups and override corresponding system settings if specified."
+
+msgid "Sort direction:"
+msgstr "Sort direction:"
+
+msgid "Click to chat"
+msgstr "Click to chat"
+
+msgid "button"
+msgstr "button"
+
+msgid "operator code field"
+msgstr "operator code field"
+
+msgid "text link"
+msgstr "text link"
+
+msgid "Search:"
+msgstr "Search:"
+
+msgid "everywhere"
+msgstr "everywhere"
+
+msgid "in messages"
+msgstr "in messages"
+
+msgid "by operator"
+msgstr "by operator"
+
+msgid "by visitor"
+msgstr "by visitor"
+
+msgid "Search in system messages"
+msgstr "Search in system messages"
+
+msgid "Manage plugins."
+msgstr "Manage plugins."
+
+msgid "Manage styles."
+msgstr "Manage styles."
+
+msgid "Manage translations."
+msgstr "Manage translations."
+
+msgid "Manage mail templates."
+msgstr "Manage mail templates."
+
+msgid "View about page."
+msgstr "View about page."
+
+msgid "Application installed successfully."
+msgstr "Application installed successfully."
+
+msgid "Click to check the sound"
+msgstr "Click to check the sound"
+
+msgid "For security reasons you should remove install.php file from your server."
+msgstr "For security reasons you should remove install.php file from your server."
+
+msgid "Tracked path of visitor"
+msgstr "Tracked path of visitor"
+
+msgid "Type a password for the first administrator"
+msgstr "Type a password for the first administrator"
+
+msgid "The system is already installed!"
+msgstr "The system is already installed!"
+
+msgid "Check database connection"
+msgstr "Check database connection"
+
+msgid "Create necessary tables"
+msgstr "Create necessary tables"
+
+msgid "Set administrator password"
+msgstr "Set administrator password"
+
+msgid "Passwords do not match."
+msgstr "Passwords do not match."
+
+msgid "Password is set."
+msgstr "Password is set."
+
+msgid "Import locales"
+msgstr "Import locales"
+
+msgid "Check sound and lock the installation"
+msgstr "Check sound and lock the installation"
+
+msgid "You can login to using <a href=\"{0}\">this</a> link."
+msgstr "You can login to using <a href=\"{0}\">this</a> link."
+
+msgid "Edit locale settings."
+msgstr "Edit locale settings."
+
+msgid "Time locale"
+msgstr "Time locale"
+
+msgid "This value will be passed to PHP's setlocale function to localize words in date/time string."
+msgstr "This value will be passed to PHP's setlocale function to localize words in date/time string."
+
+msgid "Date format (full)"
+msgstr "Date format (full)"
+
+msgid "This value will be used with PHP's strftime to format date with time."
+msgstr "This value will be used with PHP's strftime to format date with time."
+
+msgid "Date format (date)"
+msgstr "Date format (date)"
+
+msgid "This value will be used with PHP's strftime to format date only."
+msgstr "This value will be used with PHP's strftime to format date only."
+
+msgid "Date format (time)"
+msgstr "Date format (time)"
+
+msgid "This value will be used with PHP's strftime to format time only."
+msgstr "This value will be used with PHP's strftime to format time only."
+
+msgid "On this page you can configure locales which are used in the system"
+msgstr "On this page you can configure locales which are used in the system"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "enable"
+msgstr "enable"
+
+msgid "disable"
+msgstr "disable"
+
+msgid "Your account is temporarily blocked. Please contact system administrator."
+msgstr "Your account is temporarily blocked. Please contact system administrator."
+
+msgid "On this page you can edit mail templates which are used in the system."
+msgstr "On this page you can edit mail templates which are used in the system."
+
+msgid "Mail subject"
+msgstr "Mail subject"
+
+msgid "Mail body"
+msgstr "Mail body"
+
+msgid "Machine name"
+msgstr "Machine name"
+
+msgid "cannot load avatar"
+msgstr "cannot load avatar"
+
+msgid "Plugin \"{0}\" cannot be enabled."
+msgstr "Plugin \"{0}\" cannot be enabled."
+
+msgid "Plugin \"{0}\" cannot be disabled."
+msgstr "Plugin \"{0}\" cannot be disabled."
+
+msgid "Plugin \"{0}\" cannot be uninstalled."
+msgstr "Plugin \"{0}\" cannot be uninstalled."
+
+msgid "Plugin \"{0}\" cannot be updated."
+msgstr "Plugin \"{0}\" cannot be updated."
+
+msgid "disabled"
+msgstr "disabled"
+
+msgid "working"
+msgstr "working"
+
+msgid "needs update"
+msgstr "needs update"
+
+msgid "not initialized"
+msgstr "not initialized"
+
+msgid "Use to start chat with determined operator"
+msgstr "Use to start chat with determined operator"
+
+msgid "No geolocation data available. We recommend you to install Mibew:GeoIp and Mibew:OpenStreetMap (or Mibew:GoogleMaps) plugins."
+msgstr "No geolocation data available. We recommend you to install Mibew:GeoIp and Mibew:OpenStreetMap (or Mibew:GoogleMaps) plugins."
+
+msgid "From this page you can generate a variety of usage reports. Last time statistics was calculated {0}. You can calculate it <a href=\"{1}\" target=\"_blank\">manually</a>."
+msgstr "From this page you can generate a variety of usage reports. Last time statistics was calculated {0}. You can calculate it <a href=\"{1}\" target=\"_blank\">manually</a>."
+
+msgid "Chat threads by page"
+msgstr "Chat threads by page"
+
+msgid "Operator pages themes preview"
+msgstr "Operator pages themes preview"
+
+msgid "Invitation themes preview"
+msgstr "Invitation themes preview"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Answer"
+msgstr "Answer"
+
+msgid "Here you can manage plugins. Notice that plugins are configured via the main config file."
+msgstr "Here you can manage plugins. Notice that plugins are configured via the main config file."
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Dependencies"
+msgstr "Dependencies"
+
+msgid "Disable all the dependencies first"
+msgstr "Disable all the dependencies first"
+
+msgid "Enable all the dependencies first"
+msgstr "Enable all the dependencies first"
+
+msgid "uninstall"
+msgstr "uninstall"
+
+msgid "Uninstall all the dependencies first"
+msgstr "Uninstall all the dependencies first"
+
+msgid "update"
+msgstr "update"
+
+msgid "Update all the dependencies first"
+msgstr "Update all the dependencies first"
+
+msgid "Language of the messages left by visitors"
+msgstr "Language of the messages left by visitors"
+
+msgid "Language of the messages that could be left by visitors when operators aren't available"
+msgstr "Language of the messages that could be left by visitors when operators aren't available"
+
+msgid "Cron security key"
+msgstr "Cron security key"
+
+msgid "To run cron use link <a href=\"{0}\">{0}</a>."
+msgstr "To run cron use link <a href=\"{0}\">{0}</a>."
+
+msgid "Select a style for your operator pages"
+msgstr "Select a style for your operator pages"
+
+msgid "A preview for each style is available <a href=\"{0}\">here</a>"
+msgstr "A preview for each style is available <a href=\"{0}\">here</a>"
+
+msgid "Select a style for your invitation"
+msgstr "Select a style for your invitation"
+
+msgid "A preview for invitation style is available <a href=\"{0}\">here</a>"
+msgstr "A preview for invitation style is available <a href=\"{0}\">here</a>"
+
+msgid "Are you sure that you want to leave the chat?"
+msgstr "Are you sure that you want to leave the chat?"
+
+msgid "<a href=\"{0}\">Regenerate the chat button</a> for options to take effect"
+msgstr "<a href=\"{0}\">Regenerate the chat button</a> for options to take effect"
+
+msgid "Enable \"Groups Isolation\""
+msgstr "Enable \"Groups Isolation\""
+
+msgid "Use it to completely isolate groups from each other."
+msgstr "Use it to completely isolate groups from each other."
+
+msgid "Enable \"Tracking and inviting\""
+msgstr "Enable \"Tracking and inviting\""
+
+msgid "Enable tracking of visitors' activity on your site and ability to invite visitors to chat."
+msgstr "Enable tracking of visitors' activity on your site and ability to invite visitors to chat."
+
+msgid "Track operators"
+msgstr "Track operators"
+
+msgid "Allow tracking system to treat operators as normal visitors and add show in the visitors on site list."
+msgstr "Allow tracking system to treat operators as normal visitors and add show in the visitors on site list."
+
+msgid "Enable \"Privacy policy\""
+msgstr "Enable \"Privacy policy\""
+
+msgid "Display a notice with the link to privacy policy on the survey page"
+msgstr "Display a notice with the link to privacy policy on the survey page"
+
+msgid "Privacy policy"
+msgstr "Privacy policy"
+
+msgid "Enter a URL of your privacy policy"
+msgstr "Enter a URL of your privacy policy"
+
+msgid "Check updates automatically"
+msgstr "Check updates automatically"
+
+msgid "System will check updates for the core and plugins automatically using cron"
+msgstr "System will check updates for the core and plugins automatically using cron"
+
+msgid "Connection timeout for messaging window"
+msgstr "Connection timeout for messaging window"
+
+msgid "Set the number of seconds after the last ping to consider the chat window still connected. Default is 30 seconds."
+msgstr "Set the number of seconds after the last ping to consider the chat window still connected. Default is 30 seconds."
+
+msgid "Tracking refresh time"
+msgstr "Tracking refresh time"
+
+msgid "Specify the poll interval in seconds. Default is 10 seconds."
+msgstr "Specify the poll interval in seconds. Default is 10 seconds."
+
+msgid "Limit for tracked visitors list"
+msgstr "Limit for tracked visitors list"
+
+msgid "Specify the number of items to display in tracked visitors list. Default is 20. Set 0 for all visitors (not recommended)."
+msgstr "Specify the number of items to display in tracked visitors list. Default is 20. Set 0 for all visitors (not recommended)."
+
+msgid "Invitation lifetime"
+msgstr "Invitation lifetime"
+
+msgid "Specify the lifetime of invitation in seconds. Default is 60 seconds."
+msgstr "Specify the lifetime of invitation in seconds. Default is 60 seconds."
+
+msgid "Track lifetime"
+msgstr "Track lifetime"
+
+msgid "Specify the lifetime of old visitor's tracks in seconds. Default is 600 seconds."
+msgstr "Specify the lifetime of old visitor's tracks in seconds. Default is 600 seconds."
+
+msgid "Maximum size of uploaded files"
+msgstr "Maximum size of uploaded files"
+
+msgid "The upper limit of uploaded files (avatars) in bytes. Default is 100000 bytes."
+msgstr "The upper limit of uploaded files (avatars) in bytes. Default is 100000 bytes."
+
+msgid "Beware that statistics is aggregated up to yesterday."
+msgstr "Beware that statistics is aggregated up to yesterday."
+
+msgid "Missed threads"
+msgstr "Missed threads"
+
+msgid "Average waiting time (in seconds)"
+msgstr "Average waiting time (in seconds)"
+
+msgid "Average chat time (in seconds)"
+msgstr "Average chat time (in seconds)"
+
+msgid "Invitations sent"
+msgstr "Invitations sent"
+
+msgid "Invitations accepted"
+msgstr "Invitations accepted"
+
+msgid "Invitations rejected"
+msgstr "Invitations rejected"
+
+msgid "Invitations ignored"
+msgstr "Invitations ignored"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "View times"
+msgstr "View times"
+
+msgid "This page displays tracked history of visitor's activity on site."
+msgstr "This page displays tracked history of visitor's activity on site."
+
+msgid "Visitor came from"
+msgstr "Visitor came from"
+
+msgid "direct visit"
+msgstr "direct visit"
+
+msgid "Visit time"
+msgstr "Visit time"
+
+msgid "Visited page"
+msgstr "Visited page"
+
+msgid "Source string"
+msgstr "Source string"
+
+msgid "On this page you can download translations."
+msgstr "On this page you can download translations."
+
+msgid "On this page you can upload a custom translation file."
+msgstr "On this page you can upload a custom translation file."
+
+msgid "Translation imported"
+msgstr "Translation imported"
+
+msgid "Override existing translations"
+msgstr "Override existing translations"
+
+msgid "Replaces translated strings in the database with values from the imported file."
+msgstr "Replaces translated strings in the database with values from the imported file."
+
+msgid "Upload translation"
+msgstr "Upload translation"
+
+msgid "Choose the translation file to upload."
+msgstr "Choose the translation file to upload."
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Follow the wizard to update your database."
+msgstr "Follow the wizard to update your database."
+
+msgid "Backup the database"
+msgstr "Backup the database"
+
+msgid "Backup the code"
+msgstr "Backup the code"
+
+msgid "Replace all files with ones from the new version"
+msgstr "Replace all files with ones from the new version"
+
+msgid "Update configs file if needed"
+msgstr "Update configs file if needed"
+
+msgid "Run the <a href=\"{0}\">update wizard</a>"
+msgstr "Run the <a href=\"{0}\">update wizard</a>"
+
+msgid "Progress:"
+msgstr "Progress:"
+
+msgid "Update failed."
+msgstr "Update failed."
+
+msgid "You can try to restore database from the backup and run the update wizard again."
+msgstr "You can try to restore database from the backup and run the update wizard again."
+
+msgid "Application successfully updated."
+msgstr "Application successfully updated."
+
+msgid "Go to <a href=\"{0}\">home page</a>"
+msgstr "Go to <a href=\"{0}\">home page</a>"
+
+msgid "Visitors on site"
+msgstr "Visitors on site"
+
+msgid "The table below represents a list of visitors ready to chat on your site."
+msgstr "The table below represents a list of visitors ready to chat on your site."
+
+msgid "To invite the visitor to chat click on his/her name in the list."
+msgstr "To invite the visitor to chat click on his/her name in the list."
+
+msgid "Up to date"
+msgstr "Up to date"
+
+msgid "All necessary PHP extensions are loaded"
+msgstr "All necessary PHP extensions are loaded"
+
+msgid "Directories permissions are correct"
+msgstr "Directories permissions are correct"
+
+msgid "The tables are alredy in place but outdated. Run the updater to fix it."
+msgstr "The tables are alredy in place but outdated. Run the updater to fix it."
+
+msgid "Tables are created."
+msgstr "Tables are created."
+
+msgid "Tables are pre popluated with necessary info."
+msgstr "Tables are pre popluated with necessary info."
+
+msgid "Cannot set password. Error: {0}"
+msgstr "Cannot set password. Error: {0}"
+
+msgid "Locales are imported."
+msgstr "Locales are imported."
+
+msgid "Locales content is imported."
+msgstr "Locales content is imported."
+
+msgid "Cannot create tables. Error: {0}"
+msgstr "Cannot create tables. Error: {0}"
+
+msgid "Cannot create the first administrator. Error {0}"
+msgstr "Cannot create the first administrator. Error {0}"
+
+msgid "Cannot initialize chat revision sequence. Error {0}"
+msgstr "Cannot initialize chat revision sequence. Error {0}"
+
+msgid "Cannot store database structure version. Error {0}"
+msgstr "Cannot store database structure version. Error {0}"
+
+msgid "Cannot store instance ID. Error {0}"
+msgstr "Cannot store instance ID. Error {0}"
+
+msgid "PHP version is {0}, but Mibew Messenger works with {1} and later versions."
+msgstr "PHP version is {0}, but Mibew Messenger works with {1} and later versions."
+
+msgid "PHP {0} extension is not loaded"
+msgstr "PHP {0} extension is not loaded"
+
+msgid "Cache directory \"{0}\" is not writable."
+msgstr "Cache directory \"{0}\" is not writable."
+
+msgid "Avatars directory \"{0}\" is not writable."
+msgstr "Avatars directory \"{0}\" is not writable."
+
+msgid "Cannot import locales. Error: {0}"
+msgstr "Cannot import locales. Error: {0}"
+
+msgid "Cannot import locales content. Error: {0}"
+msgstr "Cannot import locales content. Error: {0}"
+
+msgid "There are no visitors ready to chat on your site at present time"
+msgstr "There are no visitors ready to chat on your site at present time"
+
+msgid "The current version ({0}) is unknown or wrongly formatted"
+msgstr "The current version ({0}) is unknown or wrongly formatted"
+
+msgid "The database is already up to date"
+msgstr "The database is already up to date"
+
+msgid "You can update the system only from {0} and later versions. The current version is {1}"
+msgstr "You can update the system only from {0} and later versions. The current version is {1}"
+
+msgid "Cannot update to {0}"
+msgstr "Cannot update to {0}"
+
+msgid "Updated to {0}"
+msgstr "Updated to {0}"
+
+msgid "Update failed: {0}"
+msgstr "Update failed: {0}"
+
+msgid "Could not retrieve database instance. Error: {0}"
+msgstr "Could not retrieve database instance. Error: {0}"
+
+msgid "Cannot store new version number"
+msgstr "Cannot store new version number"
+
+msgid "Cannot update content: {0}"
+msgstr "Cannot update content: {0}"
+
+msgid "Cannot update tables: {0}"
+msgstr "Cannot update tables: {0}"
+
+msgid "Tracked visitor's path"
+msgstr "Tracked visitor's path"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Invite to chat"
+msgstr "Invite to chat"
+
+msgid "First seen"
+msgstr "First seen"
+
+msgid "Last seen"
+msgstr "Last seen"
+
+msgid "Invited by"
+msgstr "Invited by"
+
+msgid "Invitation time"
+msgstr "Invitation time"
+
+msgid "Invitations / Chats"
+msgstr "Invitations / Chats"
+
+msgid "Name is required."
+msgstr "Name is required."
+
+msgid "Wrong email address."
+msgstr "Wrong email address."
+
+msgid "Wrong thread"
+msgstr "Wrong thread"
+
+msgid "Cannot take over"
+msgstr "Cannot take over"
+
+msgid "Cannot take thread"
+msgstr "Cannot take thread"
+
+msgid "Cannot view threads"
+msgstr "Cannot view threads"
+
+msgid "descending"
+msgstr "descending"
+
+msgid "ascending"
+msgstr "ascending"
+
+msgid "Translations import"
+msgstr "Translations import"
+
+msgid "Translations export"
+msgstr "Translations export"
+
+msgid "Locales"
+msgstr "Locales"
+
+msgid "Cannot disable all locales."
+msgstr "Cannot disable all locales."
+
+msgid "Locale details"
+msgstr "Locale details"
+
+msgid "No file selected"
+msgstr "No file selected"
+
+msgid "-not found-"
+msgstr "-not found-"
+
+msgid "Cannot remove self."
+msgstr "Cannot remove self."
+
+msgid "Cannot disable self."
+msgstr "Cannot disable self."
+
+msgid "No Password set for the Administrator"
+msgstr "No Password set for the Administrator"
+
+msgid "Code should contain only latin characters, numbers and underscore symbol."
+msgstr "Code should contain only latin characters, numbers and underscore symbol."
+
+msgid "Please choose another email because an operator with that email is already registered in the system."
+msgstr "Please choose another email because an operator with that email is already registered in the system."
+
+msgid "Use only Latin letters(upper and lower case) and numbers in cron key."
+msgstr "Use only Latin letters(upper and lower case) and numbers in cron key."

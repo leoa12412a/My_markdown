@@ -1,0 +1,8 @@
+給予 777 權限 
+
+．改目錄權限： chmod -R 777 /var/www/html ，
+或是更改檔案目錄擁有者： chown -R apache /var/www/html ，
+不過請注意開放寫入的安全性。
+．SELinux有沒有開啟，若有，請觀察/var/log/messages裡的錯誤訊息作相對應的修正，
+或直接於上傳目錄上設定正確的SELinux rule，
+或直接先關閉SELinux試試看。

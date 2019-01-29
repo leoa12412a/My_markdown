@@ -1,0 +1,5 @@
+ /var/www/html 
+
+ chmod -R 777 uploads
+
+ 有開會有綠色的底

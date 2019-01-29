@@ -1,0 +1,46 @@
+
+
+
+=================
+
+載入/初始化 Session
+
+要手動初始化 Session 類，您可以在控制器的構造函數中使用 $this->load->library() 成員函數:
+
+$this->load->library('session');
+
+初始化之後，就可以使用下面的成員函數來存取 Session 物件了:
+
+$this->session
+重要
+
+由於 載入類 是在 CodeIgniter 的控制器基類中執行緒化的， 所以如果要在您的控制器構造函數中載入類庫的話，確保先呼叫 parent::__construct() 成員函數。
+
+
+function __construct() {
+			
+        parent::__construct();
+	
+		$this->load->library('session');
+		
+		}
+
+
+=================
+
+讀取 Session 資料
+
+$name = $_SESSION['name'];
+
+// or:
+
+$name = $this->session->name
+
+// or:
+
+$name = $this->session->userdata('name');
+
+EX: <h3>歡迎使用者<?php echo $_SESSION['id'];?>登入</h3>(for HTML)
+
+
+=================

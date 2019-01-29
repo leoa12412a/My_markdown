@@ -1,0 +1,71 @@
+
+
+=================
+
+關於CI->server(上線) debug
+
+1.
+	測試Apache 
+	
+	在var/www/html新增index.html
+	
+	測試index.html  
+	
+2.
+	測試Apache 
+	
+	在var/www/html新增index.php
+	
+	測試index.php	
+	
+3.
+	測試CI 
+	
+	把var/www/html下的index改名
+	
+	並在var/www/html/"CI資料夾名稱" 下新增一個index.php
+	
+	並執行http://IP位置/CI資料夾名稱/index.php(ip和CI資料夾名稱自行更改)
+	
+	if(成功){
+	
+		CI沒問題
+	}
+		
+	else{
+		
+		檢查CI問題
+		
+		修改 CI/application/config/config.php
+		
+			 $config['base_url'] = ''; => $config['base_url'] = '	http://"IP位置"/    ';
+			 
+		if(成功){
+			
+			恭喜
+			
+		}
+		else{
+			
+			下載一個新的CI 
+			檢視新的CI在server下是否能正常運作
+			
+			if(成功)
+			{
+				表示CI本身是可以在server上運作
+				表示原本資料夾設定有誤
+				重新把資料夾中資料移入新的CI內
+				
+			}
+			else{
+			
+				表示server沒辦法接受CI
+				從server端找問題
+			
+			}
+			
+		}	
+	}
+		
+	
+	

@@ -1,0 +1,7 @@
+上傳失敗解決辦法
+
+確認/ckeditor/config.js裡面的 var lib_root = "http://localhost/"; 網址有沒有錯
+
+可以瀏覽伺服器上圖片表示沒錯
+
+可以瀏覽但上傳失敗，刪除/uploads/products資料夾

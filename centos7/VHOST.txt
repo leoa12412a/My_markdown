@@ -1,0 +1,25 @@
+Centos7 做Vhost
+
+至/etc/httpd/conf/httpd.conf
+
+
+DocumentRoot "/var/www/html"   這是apache預設開啟的位置，只有單一網站的話可以直接修改此處
+
+要做Vhost只要在底部加上
+
+<VirtualHost *:80>
+   ServerName www.wcmnews.com(網址名稱)
+   DocumentRoot  /var/www/html/wcmnews(資料夾地址 以下wcmnews皆是資料夾名稱)
+   ErrorLog logs/wcmnews
+   CustomLog logs/wcmnews_log common
+
+    <Directory "/var/www/html/wcmnews">
+        Options FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =www.wcmnews.com
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>

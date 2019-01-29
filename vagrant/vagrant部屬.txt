@@ -1,0 +1,77 @@
+輕鬆部署 php 開發環境
+安裝 Installation
+- ubutun 
+
+    sudo apt-get update && sudo apt-get upgrade
+    sudo apt-get vagrant
+    sudo apt-get install build-essential linux-headers-`uname -r` virtualbox
+
+- CentOS
+
+
+- git checkout
+
+    git clone http://60.245.59.136:3000/airct/vagrant-dev.git ./vagrant-dev
+檔案說明
+- vagrant-dev.box vagrant box
+- Vagrantfile vagrant 的配置檔案
+- .gitignore git 忽略檔案
+使用 Usage
+匯入 box
+
+vagrant box add --name [vagrant box名稱] vagrant-dev.box
+實際命令
+
+vagrant box add --name phpdev/v1.0 vagrant-dev.box
+啟動開發環境
+建立開發目錄
+
+mkdir /home/projectname
+
+cd /home/projectname
+專案目錄下執行
+init vagrant
+
+vagrant init
+修改 Vagrantfile 檔案
+
+改變 vagrant box
+
+    config.vm.box = "phpdev/v1.0"   
+
+改變 ip 位置
+
+    config.vm.network "private_network", ip: "192.168.33.102"
+
+重設 mysql root 密碼
+
+    config.vm.provision "shell", inline: <<-SHELL
+
+        mysqladmin -u root password 'qazwsx'
+
+        #apt-get update
+        #apt-get install -y apache2
+    SHELL
+啟動 vagrant
+
+vagrant up
+重新啟動 vagrant 並同時 reload 修改過後的 Vagrantfile
+
+varant reload
+停止
+
+vagrant stop
+刪除 vagrant 環境, 並釋放資源
+
+vagrant destroy
+其他問題
+如果出現
+
+ARPCHECK=no /sbin/ifup eth1 2> /dev/null
+
+進入系?中?除
+
+rm -rf /etc/udev/rules.d/70-persistent-net.rules
+
+
+開

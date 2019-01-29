@@ -1,0 +1,70 @@
+﻿
+
+
+=========
+2018.9.20
+查看網卡設定
+vi /etc/sysconfig/network-scripts/ifcfg-網路名稱(ex:eth0)
+
+查看網卡名稱
+
+ip addr
+
+按A	=>	編輯模式
+
+esc=>	:q!		=>離開
+
+esc=>	:wq		=>儲存並離開
+
+service network restart
+重啟網路
+
+
+
+
+基本網路配置
+centos7 static ip address
+_________________________
+
+TYPE=Ethernet
+DEVICE=eth0
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=10.0.1.27
+NETMASK=255.255.255.0
+GATEWAY=10.0.1.1
+BROADCAST=10.10.1.255
+HWADDR=00:0C:29:13:5D:74
+PEERDNS=yes
+DNS1=10.0.1.41
+USERCTL=no
+NM_CONTROLLED=no
+IPV6INIT=yes
+IPV6ADDR=FD55:faaf:e1ab:1B0D:10:14:24:106/64
+__________________________
+
+內網
+
+DEVICE=eth1
+ONBOOT=yes
+IPADDR=172.16.10.253
+NETMASK=255.255.255.0
+====================
+2018.9.27
+
+service network restart
+
+後出現
+
+Restarting network (via systemctl):  Job for network.service failed because the control process exited with error code. See "systemctl status network.service" and "journalctl -xe" for details.
+
+解決辦法:
+
+查看/etc/sysconfig/network-scripts下，将其余无关的网卡位置文件全删掉，避免不必要的影响，即只留一个以ifcfg开头的文件，
+留的那一个应和使用ip addr命令查看ip第二条开头的名称一致（我的是ens33，参见上面我贴出的ip addr命令执行结果），所以我只留了一个ifcfg-ens33。（我的其中两台机器就是这么弄好的，因为我在修改前留了备份，把备份删掉就好了。。。）
+
+---------------------
+
+本文来自 一路前行1 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/weiyongle1996/article/details/75128239?utm_source=copy 
+
+刪除rm 檔案名稱
