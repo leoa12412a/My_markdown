@@ -1,0 +1,12 @@
+Git alias
+目的:可以增加一些自訂的語法
+用法:
+	1.使用指令添加alias
+		ex : $ git config --global alias.st status(把status簡化為st)
+	2.修改.gitconfig(找到.gitconfig位置，輸入git config --global --edit)
+		添加
+		[alias]
+		  co = checkout
+		  br = branch
+		  ci = commit
+		  st = status
