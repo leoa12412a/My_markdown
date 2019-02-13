@@ -1,0 +1,77 @@
+﻿php爬蟲
+
+1.
+
+下載simple_html_dom.php (錯誤訊息會告訴你要放在哪)//會爬出html標籤
+
+<?php
+include_once('simple_html_dom.php');  //引入
+$html = new simple_html_dom();	
+
+$html->load_file('https://etherscan.io/address-tokenpage?a=0x92d2aa2a8b2e638a611a1d916db2a4e73a4a44b9');  //載入要爬蟲的網站
+$value='價值';
+$TxHash = 'TxHash :';
+$From = 'From :';
+$To = 'To :';
+$time = '時間 :';
+foreach($html->find('span[data-placement=bottom]') as $key => $element)   //span[data-placement=bottom] = 所有要爬的資料共同的地方<span data-placement=bottom ...>
+{
+
+	$i = $key;
+	$howmuch = $i*7+5;  //前幾個不是所以省略
+	$td = $html->find('td',$howmuch);
+	$account0 = $html->find('span.address-tag',3*$i);
+	$account1 = $html->find('span.address-tag',3*$i+1);
+	$account2 = $html->find('span.address-tag',3*$i+2);
+	$Time = $html->find('span[data-placement=bottom]',$i);
+	$title = $i+1;
+	$time123 = $element->title;
+
+	$time123 = date("Y-m-d H:i:s",strtotime($time123)); //時間轉換
+	echo $title."<br>";
+	echo $TxHash.$account0."<br>".$From.$account1."<br>".$To.$account2."<br>";
+	echo $time.$Time."<br>";
+	echo $time123."<br>";       
+	echo $value.$td."<br><br>";
+	
+}
+
+
+?>
+
+2.
+
+ public function Getbit()
+ {
+  
+   $contents = file_get_contents('https://www.whattomine.com/coins?utf8=%E2%9C%93&adapt_q_280x=0&adapt_q_380=0&adapt_q_fury=0&adapt_q_470=0&adapt_q_480=8&adapt_480=true&adapt_q_570=0&adapt_q_580=0&adapt_q_vega56=0&adapt_q_vega64=0&adapt_q_750Ti=0&adapt_q_1050Ti=0&adapt_q_10606=0&adapt_q_1070=0&adapt_q_1070Ti=0&adapt_q_1080=0&adapt_q_1080Ti=0&eth=true&factor%5Beth_hr%5D=236.00&factor%5Beth_p%5D=1080.00&zh=true&factor%5Bzh_hr%5D=0.00&factor%5Bzh_p%5D=0.00&phi=true&factor%5Bphi_hr%5D=120.00&factor%5Bphi_p%5D=1040.00&cnh=true&factor%5Bcnh_hr%5D=7600.00&factor%5Bcnh_p%5D=880.00&cn7=true&factor%5Bcn7_hr%5D=6880.00&factor%5Bcn7_p%5D=880.00&eq=true&factor%5Beq_hr%5D=2320.00&factor%5Beq_p%5D=960.00&lre=true&factor%5Blrev2_hr%5D=284000.00&factor%5Blrev2_p%5D=1120.00&ns=true&factor%5Bns_hr%5D=6560.00&factor%5Bns_p%5D=1200.00&tt10=true&factor%5Btt10_hr%5D=72.00&factor%5Btt10_p%5D=1200.00&x16r=true&factor%5Bx16r_hr%5D=56.00&factor%5Bx16r_p%5D=960.00&l2z=true&factor%5Bl2z_hr%5D=3.60&factor%5Bl2z_p%5D=960.00&phi2=true&factor%5Bphi2_hr%5D=0.00&factor%5Bphi2_p%5D=0.00&xn=true&factor%5Bxn_hr%5D=12.80&factor%5Bxn_p%5D=960.00&factor%5Bcost%5D=0.1&sort=Profitability24&volume=0&revenue=24h&factor%5Bexchanges%5D%5B%5D=&factor%5Bexchanges%5D%5B%5D=binance&factor%5Bexchanges%5D%5B%5D=bitfinex&factor%5Bexchanges%5D%5B%5D=bittrex&factor%5Bexchanges%5D%5B%5D=cryptobridge&factor%5Bexchanges%5D%5B%5D=cryptopia&factor%5Bexchanges%5D%5B%5D=hitbtc&factor%5Bexchanges%5D%5B%5D=poloniex&factor%5Bexchanges%5D%5B%5D=yobit&dataset=Main&commit=Calculate');
+  
+  $DOM = new DOMDocument;
+  libxml_use_internal_errors(true);
+  $DOM->loadHTML($contents);
+
+  //get all tr
+  $items = $DOM->getElementsByTagName('tr');
+
+  //display all H1 text
+  for ($i = 0; $i < $items->length; $i++)
+  {
+   
+   if (strstr($items->item($i)->nodeValue , 'Ethereum(ETH)'))$str = $items->item($i)->nodeValue;//獲取ETH 資料
+  }
+  
+  $str = explode('0.0',$str); //根據空格切成陣列
+  
+  $bit = substr($str[2], 0 , 4);
+  
+  $bit = '0.0' . $bit;//獲取24H平均值
+  
+  //紀錄本日挖礦點數
+  $this->point_value->logtoDayBit($bit);
+  
+  return $bit;
+ }
+
+3.
+
+https://github.com/paquettg/php-html-parser

@@ -57,6 +57,8 @@ $git remote -v
 origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
 origin  https://github.com/USERNAME/REPOSITORY.git (push)
 
+remote網址 shh://
+
 2.更換Git遠端伺服器位網址，使用：git remote set-url
 
 $git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git

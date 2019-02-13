@@ -1,0 +1,37 @@
+驗證碼
+<div class="form-group m-b-20">
+      <div class="row">
+                      <div class="col-md-6">
+							<input type="text" name="yzm" id="yzm" class="form-control input-lg" placeholder="輸入驗證碼" maxlength="4" required/>                          
+                      </div>
+                      <div class="col-md-6">
+							<a href="" onclick="location.reload();" style="text-decoration:none;" title="刷新驗證碼">
+								<div style="background-image: url('/uploads/Noise.png');color:#000000;font-size:32px;letter-spacing: 3px;">
+									<center><?php echo $cap;?></center>
+								</div>
+							</a>
+                      </div>
+      </div>
+	  
+      </br>
+</div>
+
+
+//CI驗證碼
+  $img = array(
+   'word' => rand(1000,9999),
+   'img_path' => './captcha/',
+   //'img_url' =>'http://localhost'.'/captcha/',
+   'img_url' => '/captcha/',
+   'font_path' => './path/to/fonts/texb.ttf',
+   'img_width' => '120',
+   'img_height' => 35,
+   'expiration' => 60*10
+  );
+  $rec = create_captcha($img);
+  $this->session->set_userdata("yzm2",$rec['word']); //紀錄 session
+  
+  $data['cap'] = $cap;
+  
+  
+要開啟$this->load->helper('captcha');
