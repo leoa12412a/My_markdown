@@ -1,0 +1,20 @@
+上傳mibew
+
+開通權限 
+
+建立mysql ->mibew資料表
+複製mibew/configs/default_config.yml ,另外命名config.yml
+修改config.yml
+database:
+    host: "localhost"
+    port: 3306
+    db: "mibew"
+    login: "root"
+    pass: "3edc1qaz2wsx"
+    tables_prefix: ""
+    use_persistent_connection: false
+
+連接網站安裝 http://124.219.73.157/install.php
+密碼qazwsx*26
+
+登入頁面http://124.219.73.157/index.php/operator/login?login=admin

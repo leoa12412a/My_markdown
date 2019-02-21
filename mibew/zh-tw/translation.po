@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mibew Messenger 2.0\n"
-"Report-Msgid-Bugs-To: support@mibew.org\n"
+"Report-Msgid-Bugs-To: 9skin\n"
 "POT-Creation-Date: 2014-08-19 12:44+0000\n"
 "PO-Revision-Date: 2016-12-24 02:25+0300\n"
 "Last-Translator: X Chen\n"
 "Language: zh_TW\n"
-"Language-Team: Mibew Translators <support@mibew.org>\n"
+"Language-Team: Mibew Translators <9skin>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
@@ -673,7 +673,7 @@ msgid "Mibew Messenger is an open-source live support application."
 msgstr "網站即時訊息是一個開源的線上客服應用。"
 
 msgid "Mibew package is valid."
-msgstr "Mibew組件有效。"
+msgstr "9skin組件有效。"
 
 msgid "Misc"
 msgstr "選項"
@@ -850,7 +850,10 @@ msgid "Please, re-upload files to the server."
 msgstr "請重新上傳檔到伺服器。"
 
 msgid "Powered by:"
-msgstr "Powered by:"
+msgstr "九形國際"
+
+msgid "mibew.org"
+msgstr "九形國際"
 
 msgid "Pre-chat survey"
 msgstr "交談前的調查"
@@ -1432,16 +1435,16 @@ msgid "About"
 msgstr "About"
 
 msgid "About Mibew Messenger"
-msgstr "About Mibew Messenger"
+msgstr "關於 9skin Messenger"
 
 msgid "Mibew Messenger is an open-source live support application licensed under the terms of the Apache License 2.0."
-msgstr "Mibew Messenger is an open-source live support application licensed under the terms of the Apache License 2.0."
+msgstr "9skin Messenger is an open-source live support application licensed under the terms of the Apache License 2.0."
 
 msgid "Copyright &copy; {0} Contributors of the Mibew Messenger project."
-msgstr "Copyright &copy; {0} Contributors of the Mibew Messenger project."
+msgstr "Copyright &copy; {0} Contributors of the 9skin Messenger project."
 
 msgid "For more information visit the official site of the project: <a href=\"https://mibew.org/\">https://mibew.org/</a>"
-msgstr "For more information visit the official site of the project: <a href=\"https://mibew.org/\">https://mibew.org/</a>"
+msgstr "For more information visit the official site of the project: <a href=\"http://www.9skin.com/\">https://www.9skin.com/</a>"
 
 msgid "System information"
 msgstr "System information"
@@ -1666,7 +1669,7 @@ msgid "Use to start chat with determined operator"
 msgstr "Use to start chat with determined operator"
 
 msgid "No geolocation data available. We recommend you to install Mibew:GeoIp and Mibew:OpenStreetMap (or Mibew:GoogleMaps) plugins."
-msgstr "No geolocation data available. We recommend you to install Mibew:GeoIp and Mibew:OpenStreetMap (or Mibew:GoogleMaps) plugins."
+msgstr "No geolocation data available. We recommend you to install 9skin:GeoIp and 9skin:OpenStreetMap (or 9skin:GoogleMaps) plugins."
 
 msgid "From this page you can generate a variety of usage reports. Last time statistics was calculated {0}. You can calculate it <a href=\"{1}\" target=\"_blank\">manually</a>."
 msgstr "From this page you can generate a variety of usage reports. Last time statistics was calculated {0}. You can calculate it <a href=\"{1}\" target=\"_blank\">manually</a>."
@@ -1972,7 +1975,7 @@ msgid "Cannot store instance ID. Error {0}"
 msgstr "Cannot store instance ID. Error {0}"
 
 msgid "PHP version is {0}, but Mibew Messenger works with {1} and later versions."
-msgstr "PHP version is {0}, but Mibew Messenger works with {1} and later versions."
+msgstr "PHP version is {0}, but 9skin Messenger works with {1} and later versions."
 
 msgid "PHP {0} extension is not loaded"
 msgstr "PHP {0} extension is not loaded"

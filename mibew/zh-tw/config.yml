@@ -1,5 +1,5 @@
 # This is human-readable name which will be used everywhere in UI.
-name: 文言
+name: 繁體中文
 # Indicates if the locale uses Right-to-Left writing.
 rtl: false
 # Locale name which will be passed into PHP's setlocale function.
