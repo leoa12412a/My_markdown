@@ -1,0 +1,144 @@
+git 
+
+==========
+git 安裝
+
+linux
+
+$sudo yum install git-all
+
+如果你是使用 Debian 系列的發行版，如 Ubuntu，你可以使用 apt-get：
+
+$ sudo apt-get install git-all
+
+windows
+
+官網下載
+
+==========
+基本指令
+
+
+$cd Desktop/     		//到桌面下
+
+$ls              		//路徑下清單
+
+$git status 			//查看當下未commit的資料
+
+$git add test.txt 		//把資料加入git暫存區
+
+$git commit -m "備註"   //資料commit
+
+//若是想反悔不想把檔案加入追蹤呢？
+
+// 檔案尚未加入過追蹤時使用，即可恢復到檔案尚未加入暫存區
+$ git rm --cached hello.py
+// 若檔案已經在 repository 內，則使用以下指令
+// repository 與 stage 的檔案都會被還原到 HEAD，但 working directory 內的檔案不變
+$ git reset HARD
+
+$git log 				//顯示有被commit的git檔案
+
+$git reflog				//顯示之前的版本(如果版本在目前版本的未來)
+
+$git show 編號          //顯示編號git
+
+$git reset --hard a35ed2c //將目前版本變成a35ed2c版本
+
+$git diff				// 比較現在檔案和上次 commit 之間的差異，也就是說你做了哪些修改
+
+$git add --all          //add目錄下全部
+
+Git 更換遠端伺服器倉庫網址URL
+
+1.確認目前Git遠端伺服器網址： git remote -v
+
+$git remote -v
+origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
+origin  https://github.com/USERNAME/REPOSITORY.git (push)
+2.更換Git遠端伺服器位網址，使用：git remote set-url
+
+$git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git
+3.再次確認Git遠端伺服器網址
+
+$git remote -v
+origin  https://github.com/USERNAME/OTHERREPOSITORY.git (fetch)
+origin  https://github.com/USERNAME/OTHERREPOSITORY.git (push)
+如果是使用SSH的存取網址，指令一樣是使用git remote set-url，再接上新的SSH URL就可以更換，指令如下：
+
+$git remote set-url origin git@github.com:USERNAME/OTHERREPOSITORY.git
+不管是要HTTP/HTTPS跟SSH，二種存取網址都是可以直接做更換，然後下次git push/ git fetch 就會到新設定的網址去了唷。
+
+--------------------------------
+
+
+如果是新建分支第一次push，會提示：
+fatal: The current branch develop has no upstream branch. To push the current branch and set the remote as upstream, use
+
+
+git push --set-upstream origin develop
+輸入這行命令，然後輸入用戶名和密碼，就push成功了。
+
+以後的push就只需要輸入
+
+git push origin
+
+--------------------------------
+
+建立分支
+
+	$ git branch cat   //建立一個較cat的分支
+
+	$ git branch  //  查看分支
+
+	$ git branch -m master slave   //把master分支改名為slave
+	
+	$ git branch -d dog  //  刪除dog分支。但如果要刪的分支還沒被完全合併，Git 會有貼心小提示
+
+切換分支
+	
+	git checkout cat //切換到cat分支
+	
+	
+
+
+
+============
+
+Q&A:
+
+------------
+
+Q1:Git 解決出現 warning: LF will be replaced by CRLF ... The file will have its original line endings in your working directory.
+
+A1:(https://adon988.logdown.com/posts/7642074-git-resolves-to-appear-warninglfll-be-replaced-by-crlf-the-file-would-have-its-original-line-endings-in-your-working-directory)
+
+原因是因為 windows 所使用的換行符號是 CRLF
+
+Git 會在提交的時候為了將換行符號統一，將 CRLF 轉換為 LF，並且會在偵測到需轉換時，會提出警示訊息
+
+若不希望出現此錯誤警示，不要將 CRLF轉換為LF，則可以執行以下指令:
+
+rm -rf .git
+git config --global core.autocrlf false
+git init
+git add .
+但原則上，不建議將這個動作關閉
+
+如果设置`core.autocrlf = false`，那么很可能会出现CRLF和LF混合的情况，这样会导致一些问题，例如`git diff` 失去功能，会发现很多行代码并没有修改，然而被认为是修改过了。
+
+首先'core.autocrlf = true`在windows上才是正确的选择，那么如何避免warning呢？还要有以下几个步骤：添加.gitattributes设置`core.safecrlf = true`使用dos2unix、notepad++等工具来将LF转换成CRLF
+
+
+
+建議可以試試以下作法
+
+git config --global core.autocrlf true
+git config --global core.safecrlf true
+再將LF轉換為CRLF
+
+------------
+
+Q2: 如何將 http://60.245.59.136:3000/ 伺服器的git資料抓到 本機指定目錄？git fetch ?  git merge ? git pull?
+
+A2:git pull操作其实是git fetch 与 git merge 两个命令的集合。
