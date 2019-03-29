@@ -1,4 +1,4 @@
-git 
+﻿git 
 
 ==========
 git 安裝
@@ -142,3 +142,7 @@ git config --global core.safecrlf true
 Q2: 如何將 http://60.245.59.136:3000/ 伺服器的git資料抓到 本機指定目錄？git fetch ?  git merge ? git pull?
 
 A2:git pull操作其实是git fetch 与 git merge 两个命令的集合。
+
+
+git ssh 傳送 
+root@61.222.10.76:/gitrepo/fdgdfgdfg
