@@ -1,0 +1,28 @@
+1.修改my.cnf,加入一行
+
+# vi /etc/my.cnf
+
+[mysqld]
+skip-grant-tables
+
+2.重啟mysql
+
+# /etc/init.d/mysqld restart
+
+3.登入mysql,並修改密碼
+
+mysql> USE mysql ; 
+mysql> UPDATE user SET Password = password ( 'newpassword' ) WHERE User = 'root' ; 
+mysql> flush privileges ; 
+mysql> quit
+
+4.將my.cnf還原,把加入的skip-grant-tables拿掉,並重啟mysql
+
+# vi /etc/my.cnf
+
+[mysqld]
+#skip-grant-tables 把這行mark掉
+
+# /etc/init.d/mysqld restart
+
+好了...用你新密碼試試囉

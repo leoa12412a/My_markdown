@@ -3,10 +3,9 @@ centos 6 中文亂碼
 vi /etc/sysconfig/i18n                   //LANG="zh_TW.UTF-8"   改為    LANG="zh_TW.Big5"
 
 source /etc/locale.conf
-# 或者 重新登??端?接
+# 或者 重新登入reboot
 
-
-centos 6 中文亂碼
+centos 7 中文亂碼
 
 vi /etc/locale.conf                      //LANG="zh_TW.UTF-8"   改為    LANG="zh_TW.Big5"
 
