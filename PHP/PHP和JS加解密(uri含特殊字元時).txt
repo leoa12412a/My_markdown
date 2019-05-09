@@ -1,0 +1,15 @@
+JS加密
+
+ 1． escape - 采用ISO Latin字符集对指定的字符串进行编码。不会被此方法编码的字符： @ * / + 
+
+ 2． encodeURI - 把URI字符串采用UTF-8编码格式转化成escape格式的字符串不会被此方法编码的字符：! @ # $& * ( ) = : / ; ? + '
+
+ 3． encodeURIComponent - 把URI字符串采用UTF-8编码格式转化成escape格式的字符串。不会被此方法编码的字符：! * ( ) '
+
+PHP解密
+
+ 1 . 
+ 
+ 2 . 
+ 
+ 3 . $id = urldecode($id);

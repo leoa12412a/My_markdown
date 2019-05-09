@@ -12,7 +12,7 @@ skip-grant-tables
 3.µn¤Jmysql,¨Ã­×§ï±K½X
 
 mysql> USE mysql ; 
-mysql> UPDATE user SET Password = password ( 'newpassword' ) WHERE User = 'root' ; 
+mysql> UPDATE user SET Password = password ( 'newpassword' ) WHERE User = 'root' ; // OR update mysql.user set authentication_string=password('123456') where user='root';
 mysql> flush privileges ; 
 mysql> quit
 
