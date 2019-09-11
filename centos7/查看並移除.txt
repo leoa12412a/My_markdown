@@ -1,0 +1,9 @@
+# rpm -qa | grep mysql
+mysql-libs-5.1.73-5.el6_6.x86_64
+mysql-server-5.1.73-5.el6_6.x86_64
+mysql-5.1.73-5.el6_6.x86_64
+
+# yum remove mysql-libs mysql-server mysql-client mysql
+
+# rm -rf /var/lib/mysql/
+# rm -rf /etc/my.cnf

@@ -1,0 +1,3 @@
+# 遞迴更改整個目錄下的所有檔案
+sudo chown -R root:root filename
+把filename下所有改成root 第一個root是使用者 第二個是群組

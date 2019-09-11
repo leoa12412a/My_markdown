@@ -1,0 +1,5 @@
+Update²Ö¥[
+
+$this->db->set('f_right', 'f_right+1', false);
+$this->db->where('f_id', $id);
+$this->db->update($table); 

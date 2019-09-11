@@ -1,0 +1,5 @@
+cd /home/docker-compose;
+docker rm -f $(docker ps -aq);
+docker-compose -f traefik.yml up -d;
+docker-compose -f gitlab.yml up -d;
+
