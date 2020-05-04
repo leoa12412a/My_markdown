@@ -1,0 +1,8 @@
+
+<img src="loading.gif" class="lazyload" data-src="imgsrc.jpg"></img>
+
+<script src="lazyload.js"></script>
+
+<script>
+	lazyload();
+<script>

@@ -1,0 +1,36 @@
++ 安裝完之後執行CMD (管理員權限)
++ 輸入vagrant init ubuntu/trusty64 (線上BOX掛載用)
++ 輸入vagrant box add --name pr001 9skindev.box  <=> vagrant box add --name [vagrant box名稱] vagrant-dev.box
++ 到資料夾輸入vagrant init
++ 修改Vagrantfile 
+
+```sh
+config.vm.box = "pr001"(box名稱)
+      config.vm.network "private_network", ip: "192.168.30.12"(內網IP)
+      config.vm.synced_folder "./", "/var/www/html"  第一個參數是主機上目錄的路徑。如果路徑是相對的，則它相對於項目根目錄。第二個參數必須是在來賓計算機中共享文件夾的位置的絕對路徑。如果該文件夾不存在，將創建該文件夾（如果必須，則遞歸）。默認情況下，Vagrant將同步文件夾的所有者/組設置為SSH用戶，並將任何父文件夾設置為root。
+      
+      config.vm.provision "shell", inline: <<-SHELL   (一開始要給vagrant執行的腳本)
+      sudo su
+      systemctl start httpd
+      systemctl enable httpd
+
+      SHELL
+```
+
++ 輸入vagrant up 啟動
+
+
++ vagrant up #启动虚拟机
++ vagrant halt #关闭虚拟机
++ vagrant status #查看虚拟机运行状态
+
+修改時間
++ sudo date -s "20170502 1500"
+
+修改時區
++ date
++ tzselect
++ 5 Asia
++ 43 Taiwan
++ echo "TZ='Asia/Taipei'; export TZ" >> ~/.profile
+完成

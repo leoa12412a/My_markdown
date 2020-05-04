@@ -22,7 +22,7 @@ services:
 
   gitlab:
     restart: always
-    image: gitlab/gitlab-ce:latest
+    image: gitlab/gitlab-ce:12.0.3-ce.0
     hostname: gitlab.9skin.com
     depends_on:
     - redis  
@@ -33,6 +33,7 @@ services:
     volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data:Z
     - /srv/gitlab/config:/etc/gitlab
+    - /home/gitlab_backup/:/var/opt/gitlab/backups
     environment:
     - DEBUG=false
     - GITLAB_OMNIBUS_CONFIG= external_url 'http://gitlab.9skin.com:10080'
