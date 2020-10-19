@@ -1,2 +1,11 @@
-控制server端功能窗格 mibew/styles/pages/default/templates_src/server_side/index.handlebars
-控制聊天室窗 mibew/styles/chats/default/templates_compiled/client_side/templates.js
+/styles/pages/default/templates_src/server_side_layout.handlebars	
+
+抬頭 title
+
+結尾 footer
+
+
+
+控制server端功能窗格 9Skin/styles/pages/default/templates_src/server_side/index.handlebars
+控制聊天室窗 9Skin/styles/chats/default/templates_compiled/client_side/templates.js
+
